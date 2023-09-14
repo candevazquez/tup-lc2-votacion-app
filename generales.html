@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/png" href="img/icons/favicon-16x16.png">
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/pages/generales.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -15,42 +16,45 @@
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
-            <a href="index.html"><img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="logo" class="logo"
-                    width="200px"></a>
+            <a href="index.html"><img src="img/icons/Logo_DINE_negativo.a88f983e.png" alt="logo" class="logo" width="150px"></a>
         </div>
 
         <!--Barra de menú principal-->
-        <form action="">
+        <div class="barra-menu">
 
 
-            <select name="año" id="año"> <!--filtro año-->
-                <option value="año">Año</option>
-                <option value="2023">2023</option>
-                <option value="2019">2019</option>
-                <option value="2015">2015</option>
-            </select>
+            <form action="">
 
-            <select name="cargo" id="cargo"> <!--filtro cargo-->
-                <option value="cargo">Cargo</option>
-                <option value="presidente">presidente</option>
-                <option value="diputado">diputado</option>
-                <option value="senador">senador</option>
-            </select>
 
-            <select name="distrito" id="distrito"> <!--filtro distrito-->
-                <option value="distrito">Distrito</option>
-                <option value="santa fe">santa fe</option>
-                <option value="cordoba">cordoba</option>
-                <option value="corrientes">corrientes</option>
-            </select>
+                <select name="año" id="año" class="combo"> <!--filtro año-->
+                    <option value="año">Año</option>
+                    <option value="2023">2023</option>
+                    <option value="2019">2019</option>
+                    <option value="2015">2015</option>
+                </select>
 
-            <button><i class="fa fa-search"></i> filtrar</button> <!--boton filtrar con lupa-->
+                <select name="cargo" id="cargo" class="combo"> <!--filtro cargo-->
+                    <option value="cargo">Cargo</option>
+                    <option value="presidente">presidente</option>
+                    <option value="diputado">diputado</option>
+                    <option value="senador">senador</option>
+                </select>
 
-            <button><a href="informes.html">informes</a></button> <!--boton informes-->
+                <select name="distrito" id="distrito" class="combo"> <!--filtro distrito-->
+                    <option value="distrito">Distrito</option>
+                    <option value="santa fe">santa fe</option>
+                    <option value="cordoba">cordoba</option>
+                    <option value="corrientes">corrientes</option>
+                </select>
 
-            <button><a href="index.html">inicio</a></button> <!--boton inicio-->
+                <a href="#" class="filtrar"><i class="fa fa-search"></i>filtrar</a> <!--boton filtrar con lupa-->
 
-        </form>
+                <a href="informes.html" class="boton-informes">informes</a> <!--boton informes-->
+
+                <a href="index.html" class="inicio">inicio</a><!--boton inicio-->
+
+            </form>
+        </div>
 
     </header>
 
@@ -66,8 +70,9 @@
         </section>
 
         <section id="sec-messages">
-            <p>error en la operacion</p> <!--mensaje de error-->
-            <p>operacion exitosa</p> <!--mensaje de exito-->
+            <p class="error"><i class="fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar resultados al informe</p> <!--mensaje de error-->
+            <p class="exito"><i class="fa-thumbs-up"></i> Se agrego con exito el resultado al informe</p> <!--mensaje de exito-->
+            <p class="incompleta"><i class="fa-exclamation"></i> La operacion no se pudo completar</p>
         </section>
 
         <section id="sec-contenido">
@@ -579,9 +584,9 @@
     <!--Pie de página-->
     <footer>
         <div id="logos">
-            <img src="img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="ministerio del interior">
-            <img src="img/Logo_DINE_negativo.png" alt="logo dine">
-            <img src="img/icons/logos_001-10.4430c8d5.png" alt="observatorio politico Electoral">
+            <img src="img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="ministerio del interior" class="pie-imagen">
+            <img src="img/Logo_DINE_negativo.png" alt="logo dine" class="pie-imagen">
+            <img src="img/icons/logos_001-10.4430c8d5.png" alt="observatorio politico Electoral" class="pie-imagen">
         </div>
         <p>Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
             porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
