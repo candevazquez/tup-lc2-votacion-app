@@ -50,9 +50,11 @@
 
                 <a href="#" class="filtrar"><i class="fa fa-search"></i>filtrar</a> <!--boton filtrar con lupa-->
 
-                <a href="informes.html" class="boton-informes">informes</a> <!--boton informes-->
+                <a href="informes.html" class="boton-informes">INFORMES</a> <!--boton informes-->
 
-                <a href="index.html" class="inicio">inicio</a><!--boton inicio-->
+                <a href="paso.html" class="boton-menu-paso">Paso</a>
+
+                <a href="index.html" class="inicio">INICIO</a><!--boton inicio-->
 
             </form>
         </div>
@@ -61,14 +63,6 @@
 
     <!-- Contenido principal de la página -->
     <main>
-        <section id="sec-titulo">
-            <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Elecciones 2021|Generales</h2>
-            <p class="texto-path">2020 > Generales > Provisorio > Senadores Nacionales > Buenos Aires</p>
-            <div>
-                IMAGEN?
-            </div>
-        </section>
 
         <section id="sec-messages">
             <p class="error"><i class="fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar
@@ -78,13 +72,20 @@
             <p class="incompleta"><i class="fa-exclamation"></i> La operacion no se pudo completar</p>
         </section>
 
+        <section id="sec-titulo">
+            <!--Seccion para agregar una palicula favorita por codigo-->
+            <h2>Elecciones 2021|Generales</h2>
+            <p class="texto-path">2020 > Generales > Provisorio > Senadores Nacionales > Buenos Aires</p>
+        </section>
+
+
+
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
             <button class="enviar-informe">+AGREGAR A INFORME</button>
 
             <div id="cuadro-informativo">
-                <p class="mesas-escrutadas">
-                    Mesas escrutadas
+                <div class="mesas-escrutadas">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                         id="Capa_1" x="0px" y="0px" width="841.889px" height="595.281px" viewBox="0 0 841.889 595.281"
                         enable-background="new 0 0 841.889 595.281" xml:space="preserve"
@@ -104,10 +105,12 @@
                                 d="M427.428,359.526c0-2.357,0-3.536,0-5.894c0,0,0,0,0-1.18l0,0l0,0c0-28.29-20.039-50.688-44.793-50.688c-24.755,0-44.794,22.397-44.794,50.688l0,0l0,0c0,2.358,0,4.716,0,7.073c-14.145,16.503-23.575,40.078-23.575,67.189l0,0l0,0c0,48.33,30.648,88.408,68.369,88.408c37.72,0,68.368-40.078,68.368-88.408l0,0l0,0C451.003,399.604,441.573,376.029,427.428,359.526z M382.635,495.085c-23.576,0-43.615-25.933-47.151-57.76h94.302C427.428,469.152,407.389,495.085,382.635,495.085z M406.21,344.202c-7.073-3.536-15.324-5.894-23.575-5.894c-8.252,0-16.503,2.357-23.576,5.894c3.537-12.967,12.967-21.218,23.576-21.218C394.422,321.805,403.853,331.235,406.21,344.202z M382.635,358.347c23.575,0,43.614,24.754,47.15,57.76h-94.302C339.02,383.101,359.059,358.347,382.635,358.347z" />
                         </g>
                     </svg>
+                    mesas escrutadas
 
-                </p>
-                <p class="electores">
-                    Electores
+                </div>
+
+                <div class="electores">
+
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px" height="595.281px"
                         viewBox="0 0 841.889 595.281" enable-background="new 0 0 841.889 595.281" xml:space="preserve"
@@ -192,9 +195,11 @@
                                    C179.096,216.257,179.518,215.546,180.521,214.235z">
                         </path>
                     </svg>
-                </p>
-                <p class="participacion">
-                    Participacion sobre escrutado
+                    Electores
+                </div>
+
+                <div class="participacion">
+
                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px" height="595.281px"
                         viewBox="0 0 841.889 595.281" enable-background="new 0 0 841.889 595.281" xml:space="preserve"
@@ -251,10 +256,11 @@
                         </path>
                         <rect x="195.975" y="387.534" fill="#FFFFFF" width="69.013" height="14.393"></rect>
                     </svg>
-
-                </p>
+                    Participacion sobre escrutado
+                </div>
 
             </div>
+
             <div class="recuadros-centrales">
 
                 <div class="agrupaciones">
@@ -288,19 +294,27 @@
                 <div class="chart-wrap horizontal">
                     <div class="title">resumen de votos</div>
                     <div class="grid">
-                        <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);" data-name="Partido 1" title="Your Blog 85%">
+                        <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);"
+                            data-name="Partido 1" title="Your Blog 85%">
                         </div>
-                        <div class="bar" style="--bar-value:23%;" data-name="Partido 2" title="Medium 23%">
+                        <div class="bar" style="--bar-value:23%; --bar-color:var(--grafica-lila); "
+                            data-name="Partido 2" title="Medium 23%">
                         </div>
-                        <div class="bar" style="--bar-value:7%;" data-name="Partido 3" title="Tumblr 7%"></div>
-                        <div class="bar" style="--bar-value:38%;" data-name="Partido 4" title="Facebook 38%">
+                        <div class="bar" style="--bar-value:7%; --bar-color:var(--grafica-bordo);" data-name="Partido 3"
+                            title="Tumblr 7%"></div>
+                        <div class="bar" style="--bar-value:38%; --bar-color:var(--grafica-celeste);"
+                            data-name="Partido 4" title="Facebook 38%">
                         </div>
-                        <div class="bar" style="--bar-value:35%;" data-name="Partido 5" title="YouTube 35%">
+                        <div class="bar" style="--bar-value:35%; --bar-color:var(--grafica-lila-claro);"
+                            data-name="Partido 5" title="YouTube 35%">
                         </div>
-                        <div class="bar" style="--bar-value:30%;" data-name="Partido 6" title="LinkedIn 30%">
+                        <div class="bar" style="--bar-value:30%; --bar-color:var(--grafica-bordo);"
+                            data-name="Partido 6" title="LinkedIn 30%">
                         </div>
-                        <div class="bar" style="--bar-value:5%;" data-name="Partido 7" title="Twitter 5%"></div>
-                        <div class="bar" style="--bar-value:20%;" data-name="Otros" title="Other 20%"></div>
+                        <div class="bar" style="--bar-value:5%; --bar-color:var(--grafica-amarillo);"
+                            data-name="Partido 7" title="Twitter 5%"></div>
+                        <div class="bar" style="--bar-value:20%; --bar-color:var(--grafica-amarillo);" data-name="Otros"
+                            title="Other 20%"></div>
                     </div>
                 </div>
             </div>
@@ -313,14 +327,14 @@
                 class="pie-imagen">
             <img src="img/Logo_DINE_negativo.png" alt="logo dine" class="pie-imagen">
             <img src="img/icons/logos_001-10.4430c8d5.png" alt="observatorio politico Electoral" class="pie-imagen">
+            <p class="footer-p">Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley
+                19945). Los
+                porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
+                45 Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
+                residentes en el exterior ni privados de la libertad. Al usar este sitio usted acepta los
+                <a href="paginaenblanco.html">Términos y Condiciones.</a>
+            </p>
         </div>
-        <p>Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley 19945). Los
-            porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
-            45 Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
-            residentes en el exterior ni privados de la libertad. Al usar este sitio usted acepta los
-            <a href="paginaenblanco.html">Términos y Condiciones.</a>
-        </p>
-    </footer>
     </footer>
 </body>
 

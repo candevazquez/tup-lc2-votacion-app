@@ -4,7 +4,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-:root {
+*:root {
 
   --magenta: #ee3d8f;
   --celeste: #37bbed;
@@ -78,131 +78,44 @@ h3 {
 }
 .header-page a{
   width: 90%;
+  
 }
 .barra-menu{
-  margin-left: 13px ; /*con los dos margenes queda mal*/
-  margin-right: 13px ;
-  padding-top: 20px;
+  margin-left: 0 ; /*con los dos margenes 13px y el padding de 20px queda mal */
+  margin-right: 0;
   background-color: var(--fondo-Menu);
   width: 100%;
+ 
 }
 footer{
   background-color: var(--fondo-Footer);
-  color: var(--texto-footer);           /*no se ven las letras*/
+  height: 150px;
+                                     /*footer*/
+                    
+}
+.footer-p{
+  color: var(--texto-footer); 
+  line-height:20px;
+  margin-bottom: 0%;
 
+}
+.footer> p > a{
+  text-decoration: none;
+  color: var(--texto-footer);
 }
 .pie-imagen{
   height: 40px;
-}
-.boton-menu-paso{
-  background-color: var(--magenta);
-  border-radius:5px ;
-  padding: 5px;
-  color: #fff;
-  font-size: 10px;
-  font-family: Uppercase ;
-  text-align: center;
-}
-.boton-menu-paso:hover{
-  background-color: var(--gris-claro);
-}
-.boton-menu-generales{
-  background-color: var(--celeste);
-  border-radius:5px ;
-  padding: 5px;
-  color: #fff;
-  font-size: 10px;
-  font-family: Uppercase ;
-  text-align: center;
+}      
 
-}
-
-.boton-menu-generales:hover{
-  background-color: var(--gris-claro);
-}
-
-.boton-informes{
-  border-radius: 5px;
-  border: 1px;
-  color: white;
-  padding: 5px;
-  color: #fff;
-  font-size: 10px;
-  font-family: Uppercase;
-  text-align: center;
-
-}
-.boton-informes:hover{
-  background-color: var(--gris-claro);
-}
-.imagen-central{
-  margin: 15px;
-  width: 350px;
-}
-ul{
-  list-style: none;
+#logos{
   display: flex;
-}
-
-
-.boton-paso{
-  background-color: var(--magenta);
-  border-radius: 10px;
-  margin: 25px;
-  height: 100px;
-  width: 400px;
-  padding: 1rem;
-  color: #FFF;
-  font-size: 28px;
-}
-.boton-generales{
-  background-color: var(--celeste);
-  border-radius: 10px;
-  margin: 25px;
-  height: 100px;
-  width: 400px;
-  padding: 1rem;
-  color: #FFF;
-  font-size: 28px;
-}
-.botones{
-  display: flex;
-}
-
-.filtrar{
-  background-color: white;
-  border-radius: 15px;
-  padding: 5px;
-  color: #FFF;
-  font-family: Uppercase;
-  text-align: center;
-  color: var(--textos);
 
 }
+                                                            /*HASTA ACA COMUN PARA TODO*/
+/*
 
-.inicio{
-  background-color: var(--gris-claro);
-  border-radius: 5px;
-  padding: 5px;
-  color :#FFF;
-  font-size: 10px;
-  font-family:  Uppercase;
-  text-align: center;
+*/
 
-}
-.inicio:hover{
-  color: var(--textos);
-}
-
-.combo{
-  background-color: transparent;
-  border: none;
-  font-size: 14px;
-  height: 30px;
-  padding: 5px;
-  color: var(--celeste);
-  font-weight: bold;
-}
 .error{
   background-color: var(--mensaje-usuario-rojo);
   width: 400px;
