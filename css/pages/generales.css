@@ -2,7 +2,7 @@
     background-color: white;
     border-radius: 15px;
     padding: 3px;
-    font-family: Uppercase;
+    text-transform: uppercase;
     text-align: center;
     color: var(--textos);
     display: inline-block;   /*sin esto no me deja ponerle tamaño*/
@@ -17,7 +17,7 @@
     padding: 5px;
     color :#FFF;
     font-size: 10px;
-    font-family: Uppercase;
+    text-transform: uppercase;
     text-align: center;
     width: 70px;
     text-decoration: none;
@@ -63,7 +63,7 @@
     padding: 5px;
     color: #fff;
     font-size: 10px;
-    font-family: Uppercase ;
+    text-transform: uppercase;
     text-align: center;
     display: inline-block;
     width: 70px;
@@ -190,7 +190,7 @@
     font-size: 11px;
     color: var(--textos);
     padding: 5px;
-    font-size: Uppercase;
+    text-transform: uppercase;
     font-weight: bold;
 }
 

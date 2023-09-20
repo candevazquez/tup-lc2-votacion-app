@@ -1,10 +1,10 @@
-.boton-menu-generales{
+.boton-menu-generales {
   background-color: var(--celeste);
-  border-radius:5px ;
+  border-radius: 5px;
   padding: 5px;
   color: #fff;
   font-size: 10px;
-  font-family: Uppercase ;
+  text-transform: uppercase;
   text-align: center;
   display: inline-block;
   width: 70px;
@@ -12,70 +12,114 @@
   margin: 5px;
 
 }
-  .boton-menu-paso:hover{
-    background-color: var(--gris-claro);                      
-  }
-  .boton-menu-paso{
-    background-color: var(--magenta);
-    border-radius:5px ;
-    padding: 5px;
-    color: #fff;
-    font-size: 10px;
-    font-family: Uppercase ;
-    text-align: center;
-    display: inline-block;
-    width: 70px;
-    text-decoration: none;
-  
-  }
-  
-  .boton-menu-generales:hover{
-    background-color: var(--gris-claro);
-  }
-  
-  
-  .boton-informes{
-    border-radius: 15px;
-    border: 1px solid white ;
-    color: #FFF;
-    font-size: 10px ;
-    text-align: center;
-    display: inline-block; /*sin esto no me deja ponerle tamaño*/
-    width: 70px;
-    text-decoration: none;
-    padding: 5px;
-  
 
-  }
-  .boton-informes:hover{
-    background-color: var(--gris-claro);
-  }
+.boton-menu-paso:hover {
+  background-color: var(--gris-claro);
+}
 
-  .imagen-central{
-    margin: 15px;
-    width: 350px;
-  }
+/*Color fondo: --magenta
+o Borde redondeado: 5px
+o Padding: 5px
+o Fuente: #FFF, Tamaño 10px
+o Formato texto: Uppercase
+o Posición del texto: centro*/
 
-  .boton-paso{                                                               /*BOTONES GRANDES*/
-    background-color: var(--magenta);
-    border-radius: 10px;
-    margin: 25px;
-    height: 100px;
-    width: 400px;
-    padding: 1rem;
-    color: #FFF;
-    font-size: 28px;
-  }
-  .boton-generales{
-    background-color: var(--celeste);
-    border-radius: 10px;
-    margin: 25px;
-    height: 100px;
-    width: 400px;
-    padding: 1rem;
-    color: #FFF;
-    font-size: 28px;
-  }
-  .botones{
-    display: flex;
-  }
+
+.boton-menu-paso {
+  background-color: var(--magenta);
+  border-radius: 5px;
+  padding: 5px;
+  color: #fff;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  display: inline-block;
+  width: 70px;
+  text-decoration: none;
+
+}
+
+.boton-menu-generales:hover {
+  background-color: var(--gris-claro);
+}
+
+
+.boton-informes {
+  border-radius: 15px;
+  border: 1px solid white;
+  color: #FFF;
+  font-size: 10px;
+  text-align: center;
+  display: inline-block;
+  /*sin esto no me deja ponerle tamaño*/
+  text-transform: uppercase;
+  width: 70px;
+  text-decoration: none;
+  padding: 5px;
+
+
+}
+
+.boton-informes:hover {
+  background-color: var(--gris-claro);
+}
+
+.imagen-central {
+  margin: 15px;
+  width: 350px;
+}
+
+.boton-paso {
+  text-decoration: none;
+  /*BOTONES GRANDES */
+  background-color: var(--magenta);
+  border-radius: 10px;
+  margin: 25px;
+  height: 100px;
+  width: 400px;
+  padding: 1rem;
+  color: #FFF;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.boton-generales {
+  text-decoration: none;
+  background-color: var(--celeste);
+  border-radius: 10px;
+  margin: 25px;
+  height: 100px;
+  width: 400px;
+  padding: 1rem;
+  color: #FFF;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+#sec-titulo {
+  display: flex;
+}
+
+.texto {
+  line-height: 20px;
+  padding-right: 20px;
+  margin-left: 100px;
+}
+
+
+.imagen-central {
+  margin-top: 50px;
+}
+
+.contenido-inferior{
+  margin-left: 50px;
+}

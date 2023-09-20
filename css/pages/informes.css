@@ -94,7 +94,7 @@ tbody td {
   padding: 5px;
   color: #fff;
   font-size: 10px;
-  font-family: Uppercase;
+  text-transform: uppercase;
   text-align: center;
   display: inline-block;
   width: 70px;
@@ -112,7 +112,7 @@ tbody td {
   padding: 5px;
   color: #fff;
   font-size: 10px;
-  font-family: Uppercase;
+  text-transform: uppercase;
   text-align: center;
   display: inline-block;
   width: 70px;
@@ -133,7 +133,7 @@ tbody td {
   padding: 5px;
   color: #FFF;
   font-size: 10px;
-  font-family: Uppercase;
+  text-transform: uppercase;
   text-align: center;
   width: 70px;
   text-decoration: none;
