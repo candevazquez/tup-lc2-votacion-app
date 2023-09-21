@@ -17,13 +17,6 @@
   background-color: var(--gris-claro);
 }
 
-/*Color fondo: --magenta
-o Borde redondeado: 5px
-o Padding: 5px
-o Fuente: #FFF, Tamaño 10px
-o Formato texto: Uppercase
-o Posición del texto: centro*/
-
 
 .boton-menu-paso {
   background-color: var(--magenta);
