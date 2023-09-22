@@ -43,7 +43,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(255, 255, 255);
 }
 
 p {
@@ -101,10 +101,7 @@ footer{
   margin-bottom: 0%;
 
 }
-.footer> p > a{
-  text-decoration: none;
-  color: var(--texto-footer);
-}
+
 .pie-imagen{
   height: 40px;
   margin-right: 15px;
@@ -115,10 +112,13 @@ footer{
   padding: 35px 35px 35px 0px;
   margin: 100px;
 }
-                                                            /*HASTA ACA COMUN PARA TODO*/
-/*
+                                                     
+.pagina-blanco{
+  text-decoration: none;
+  color: var(--texto-footer);
+}
 
-*/
+
 
 .error{
   background-color: var(--mensaje-usuario-rojo);
