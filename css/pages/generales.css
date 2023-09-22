@@ -193,37 +193,61 @@
 
 .recuadros-centrales{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .recuadros-centrales > div {
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
-    text-align: center;
-    white-space: nowrap;
-    Padding: 1.8em 0 0 0;
-    width: 30%;
     height: 325px;
-    margin: 20px;
+    width: 30%;
+
 }
 
-.agrupaciones {
+.chart-wrap > p, .mapas > p , .agrupaciones > p{
+    font-weight: bold;
+    text-align: center;
+    padding: 1.8em 0px 0px;
+    white-space: nowrap;
+
+}
+
+/*Agrupaciones políticas:
+o Scroll vertical
+o Alto 325px
+o Textos:
+▪ Tamaño: 11px
+▪ Color: --textos
+▪ Padding: 5px
+▪ Formato texto: Uppercase
+
+12
+
+▪ Grosor Agrupación: Bold (Datos normal)
+o Textos Titulo Agrupación
+▪ Tamaño fuente: 12px
+▪ Grosor texto: Negrita
+▪ Línea borde inferior: 1px solida –borde-Grilla*/
+
+
+.barras{
     overflow-y: scroll;
-    height: 325px;
     font-size: 11px;
     color: var(--textos);
     padding: 5px;
     text-transform: uppercase;
     font-weight: bold;
-    
+
 }
 
-.agrupaciones p {
+.titulo-agrupacion {
     font-size: 12px;
     font-weight: bold;
-    border-bottom: 1px solid var(--borde-Grilla);
+    border-bottom: 1px solid var(--borde-Grilla);    
 }
+
 
 
 /*barra de progreso*/
