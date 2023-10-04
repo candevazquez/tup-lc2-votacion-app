@@ -23,8 +23,24 @@
     text-align: center;
     width: 70px;
     text-decoration: none;
-    float: right;
+    display: inline-block;
     margin-top: 3px;
+    position: absolute;
+    right: 0px;
+
+    
+}
+
+@media (max-width: 768px) { /*para que cuando se achique la patalla no se rompa*/
+    .inicio {
+        float: none; /*para que el boton inicio no quede en el lugar*/
+        position: static; /* vuelve al valor por defecto */
+    }
+    .barra-menu{
+        white-space: nowrap; /*para que no se divida */
+        overflow-x: auto; /* barrita desplazamiento*/
+     
+    }
 }
 
 

@@ -75,11 +75,10 @@ h3 {
   background-color: var(--fondo-Cabecera);
   color: white;
   margin: 0px auto auto auto;
-}
-.header-page a{
   width: 90%;
-  
+
 }
+
 .barra-menu{
   margin-left: 0 ; /*con los dos margenes 13px y el padding de 20px queda mal */
   margin-right: 0;
@@ -97,7 +96,7 @@ footer{
 }
 .footer-p{
   color: var(--texto-footer); 
-  line-height:20px;
+  line-height:22px;
   margin-bottom: 0%;
 
 }

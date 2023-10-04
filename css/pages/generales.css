@@ -1,4 +1,4 @@
-.filtrar{
+.filtrar {
     background-color: white;
     border-radius: 15px;
     padding: 5px;
@@ -6,50 +6,68 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--textos);
-    display: inline-block;   /*sin esto no me deja ponerle tamaño*/
+    display: inline-block;
+    /*sin esto no me deja ponerle tamaño*/
     width: 70px;
     text-decoration: none;
-  
-  }
 
-  .inicio{
+}
+
+.inicio {
     background-color: var(--gris-claro);
     border-radius: 5px;
     padding: 5px;
-    color :#FFF;
+    color: #FFF;
     font-size: 10px;
     text-transform: uppercase;
     text-align: center;
     width: 70px;
     text-decoration: none;
-    float: right;
+    display: inline-block;
     margin-top: 3px;
-    
-  
-  }
-  .inicio:hover{
-    color: var(--textos);
-  }
+    position: absolute;
+    right: 0px;
 
-  .boton-informes{
+
+}
+
+.inicio:hover {
+    color: var(--textos);
+}
+
+@media (max-width: 768px) { /*para que cuando se achique la patalla no se rompa*/
+    .inicio {
+        float: none; /*para que el boton inicio no quede en el lugar*/
+        position: static; /* vuelve al valor por defecto */
+    }
+    .barra-menu{
+        white-space: nowrap; /*para que no se divida */
+        overflow-x: auto; /* barrita desplazamiento*/
+     
+    }
+}
+
+.boton-informes {
     border-radius: 15px;
-    border: 1px solid white ;
+    border: 1px solid white;
     color: #FFF;
-    font-size: 10px ;
+    font-size: 10px;
     text-align: center;
-    display: inline-block; /*sin esto no me deja ponerle tamaño*/
+    display: inline-block;
+    /*sin esto no me deja ponerle tamaño*/
     width: 70px;
     text-decoration: none;
     padding: 5px;
-  
 
-  }
-  .boton-informes:hover{
+
+}
+
+.boton-informes:hover {
     background-color: var(--gris-claro);
-  }
+}
 
 
-  .combo{
+.combo {
     background-color: transparent;
     border: none;
     font-size: 14px;
@@ -57,11 +75,11 @@
     padding: 5px;
     color: var(--celeste);
     font-weight: bold;
-  }
+}
 
-  .boton-menu-paso{
+.boton-menu-paso {
     background-color: var(--magenta);
-    border-radius:5px ;
+    border-radius: 5px;
     padding: 5px;
     color: #fff;
     font-size: 10px;
@@ -70,30 +88,18 @@
     display: inline-block;
     width: 70px;
     text-decoration: none;
-  
-  }
-  
-  .boton-menu-paso:hover{
+
+}
+
+.boton-menu-paso:hover {
     background-color: var(--gris-claro);
-  }
-
-  
- 
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-#sec-titulo{
+#sec-titulo {
     margin-left: 100px;
 
 }
@@ -120,7 +126,9 @@
     margin-left: 100px;
     margin-top: 50px;
 
-}                                                    /*BOTON ENVIAR INFORME*/
+}
+
+/*BOTON ENVIAR INFORME*/
 
 .enviar-informe:hover {
     color: var(--textos);
@@ -137,7 +145,8 @@
     font-size: 12px;
     display: flex;
 }
-.mesas-escrutadas > p{
+
+.mesas-escrutadas>p {
     color: #FFF;
     font-size: 12px;
 
@@ -156,7 +165,7 @@
     display: flex;
 }
 
-.electores > p{
+.electores>p {
     color: #FFF;
     font-size: 12px;
 }
@@ -176,14 +185,14 @@
 
 }
 
-.participacion > p{
+.participacion>p {
     color: #FFF;
     font-size: 12px;
 }
 
 
 
-#cuadro-informativo{
+#cuadro-informativo {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -191,13 +200,13 @@
 }
 
 
-.recuadros-centrales{
+.recuadros-centrales {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.recuadros-centrales > div {
+.recuadros-centrales>div {
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -206,7 +215,9 @@
 
 }
 
-.chart-wrap > p, .mapas > p , .agrupaciones > p{
+.chart-wrap>p,
+.mapas>p,
+.agrupaciones>p {
     font-weight: bold;
     text-align: center;
     padding: 1.8em 0px 0px;
@@ -214,25 +225,8 @@
 
 }
 
-/*Agrupaciones políticas:
-o Scroll vertical
-o Alto 325px
-o Textos:
-▪ Tamaño: 11px
-▪ Color: --textos
-▪ Padding: 5px
-▪ Formato texto: Uppercase
 
-12
-
-▪ Grosor Agrupación: Bold (Datos normal)
-o Textos Titulo Agrupación
-▪ Tamaño fuente: 12px
-▪ Grosor texto: Negrita
-▪ Línea borde inferior: 1px solida –borde-Grilla*/
-
-
-.barras{
+.barras {
     overflow-y: scroll;
     font-size: 11px;
     color: var(--textos);
@@ -245,7 +239,7 @@ o Textos Titulo Agrupación
 .titulo-agrupacion {
     font-size: 12px;
     font-weight: bold;
-    border-bottom: 1px solid var(--borde-Grilla);    
+    border-bottom: 1px solid var(--borde-Grilla);
 }
 
 
@@ -312,7 +306,7 @@ o Textos Titulo Agrupación
     width: 50%;
     border-left: 2px solid var(--grid-color);
     font-size: 10px;
-    
+
 }
 
 /* posicionamos el % del gráfico*/
