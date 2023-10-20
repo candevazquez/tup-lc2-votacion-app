@@ -30,7 +30,6 @@ tbody td {
   padding: 15px 0px;
   font-size: 12px;
   vertical-align: top;
-  text-align: center;
 
 }
 
@@ -81,16 +80,6 @@ tbody td {
   font-size: 10px;
   display: flex;
   align-items: center;
-}
-
-.xagrupacion {
-  grid-template-columns: 100px 100px;
-  overflow-y: scroll;
-  height: 325px;
-  padding: 5px;
-  font-size: 10px;
-  color: var(--textos);
-
 }
 
 .boton-menu-paso {
@@ -162,8 +151,25 @@ tbody td {
   width: 100px;
 }
 
-.por-agrupacion {
-  width: 300px;
+.cont-agrupacion {
+  display: grid;
+  grid-template-rows: 10px 10px;
+  grid-template-columns: 100px 100px ;
+  grid-gap: 5px;
+  overflow-y:scroll ;
+  height:325px;
+  padding: 5px;
+  font-size:10px ;
+  color: var(--textos);
+}
+
+.partido{
+  font-weight: bold;
+}
+
+.votos{
+  grid-column-start: 2; 
+  grid-column-end: 3; 
 }
 
 #sec-titulo {

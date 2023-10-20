@@ -27,6 +27,7 @@
     margin-top: 3px;
     position: absolute;
     right: 0px;
+    margin-right: 8%;
 
 
 }
@@ -114,10 +115,15 @@
 
 }
 
+#misma-linea{
+    display: flex;
+    justify-content: space-around;
+    
+}
 .enviar-informe {
     background-color: var(--gris-claro);
     color: white;
-    font-size: 10px;
+    font-size: 15px;
     text-align: center;
     padding: 5px;
     border-radius: 5px;
@@ -210,8 +216,10 @@
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    height: 325px;
+    height: 370px;
     width: 30%;
+    margin: 2%;
+    margin-bottom: 10%;
 
 }
 
@@ -233,8 +241,10 @@
     padding: 5px;
     text-transform: uppercase;
     font-weight: bold;
+    
 
 }
+/*¡¡¡¡PREGUNTAR SOBRE CORRECCION DE BARRAS!!!!!!!!!!!*/
 
 .titulo-agrupacion {
     font-size: 12px;

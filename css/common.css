@@ -89,14 +89,16 @@ h3 {
 }
 footer{
   background-color: var(--fondo-Footer);
-  height: 150px;
+  min-height: 200px; 
+  width: 100%;
+ 
                                      /*footer*/
                                 
                     
 }
 .footer-p{
   color: var(--texto-footer); 
-  line-height:22px;
+  line-height:25px;
   margin-bottom: 0%;
 
 }
@@ -104,19 +106,20 @@ footer{
 .pie-imagen{
   height: 40px;
   margin-right: 15px;
+  max-width: 100%;
 }      
 
 #logos{
   display: flex;
-  padding: 35px 35px 35px 0px;
-  margin: 100px;
+  padding: 35px 35px 0px 35px;
+  margin-top: 100px;
+
 }
                                                      
 .pagina-blanco{
   text-decoration: none;
   color: var(--texto-footer);
 }
-
 
 
 .error{
