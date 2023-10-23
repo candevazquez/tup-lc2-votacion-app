@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/pages/generales.css">
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/pages/general.js" defer></script>
+    <script src="js/common.js" defer></script>
 </head>
 
 <body>
@@ -27,14 +29,14 @@
             <form action="">
 
 
-                <select name="año" id="año" class="combo"> <!--filtro año-->
-                    <option value="año">Año</option>
+                <select name="año" id="año" class="combo" onchange="elegirAño();"> <!--filtro año-->
+                    <option value="año" disabled selected value="0">Año</option>
                     <option value="2023">2023</option>
                     <option value="2019">2019</option>
                     <option value="2015">2015</option>
                 </select>
 
-                <select name="cargo" id="cargo" class="combo"> <!--filtro cargo-->
+                <select name="cargo" id="cargo" class="combo" > <!--filtro cargo-->
                     <option value="cargo">Cargo</option>
                     <option value="presidente">presidente</option>
                     <option value="diputado">diputado</option>
@@ -51,10 +53,10 @@
                 <a href="#" class="filtrar"><i class="fa fa-search"></i> filtrar</a> <!--boton filtrar con lupa-->
 
                 <a href="paso.html" class="boton-menu-paso">Paso</a>
-                
+
                 <a href="informes.html" class="boton-informes">INFORMES</a> <!--boton informes-->
 
-                
+
 
                 <a href="index.html" class="inicio">INICIO</a><!--boton inicio-->
 
