@@ -1,46 +1,68 @@
 const tipoEleccion = 2;
 const tipoRecuento = 1;
-var año = document.getElementById('año');
+//var año = document.getElementById('año');
+//const select = document.getElementById("año"); // Reemplaza "tuSelect" con el ID de tu elemento select.
+
+// Realizar la solicitud a la API
+async function coneccion() {
+    const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
+
+    try { //para tratar conectarnos a la url await espera fetch para conectarse 
+        const respuesta = await fetch(url);
+
+        if (respuesta.ok) {
+            //fuciono
+            const data = await respuesta.json();
+            var combo = document.getElementById("año");
+
+            console.log(data.length)
+            for (i = 0; i < data.length; i++) {
+                const option = document.createElement("option");
+                option.value = data[i];
+                option.text = data[i];
+                combo.appendChild(option);
+            }
+
+        } else {
+            console.log('error 404');
+
+        }
+
+    }
+
+    catch (err) {
+        console.log(err);
+    }
+
+}
+coneccion();
+
+
 
 
 
 async function elegirAño() {
 
+    var añoElegido = document.getElementById('año');
     if (añoElegido == "0") {
         return false; //asegura q sea false
- 
+
     }
     else {
-        var selecc = año.value;
-
-    
-        var añoElegido = selecc;
-
+        var valorAño = añoElegido.value;
         // Deshabilitar el elemento
-        año.disabled = true;
+        añoElegido.disabled = true;
 
 
-        const url = "https://resultados.mininterior.gob.ar/api/menu/periodos"
-        try { //para tratar conectarnos a la url await espera fetch para conectarse 
-            const respuesta = await fetch(url);
 
-            if (respuesta.ok) {
-                //fuciono
-                const cargo = await fetch(`https://resultados.mininterior.gob.ar/api/menu?año=${añoElegido}`);
-               console.log(cargo)
-             
+        //fuciono
+        const cargo = await fetch(`https://resultados.mininterior.gob.ar/api/menu?año=${valorAño}`);
+        console.log(cargo)
 
 
-            } else {
-                console.log('error 404');
 
-            }
-
-        }
-
-        catch (err) {
-            console.log(err);
-        }
     }
+
+
 }
 
