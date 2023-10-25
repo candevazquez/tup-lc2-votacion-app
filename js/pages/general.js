@@ -1,7 +1,6 @@
 const tipoEleccion = 2;
 const tipoRecuento = 1;
-//var año = document.getElementById('año');
-//const select = document.getElementById("año"); // Reemplaza "tuSelect" con el ID de tu elemento select.
+
 
 // Realizar la solicitud a la API
 async function coneccion() {
@@ -56,13 +55,31 @@ async function elegirAño() {
 
 
         //fuciono
-        const cargo = await fetch(`https://resultados.mininterior.gob.ar/api/menu?año=${valorAño}`);
-        console.log(cargo)
+        const respuestaCargos = await fetch(`https://resultados.mininterior.gob.ar/api/menu?año=${valorAño}`);
+        
+        const datosFiltros = await respuestaCargos.json();
+        const comboCargo = document.getElementById("cargo");
 
 
+        
+
+        // Filtrar datos por el tipo de elección
+        const datosFiltrados = datosFiltros.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
+
+        // Completar el combo de Cargos
+        datosFiltrados.forEach(eleccion => {
+            eleccion.Cargos.forEach(cargo => {
+                const option = document.createElement("option");
+                option.value = cargo.IdCargo;
+                option.text = cargo.Cargo;
+                comboCargo.appendChild(option);
+            });
+        });
 
     }
 
-
 }
+
+
+
 
