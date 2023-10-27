@@ -33,15 +33,12 @@
                     <option disabled selected value="0">Año</option>
                 </select>
 
-                <select name="cargo" id="cargo" class="combo" > <!--filtro cargo-->
+                <select name="cargo" id="cargo" class="combo" onchange="elegirCargo();" > <!--filtro cargo-->
                     <option disabled selected value="0">Cargo</option>
                 </select>
 
                 <select name="distrito" id="distrito" class="combo"> <!--filtro distrito-->
-                    <option value="distrito">Distrito</option>
-                    <option value="santa fe">santa fe</option>
-                    <option value="cordoba">cordoba</option>
-                    <option value="corrientes">corrientes</option>
+                    <option disabled selected value="0">Distrito</option>
                 </select>
 
                 <a href="#" class="filtrar"><i class="fa fa-search"></i> filtrar</a> <!--boton filtrar con lupa-->
