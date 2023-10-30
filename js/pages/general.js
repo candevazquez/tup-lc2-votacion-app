@@ -1,8 +1,9 @@
 const tipoEleccion = 2;
 const tipoRecuento = 1;
-var datosFiltrados=[];
+var datosFiltrados = [];
 var valorAño;
 var valorCargo;
+var datosFiltradosAño = [];
 
 
 // Realizar la solicitud a la API
@@ -89,18 +90,16 @@ function elegirCargo() {
     cargoElegido.disabled = true;
 
     const comboDistrito = document.getElementById('distrito');
-    comboDistrito.
-    comboDistrito
-innerHTML = ''; // Limpiar el combo de distritos
+    comboDistrito.innerHTML = ''; // Limpiar el combo de distritos
 
     // Filtrar datos por el tipo de elección y el año seleccionado
-    const datosFiltradosAño = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
+    datosFiltradosAño = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
     // Encontrar el cargo seleccionado
     let cargo;
-    
-   
-for (let i = 0; i < datosFiltradosAño.length; i++) {
+
+
+    for (let i = 0; i < datosFiltradosAño.length; i++) {
         const eleccion = datosFiltradosAño[i];
         for (let j = 0; j < eleccion.Cargos.length; j++) {
             const cargoActual = eleccion.Cargos[j];
@@ -116,7 +115,7 @@ for (let i = 0; i < datosFiltradosAño.length; i++) {
 
     if (!cargo) {
         console.log('Cargo no encontrado');
-        return;
+
     }
 
     // Llenar el combo de distritos
@@ -127,8 +126,4 @@ for (let i = 0; i < datosFiltradosAño.length; i++) {
         comboDistrito.appendChild(option);
     });
 }
-
-
-
-
 
