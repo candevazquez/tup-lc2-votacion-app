@@ -3,8 +3,10 @@ const tipoRecuento = 1;
 var datosFiltrados = [];
 var valorAño;
 var valorCargo;
+var valorDistrito;
 var datosFiltradosAño = [];
-
+var distrito;
+var cargo;
 
 // Realizar la solicitud a la API
 async function coneccion() {
@@ -86,17 +88,19 @@ async function elegirAño() {
 
 function elegirCargo() {
     var cargoElegido = document.getElementById('cargo');
-    var valorCargo = cargoElegido.value;
+    valorCargo = cargoElegido.value;
     cargoElegido.disabled = true;
 
     const comboDistrito = document.getElementById('distrito');
     comboDistrito.innerHTML = ''; // Limpiar el combo de distritos
 
+    console.log('Valor de valorCargo:', valorCargo);
+
     // Filtrar datos por el tipo de elección y el año seleccionado
     datosFiltradosAño = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
     // Encontrar el cargo seleccionado
-    let cargo;
+
 
 
     for (let i = 0; i < datosFiltradosAño.length; i++) {
@@ -118,7 +122,7 @@ function elegirCargo() {
 
     }
 
-    // Llenar el combo de distritos
+    // llena opciones
     cargo.Distritos.forEach(distrito => {
         const option = document.createElement("option");
         option.value = distrito.IdDistrito;
@@ -127,3 +131,78 @@ function elegirCargo() {
     });
 }
 
+
+
+var elegirDistrito = function () {
+    var distritoElegido = document.getElementById('distrito');
+    valorDistrito = distritoElegido.value;
+    distritoElegido.disabled = true;
+
+    const comboSeccion = document.getElementById('seccion');
+    comboSeccion.innerHTML = ''; // Limpiar el combo de secciones
+    console.log(valorDistrito)
+
+    // Filtrar datos por el tipo de elección y el año seleccionado
+    const datosFiltradosCargo = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
+
+    // Encontrar el cargo seleccionado
+
+
+    for (let i = 0; i < datosFiltradosCargo.length; i++) {
+        const eleccion = datosFiltradosCargo[i];
+        for (let j = 0; j < eleccion.Cargos.length; j++) {
+            const cargoActual = eleccion.Cargos[j];
+            if (cargoActual.IdCargo === valorCargo) {
+                cargo = cargoActual;
+                break;
+            }
+        }
+        if (cargo) {
+
+
+            break;
+        }
+    }
+    console.log(cargo)
+
+    if (!cargo) {
+        console.log('Cargo no encontrado');
+        return;
+    }
+
+    // Encontrar el distrito seleccionado
+    
+
+    for (let a = 0; a < cargo.Distritos.length; a++) {
+        const distritoActual = cargo.Distritos[a];
+        
+        if (distritoActual.IdDistrito == valorDistrito) {
+            distrito = distritoActual;
+           
+            break;
+        }
+        
+    }
+
+   
+    if (!distrito) {
+        console.log('Distrito no encontrado');
+
+
+        return;
+    }
+
+    // Guardar el valor de la sección provincial en el campo oculto
+    const hdSeccionProvincial = document.getElementById('hdSeccionProvincial');
+    hdSeccionProvincial.value = distrito.IdSeccionProvincial;
+
+    // Llenar el combo de secciones
+    distrito.SeccionesProvinciales.forEach(seccionProvincial => {
+        seccionProvincial.Secciones.forEach(seccion => {
+            const option = document.createElement("option");
+            option.value = seccion.IdSeccion;
+            option.text = seccion.Seccion;
+            comboSeccion.appendChild(option);
+        });
+    });
+}
