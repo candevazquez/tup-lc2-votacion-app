@@ -42,11 +42,11 @@
                 </select>
                 <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
 
-                <select  name="seccion" id="seccion" class="combo">
+                <select  name="seccion" id="seccion" class="combo" onchange="elegirSeccion();">
                     <option  disabled selected value="0">seccion</option>
                 </select>
 
-                <a href="#" class="filtrar"><i class="fa fa-search"></i> filtrar</a> <!--boton filtrar con lupa-->
+                <a href="#" class="filtrar" onclick="filtrar();"><i class="fa fa-search" ></i> filtrar</a> <!--boton filtrar con lupa-->
 
                 <a href="paso.html" class="boton-menu-paso">Paso</a>
 
@@ -65,11 +65,11 @@
     <main>
 
         <section id="sec-messages">
-            <p class="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar
+            <p hidden class="error" id="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar
                 resultados al informe</p> <!--mensaje de error-->
-            <p class="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al informe</p>
+            <p hidden class="exito" id="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al informe</p>
             <!--mensaje de exito-->
-            <p class="incompleta"><i class="fa fa-exclamation"></i> La operacion no se pudo completar</p>
+            <p hidden class="incompleta" id="incompleta"><i class="fa fa-exclamation"></i> La operacion no se pudo completar</p>
         </section>
 
         <section id="sec-titulo">
