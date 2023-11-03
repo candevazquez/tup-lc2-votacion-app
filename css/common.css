@@ -44,33 +44,43 @@ body {
   margin: 0;
   padding: 0;
   background-color: rgb(255, 255, 255);
+  height: 100%;
+
+
+}
+ /*en el body cuando no hay contenido asi, cuando pongo contenido, padding-bottom 15 px */
+
+body {
+  position: relative;
+  margin: 0;
 }
 
 p {
   font-size: 12px;
   color: var(--textos);
-  font-family: 'Roboto' ;
+  font-family: 'Roboto';
 }
 
 h1 {
   font-size: 26px;
   color: var(--titulos);
-  font-family: 'Roboto' ;
+  font-family: 'Roboto';
   padding-bottom: 20px;
 }
 
 h2 {
   font-size: 22px;
   color: var(--titulos);
-  font-family: 'Roboto' ;
+  font-family: 'Roboto';
 }
 
 h3 {
   font-size: 18px;
   color: var(--titulos);
-  font-family: 'Roboto' ;
+  font-family: 'Roboto';
 }
-.header-page{
+
+.header-page {
   padding: 0.5rem;
   background-color: var(--fondo-Cabecera);
   color: white;
@@ -79,50 +89,64 @@ h3 {
 
 }
 
-.barra-menu{
-  margin-left: 0 ; /*con los dos margenes 13px y el padding de 20px queda mal */
+.barra-menu {
+  margin-left: 0;
+  /*con los dos margenes 13px y el padding de 20px queda mal */
   margin-right: 0;
   background-color: var(--fondo-Menu);
   width: 100%;
   color: white;
- 
+
 }
-footer{
+
+footer {
   background-color: var(--fondo-Footer);
-  min-height: 200px; 
+  min-height: 200px;
   width: 100%;
- 
-                                     /*footer*/
-                                
-                    
+
+
+
+  position: absolute;
+  bottom: 0;
+
+
+  /* Altura del footer */
+  /* Estilo del footer */
+
+  /*footer*/
+
+
 }
-.footer-p{
-  color: var(--texto-footer); 
-  line-height:25px;
+
+
+
+.footer-p {
+  color: var(--texto-footer);
+  line-height: 25px;
   margin-bottom: 0%;
 
 }
 
-.pie-imagen{
+.pie-imagen {
   height: 40px;
   margin-right: 15px;
   max-width: 100%;
-}      
+}
 
-#logos{
+#logos {
   display: flex;
   padding: 35px 35px 0px 35px;
-  margin-top: 100px;
+  margin-top: 25px;
 
 }
-                                                     
-.pagina-blanco{
+
+.pagina-blanco {
   text-decoration: none;
   color: var(--texto-footer);
 }
 
 
-.error{
+.error {
   background-color: var(--mensaje-usuario-rojo);
   width: 400px;
   margin: 20px auto;
@@ -135,7 +159,7 @@ footer{
 
 }
 
-.exito{
+.exito {
   background-color: var(--mensaje-usuario-verde);
   width: 400px;
   margin: 20px auto;
@@ -148,7 +172,7 @@ footer{
 
 }
 
-.incompleta{
+.incompleta {
   background-color: var(--mensaje-usuario-amarillo);
   width: 400px;
   margin: 20px auto;
@@ -160,9 +184,3 @@ footer{
   text-align: center;
 
 }
-
-
-
-
-
-

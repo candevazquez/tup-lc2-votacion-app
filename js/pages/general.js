@@ -107,10 +107,10 @@ async function elegirCargo() {
 
         console.log('Valor de valorCargo:', valorCargo);
 
-        // Filtrar datos por el tipo de elección y el año seleccionado
+        // filtrar datos por el tipo de elección y el año seleccionado
         datosFiltradosAño = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
-        // Encontrar el cargo seleccionado
+        // encontrar cargo seleccionado
 
 
 
@@ -164,7 +164,7 @@ async function elegirDistrito() {
         // Filtrar datos por el tipo de elección y el año seleccionado
         const datosFiltradosCargo = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
-        // Encontrar el cargo seleccionado
+        // encontrar  cargo seleccionado
 
 
         for (let i = 0; i < datosFiltradosCargo.length; i++) {
@@ -189,7 +189,7 @@ async function elegirDistrito() {
             return;
         }
 
-        // Encontrar el distrito seleccionado
+        // encontrar  distrito seleccionado
 
 
         for (let a = 0; a < cargo.Distritos.length; a++) {
@@ -211,12 +211,18 @@ async function elegirDistrito() {
             return;
         }
 
-        // Guardar el valor de la sección provincial en el campo oculto
-        const hdSeccionProvincial = document.getElementById('hdSeccionProvincial');
-        hdSeccionProvincial.value = distrito.IdSeccionProvincial;
+        // campo oculto 
+        const hdSeccionProvincial = document.getElementById('hdSeccionProvincial').value;
 
-        // Llenar el combo de secciones
+        
+       
+
+        // recorro  SeccionesProvinciales
         distrito.SeccionesProvinciales.forEach(seccionProvincial => {
+            //valor id 
+            hdSeccionProvincial.value = seccionProvincial.IDSecccionProvincial;
+
+            // recorro seccion y llena campo
             seccionProvincial.Secciones.forEach(seccion => {
                 const option = document.createElement("option");
                 option.value = seccion.IdSeccion;
@@ -230,7 +236,7 @@ async function elegirDistrito() {
 
 var elegirSeccion = function () {
     var seccionElegida = document.getElementById('seccion');
-    valorSeccion = seccionElegida.value;
+
     seccionElegida.disabled = true;
     //funcion para desabilitar la opc seccion
 }
@@ -238,11 +244,20 @@ var elegirSeccion = function () {
 function mostrarMensajeIncompleto(mensaje) {
     var msjIncompleto = document.getElementById('incompleta');
     msjIncompleto.innerHTML = `<i class="fa fa-exclamation-triangle"></i>: ${mensaje}`;
-    msjIncompleto.style.display = 'block'; // Mostrar el mensaje de error
+    msjIncompleto.style.display = 'block'; // muestra msj incom
 
     setTimeout(function () {
-        msjIncompleto.style.display = 'none'; // Ocultar el mensaje después de 5 segundos
-    }, 5000); // 5000 milisegundos = 5 segundos
+        msjIncompleto.style.display = 'none'; 
+    }, 5000);
+}
+function mostrarMensajeError(mensaje) {
+    var msjError = document.getElementById('error');
+    msjError.innerHTML = `<i class="fa fa-thumbs-up"></i>: ${mensaje}`;
+    msjError.style.display = 'block'; // Mostrar el mensaje de error
+
+    setTimeout(function () {
+        msjError.style.display = 'none'; 
+    }, 5000);
 }
 
 async function filtrar() {
@@ -250,15 +265,17 @@ async function filtrar() {
     añoElegido = document.getElementById('año').value;
     cargoElegido = document.getElementById('cargo').value;
     distritoElegido = document.getElementById('distrito').value;
+    console.log('Distrito elegido= ', distritoElegido);
     seccionElegida = document.getElementById('seccion').value;
+    console.log('Seccion elegida= ', seccionElegida)
 
-    if (añoElegido == 0 & cargoElegido== 0 & distritoElegido == 0 & seccionElegida == 0) {
+    if (añoElegido == 0 & cargoElegido == 0 & distritoElegido == 0 & seccionElegida == 0) {
 
         mostrarMensajeIncompleto("Todos los campos deben ser seleccionados");
 
 
 
-    } else if (añoElegido == 0 || cargoElegido == 0 || distritoElegido== 0 || seccionElegida == 0) {
+    } else if (añoElegido == 0 || cargoElegido == 0 || distritoElegido == 0 || seccionElegida == 0) {
 
         switch (true) {
             case añoElegido.value == 0:
@@ -277,41 +294,48 @@ async function filtrar() {
     }
     else {
 
-        const categoriaId = 2;
-
+        //hacer validacion
+        
         var seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
-
-        // Realizar la solicitud a la API
-        const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${categoriaId}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=""&mesaId=""`;
+        console.log('seccion provincial id =', seccionProvincialId)
+        if (seccionProvincialId.value === undefined) {
+            seccionProvincialId.value = ""
+            
+        }
 
         
-        /*console.log(añoElegido)
+        // consulta api
+        const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
+
+        console.log('url= ', url)
+    
+        console.log(añoElegido)
         console.log(tipoRecuento)
         console.log(tipoEleccion)
-        console.log(categoriaId)
+        console.log(cargoElegido)
         console.log(distritoElegido)
         console.log(seccionProvincialId)
-        console.log(seccionElegida)*/
+        console.log(seccionElegida)
 
 
-        //anioEleccion, tipoRecuento, tipoEleccion, categoriaId
+       
 
         try {
             const respuesta = await fetch(url);
             if (respuesta.ok) {
                 const data = await respuesta.json();
-
-                // Imprimir la respuesta en la consola
+                
+                //respuesta en consola
                 console.log(data);
             } else {
 
 
-                // Mostrar mensaje de error en rojo con los detalles del error
-                mostrarMensajeError("Error en la ejecución. Detalle: " + respuesta.status);
+                //
+                mostrarMensajeError("Error: " + respuesta.status);  //amarillo
             }
         } catch (err) {
-            // Mostrar mensaje de error en rojo con los detalles del error
-            mostrarMensajeError("Error en la ejecución. Detalle: " + err.message);
+
+            mostrarMensajeError("Error: " + err.message); //rojo al consultar los datos
         }
     }
 }
