@@ -8,6 +8,12 @@ var valorSeccion;
 var datosFiltradosAño = [];
 var distrito;
 var cargo;
+var msjIncompleto;
+var msjError;
+var titulo;
+var subtitulo;
+var eleccion;
+var titYSub;
 
 
 
@@ -53,7 +59,7 @@ coneccion();
 async function elegirAño() {
 
     var añoElegido = document.getElementById('año');
-    if (añoElegido == "0") {
+    if (añoElegido == "") {
         return false; //asegura q sea false
 
     }
@@ -92,7 +98,7 @@ async function elegirAño() {
 
 async function elegirCargo() {
     var cargoElegido = document.getElementById('cargo');
-    if (cargoElegido == "0") {
+    if (cargoElegido == "") {
         return false
     }
     else {
@@ -147,7 +153,7 @@ async function elegirCargo() {
 
 async function elegirDistrito() {
     var distritoElegido = document.getElementById('distrito');
-    if (distritoElegido == "0") {
+    if (distritoElegido == "") {
         return false
 
     }
@@ -214,8 +220,8 @@ async function elegirDistrito() {
         // campo oculto 
         const hdSeccionProvincial = document.getElementById('hdSeccionProvincial').value;
 
-        
-       
+
+
 
         // recorro  SeccionesProvinciales
         distrito.SeccionesProvinciales.forEach(seccionProvincial => {
@@ -242,22 +248,63 @@ var elegirSeccion = function () {
 }
 
 function mostrarMensajeIncompleto(mensaje) {
-    var msjIncompleto = document.getElementById('incompleta');
-    msjIncompleto.innerHTML = `<i class="fa fa-exclamation-triangle"></i>: ${mensaje}`;
+    msjIncompleto = document.getElementById('incompleta');
+    msjIncompleto.innerHTML = `<i class="fa fa-exclamation"></i>: ${mensaje}`;
     msjIncompleto.style.display = 'block'; // muestra msj incom
 
     setTimeout(function () {
-        msjIncompleto.style.display = 'none'; 
+        msjIncompleto.style.display = 'none';
     }, 5000);
 }
 function mostrarMensajeError(mensaje) {
-    var msjError = document.getElementById('error');
-    msjError.innerHTML = `<i class="fa fa-thumbs-up"></i>: ${mensaje}`;
+    msjError = document.getElementById('error');
+    msjError.innerHTML = `<i class="fa fa-exclamation-triangle"></i>: ${mensaje}`;
     msjError.style.display = 'block'; // Mostrar el mensaje de error
 
     setTimeout(function () {
-        msjError.style.display = 'none'; 
+        msjError.style.display = 'none';
     }, 5000);
+}
+
+
+
+var mostrarTituloYSub = function() {
+    añoElegido = document.getElementById('año').value;
+    eleccion = "Generales"; // Reemplaza con el valor adecuado
+    cargoElegido = document.getElementById('cargo');
+    var textoCargo = cargoElegido.options[cargoElegido.selectedIndex].text;
+    distritoElegido = document.getElementById('distrito');
+    var textoDistrito = distritoElegido.options[distritoElegido.selectedIndex].text;
+    seccionElegida = document.getElementById('seccion');
+    var textoSeccion = seccionElegida.options[seccionElegida.selectedIndex].text;
+    titYSub = document.getElementById('sec-titulo');
+
+
+
+    titulo = document.getElementById('titulo');
+    titulo.innerText = `Elecciones ${añoElegido} | ${eleccion}`;
+
+
+    subtitulo = document.getElementById('subtitulo');
+    subtitulo.innerText = `${añoElegido} > ${eleccion} > ${textoCargo} > ${textoDistrito} > ${textoSeccion}`;
+
+
+    titYSub.removeAttribute('hidden');
+
+}
+
+
+var cuadrosColores = function(){
+    const estadoRecuento = data.estadoRecuento;
+    const mesasEscrutadas = estadoRecuento.mesasTotalizadas;
+    const electores = estadoRecuento.cantidadElectores;
+    const participacion = estadoRecuento.participacionPorcentaje;
+
+    // Mostrar los datos en tres cuadros de colores
+    console.log('Mesas Escrutadas: ' + mesasEscrutadas);
+    console.log('Electores: ' + electores);
+    console.log('Participación sobre escrutado: ' + participacion + '%');
+
 }
 
 async function filtrar() {
@@ -268,47 +315,40 @@ async function filtrar() {
     console.log('Distrito elegido= ', distritoElegido);
     seccionElegida = document.getElementById('seccion').value;
     console.log('Seccion elegida= ', seccionElegida)
+    msjIncompleto = document.getElementById('incompleta')
 
-    if (añoElegido == 0 & cargoElegido == 0 & distritoElegido == 0 & seccionElegida == 0) {
+    if (añoElegido === "" || cargoElegido === "" || distritoElegido === "" || seccionElegida === "") {
 
-        mostrarMensajeIncompleto("Todos los campos deben ser seleccionados");
-
-
-
-    } else if (añoElegido == 0 || cargoElegido == 0 || distritoElegido == 0 || seccionElegida == 0) {
-
-        switch (true) {
-            case añoElegido.value == 0:
-                mostrarMensajeIncompleto("Año no seleccionado");
-                break;
-            case cargoElegido.value == 0:
-                mostrarMensajeIncompleto("Cargo no seleccionado");
-                break;
-            case distritoElegido.value == 0:
-                mostrarMensajeIncompleto("Distrito no seleccionado");
-                break;
-            case seccionElegida.value == 0:
-                mostrarMensajeIncompleto("Sección no seleccionada");
-                break;
+        if (añoElegido === "") {
+            mostrarMensajeIncompleto("Año no seleccionado");
+        } else if (cargoElegido === "") {
+            mostrarMensajeIncompleto("Cargo no seleccionado");
+        } else if (distritoElegido === "") {
+            mostrarMensajeIncompleto("Distrito no seleccionado");
+        } else if (seccionElegida === "") {
+            mostrarMensajeIncompleto("Sección no seleccionada");
         }
-    }
-    else {
+
+
+
+
+    } else {
 
         //hacer validacion
-        
+
         var seccionProvincialId = document.getElementById('hdSeccionProvincial').value;
         console.log('seccion provincial id =', seccionProvincialId)
         if (seccionProvincialId.value === undefined) {
             seccionProvincialId.value = ""
-            
+
         }
 
-        
+
         // consulta api
         const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
 
         console.log('url= ', url)
-    
+
         console.log(añoElegido)
         console.log(tipoRecuento)
         console.log(tipoEleccion)
@@ -318,25 +358,34 @@ async function filtrar() {
         console.log(seccionElegida)
 
 
-       
+
+
 
         try {
             const respuesta = await fetch(url);
             if (respuesta.ok) {
+                msjIncompleto.style.display = 'none';
                 const data = await respuesta.json();
-                
+
+
                 //respuesta en consola
                 console.log(data);
+
             } else {
-
-
                 //
-                mostrarMensajeError("Error: " + respuesta.status);  //amarillo
+                msjIncompleto.style.display = 'none';
+                mostrarMensajeIncompleto("No se encontró información para la consulta realizada");  //amarillo
+                mostrarTituloYSub();
             }
         } catch (err) {
 
-            mostrarMensajeError("Error: " + err.message); //rojo al consultar los datos
+            msjIncompleto.style.display = 'none';
+            mostrarMensajeError("Error al consultar los datos"); //rojo al consultar los datos
+            mostrarTituloYSub();
         }
     }
 }
+
+
+
 

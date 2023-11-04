@@ -152,7 +152,7 @@
     display: flex;
 }
 
-.mesas-escrutadas>p {
+.info-container > p {
     color: #FFF;
     font-size: 12px;
 
