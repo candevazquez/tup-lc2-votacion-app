@@ -14,6 +14,16 @@ var titulo;
 var subtitulo;
 var eleccion;
 var titYSub;
+var pagina = document.getElementsByTagName('body');
+
+/*valorAño
+valorCargo
+valorDistrito
+distrito
+msjIncompleto
+msjError
+eleccion
+titYSub*/
 
 
 
@@ -64,7 +74,7 @@ async function elegirAño() {
 
     }
     else {
-        valorAño = añoElegido.value;
+        var valorAño = añoElegido.value;
         // Deshabilito el año para que no se pueda elegir
         añoElegido.disabled = true;
         //fuciono
@@ -153,7 +163,7 @@ async function elegirCargo() {
 
 async function elegirDistrito() {
     var distritoElegido = document.getElementById('distrito');
-    if (distritoElegido == "") {
+    if (distritoElegido == "" || distritoElegido.value == 0) {
         return false
 
     }
@@ -243,6 +253,7 @@ async function elegirDistrito() {
 var elegirSeccion = function () {
     var seccionElegida = document.getElementById('seccion');
 
+
     seccionElegida.disabled = true;
     //funcion para desabilitar la opc seccion
 }
@@ -250,7 +261,7 @@ var elegirSeccion = function () {
 function mostrarMensajeIncompleto(mensaje) {
     msjIncompleto = document.getElementById('incompleta');
     msjIncompleto.innerHTML = `<i class="fa fa-exclamation"></i>: ${mensaje}`;
-    msjIncompleto.style.display = 'block'; // muestra msj incom
+    msjIncompleto.style.display = 'block'; 
 
     setTimeout(function () {
         msjIncompleto.style.display = 'none';
@@ -259,16 +270,28 @@ function mostrarMensajeIncompleto(mensaje) {
 function mostrarMensajeError(mensaje) {
     msjError = document.getElementById('error');
     msjError.innerHTML = `<i class="fa fa-exclamation-triangle"></i>: ${mensaje}`;
-    msjError.style.display = 'block'; // Mostrar el mensaje de error
+    msjError.style.display = 'block'; 
 
     setTimeout(function () {
         msjError.style.display = 'none';
     }, 5000);
 }
 
+function mostrarMensajeExito(mensaje) {
+    msjExito = document.getElementById('Exito');
+    msjExito.innerHTML = `<i class="fa fa-thumbs-up"></i>: ${mensaje}`;
+    msjExito.style.display = 'block';
+
+    setTimeout(function () {
+        msjExito.style.display = 'none';
+    }, 5000);
 
 
-var mostrarTituloYSub = function() {
+}
+
+
+
+var mostrarTituloYSub = function () {
     añoElegido = document.getElementById('año').value;
     eleccion = "Generales"; // Reemplaza con el valor adecuado
     cargoElegido = document.getElementById('cargo');
@@ -294,16 +317,23 @@ var mostrarTituloYSub = function() {
 }
 
 
-var cuadrosColores = function(){
-    const estadoRecuento = data.estadoRecuento;
-    const mesasEscrutadas = estadoRecuento.mesasTotalizadas;
-    const electores = estadoRecuento.cantidadElectores;
-    const participacion = estadoRecuento.participacionPorcentaje;
-
+var cuadrosColores = function () {
+    var estadoRecuento = data.estadoRecuento;
+    var mesasEscrutadas = estadoRecuento.mesasTotalizadas;
+    var electores = estadoRecuento.cantidadElectores;
+    var participacion = estadoRecuento.participacionPorcentaje;
+    var pMesas = document.getElementById('porcentaje-mesas');
+    var pElect = document.getElementById('porcentaje-elec');
+    var pPart = document.getElementById('porcentaje-part');
+    var mostrarLinea = document.getElementById('misma-linea');
     // Mostrar los datos en tres cuadros de colores
-    console.log('Mesas Escrutadas: ' + mesasEscrutadas);
-    console.log('Electores: ' + electores);
-    console.log('Participación sobre escrutado: ' + participacion + '%');
+
+    pMesas.innerText = `${mesasEscrutadas} %`
+    pElect.innerText = `${electores} %`
+    pPart.innerText = `${participacion} %`
+
+    mostrarLinea.style.display = "block";
+    pagina.style.paddingBottom = '15%' //para que se agrande la pantalla
 
 }
 
@@ -366,7 +396,7 @@ async function filtrar() {
             if (respuesta.ok) {
                 msjIncompleto.style.display = 'none';
                 const data = await respuesta.json();
-
+                cuadrosColores();
 
                 //respuesta en consola
                 console.log(data);
@@ -385,6 +415,34 @@ async function filtrar() {
         }
     }
 }
+
+
+
+
+function agregarInforme() {
+    var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${cargoElegido}|${distritoElegido}|${seccionElegida}` // Crea una cadena de datos separados por '|'
+
+    var informesGuardados = localStorage.getItem('INFORMES'); // Obtén los datos existentes de localStorage
+    var informesArray;
+    if (informesGuardados) {
+        informesArray = [informesGuardados];
+    } else {
+        informesArray = [];
+    }
+
+    if (informesArray.includes(informe)) {
+        mostrarMensajeIncompleto('El registro ya existe');
+    } else {
+        informesArray[informesArray.length] = informe; // Agrega el nuevo informe al final del array
+        localStorage.setItem('INFORMES', informesArray.join(';')); // Guarda el array en localStorage
+        mostrarMensajeExito('Registro exitoso');
+    }
+}
+
+
+
+
+
 
 
 

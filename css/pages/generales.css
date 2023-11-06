@@ -152,7 +152,7 @@
     display: flex;
 }
 
-.info-container > p {
+.contenido > p {
     color: #FFF;
     font-size: 12px;
 
@@ -171,10 +171,7 @@
     display: flex;
 }
 
-.electores>p {
-    color: #FFF;
-    font-size: 12px;
-}
+
 
 
 
@@ -191,11 +188,10 @@
 
 }
 
-.participacion>p {
-    color: #FFF;
-    font-size: 12px;
-}
 
+#misma-linea{
+    display: none;
+}
 
 
 #cuadro-informativo {
@@ -203,6 +199,7 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 50px;
+    
 }
 
 

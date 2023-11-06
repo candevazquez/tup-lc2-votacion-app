@@ -91,11 +91,11 @@
         <section  id="sec-contenido">
             <!--Seccion para contenido de la página-->
             <div  id="misma-linea">
-                <div id="boton-enviar"><button class="enviar-informe">+AGREGAR A INFORME</button></div>
+                <div id="boton-enviar"><button hidden class="enviar-informe" id="botonInformes" onclick="agregarInforme();">+AGREGAR A INFORME</button></div>
 
 
-                <div id="cuadro-informativo">
-                    <div class="mesas-escrutadas">
+                <div  id="cuadro-informativo" hidden>
+                    <div class="mesas-escrutadas" hidden>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
                             height="595.281px" viewBox="0 0 841.889 595.281" enable-background="new 0 0 841.889 595.281"
@@ -113,14 +113,14 @@
                                 </path>
                             </g>
                         </svg>
-                        <div class="info-container">
-                            <p class="title">mesas escrutadas</p>
-                            <p class="percentage">44%</p>
+                        <div class="contenido">
+                            <p class="titulo-mesas">Mesas escrutadas</p>
+                            <p class="porcentaje-mesas">44%</p>
                         </div>
 
                     </div>
 
-                    <div class="electores">
+                    <div class="electores" hidden>
 
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
@@ -208,11 +208,14 @@
                             </path>
                         </svg>
 
-                        <p>Electores</p>
+                        <div class="contenido">
+                            <p class="titulo-elec">Electores</p>
+                            <p class="porcentaje-elec">44%</p>
+                        </div>
 
                     </div>
 
-                    <div class="participacion">
+                    <div class="participacion" hidden>
 
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
@@ -272,8 +275,11 @@
                             <rect x="195.975" y="387.534" fill="#FFFFFF" width="69.013" height="14.393"></rect>
                         </svg>
 
-                        <p>Participacion sobre escrutado</p>
 
+                        <div class="contenido">
+                            <p class="titulo-part">Participacion sobre escrutado</p>
+                            <p class="porcentaje-part">44%</p>
+                        </div>
                     </div>
 
                 </div>
@@ -297,7 +303,7 @@
                     </div>
                 </div>
 
-                <div hidden class="mapas">
+                <div  class="mapas">
                     <p>cuadro de mapas</p>
                     <!--//Ciudad Autónoma de Buenos Aires//-->
                     <svg height="210" width="800">
