@@ -396,7 +396,9 @@ async function filtrar() {
             if (respuesta.ok) {
                 msjIncompleto.style.display = 'none';
                 const data = await respuesta.json();
+                mostrarTituloYSub();
                 cuadrosColores();
+                
 
                 //respuesta en consola
                 console.log(data);
@@ -438,6 +440,7 @@ function agregarInforme() {
         mostrarMensajeExito('Registro exitoso');
     }
 }
+
 
 
 
