@@ -261,7 +261,7 @@ var elegirSeccion = function () {
 function mostrarMensajeIncompleto(mensaje) {
     msjIncompleto = document.getElementById('incompleta');
     msjIncompleto.innerHTML = `<i class="fa fa-exclamation"></i>: ${mensaje}`;
-    msjIncompleto.style.display = 'block'; 
+    msjIncompleto.style.display = 'block';
 
     setTimeout(function () {
         msjIncompleto.style.display = 'none';
@@ -270,7 +270,7 @@ function mostrarMensajeIncompleto(mensaje) {
 function mostrarMensajeError(mensaje) {
     msjError = document.getElementById('error');
     msjError.innerHTML = `<i class="fa fa-exclamation-triangle"></i>: ${mensaje}`;
-    msjError.style.display = 'block'; 
+    msjError.style.display = 'block';
 
     setTimeout(function () {
         msjError.style.display = 'none';
@@ -337,6 +337,26 @@ var cuadrosColores = function () {
 
 }
 
+function mostrarMapaYTitulo(textoDistrito) {
+    var mapaContenedor = document.getElementById("mapas");
+    textoDistrito = distritoElegido.options[distritoElegido.selectedIndex].text;
+    var provinciaSvg = mapas.textoDistrito; // Obtiene el SVG correspondiente al distrito
+    var titulo = document.getElementById('titulo-mapa');
+
+    // Si se encuentra el SVG, muestra el mapa y el título
+    if (provinciaSvg) {
+        titulo.innerText = textoDistrito;
+        var imagenMapa = document.createElement("div");
+        imagenMapa.innerHTML = mapas.textoDistrito;
+        mapaContenedor.appendChild(imagenMapa);
+    }
+
+    else {
+        mapaContenedor.innerHTML = "Provincia no encontrada";
+    }
+
+}
+
 async function filtrar() {
 
     añoElegido = document.getElementById('año').value;
@@ -396,9 +416,8 @@ async function filtrar() {
             if (respuesta.ok) {
                 msjIncompleto.style.display = 'none';
                 const data = await respuesta.json();
-                mostrarTituloYSub();
                 cuadrosColores();
-                
+                mostrarMapaYTitulo(textoDistrito);
 
                 //respuesta en consola
                 console.log(data);
