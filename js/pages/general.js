@@ -10,11 +10,17 @@ var distrito;
 var cargo;
 var msjIncompleto;
 var msjError;
+var msjExito;
 var titulo;
 var subtitulo;
 var eleccion;
 var titYSub;
-var pagina = document.getElementsByTagName('body');
+var pagina = document.getElementById('body');
+var data;
+var textoDistrito;
+var enviar = document.getElementById('boton-enviar');
+
+
 
 /*valorAño
 valorCargo
@@ -297,7 +303,7 @@ var mostrarTituloYSub = function () {
     cargoElegido = document.getElementById('cargo');
     var textoCargo = cargoElegido.options[cargoElegido.selectedIndex].text;
     distritoElegido = document.getElementById('distrito');
-    var textoDistrito = distritoElegido.options[distritoElegido.selectedIndex].text;
+    textoDistrito = distritoElegido.options[distritoElegido.selectedIndex].text;
     seccionElegida = document.getElementById('seccion');
     var textoSeccion = seccionElegida.options[seccionElegida.selectedIndex].text;
     titYSub = document.getElementById('sec-titulo');
@@ -317,6 +323,7 @@ var mostrarTituloYSub = function () {
 }
 
 
+
 var cuadrosColores = function () {
     var estadoRecuento = data.estadoRecuento;
     var mesasEscrutadas = estadoRecuento.mesasTotalizadas;
@@ -328,34 +335,50 @@ var cuadrosColores = function () {
     var mostrarLinea = document.getElementById('misma-linea');
     // Mostrar los datos en tres cuadros de colores
 
-    pMesas.innerText = `${mesasEscrutadas} %`
-    pElect.innerText = `${electores} %`
+    pMesas.innerText = mesasEscrutadas
+    pElect.innerText = electores
     pPart.innerText = `${participacion} %`
 
     mostrarLinea.style.display = "block";
     pagina.style.paddingBottom = '15%' //para que se agrande la pantalla
 
 }
+function mostrarMapaYTitulo() {
+    var mapaContenedor = document.getElementById('mapas');
+    //var mapaTitulo = document.getElementById('titulo-mapa');
 
-function mostrarMapaYTitulo(textoDistrito) {
-    var mapaContenedor = document.getElementById("mapas");
-    textoDistrito = distritoElegido.options[distritoElegido.selectedIndex].text;
-    var provinciaSvg = mapas.textoDistrito; // Obtiene el SVG correspondiente al distrito
-    var titulo = document.getElementById('titulo-mapa');
+    var distritoSeleccionado = distritoElegido.options[distritoElegido.selectedIndex].text;
 
-    // Si se encuentra el SVG, muestra el mapa y el título
-    if (provinciaSvg) {
-        titulo.innerText = textoDistrito;
-        var imagenMapa = document.createElement("div");
-        imagenMapa.innerHTML = mapas.textoDistrito;
-        mapaContenedor.appendChild(imagenMapa);
+    console.log('entre a la funcion')
+    console.log('distrito elegido', distritoSeleccionado)
+    var svg = mapas[distritoSeleccionado];
+    console.log("SVG", svg);
+
+    if (distritoSeleccionado in mapas) {
+
+
+
+
+        var nuevoParrafo = document.createElement("p");
+        nuevoParrafo.textContent = distritoSeleccionado;
+
+        mapaContenedor.appendChild(nuevoParrafo);
+
+        var mapaSVG = document.createElement("div");
+        mapaSVG.innerHTML = svg;
+
+        mapaContenedor.appendChild(mapaSVG);
+
+
+        mapaContenedor.style.display = "block";
+        console.log('entre al if')
+    } else {
+
+        mapaContenedor.style.display = "none";
+        console.log('no entre al if')
     }
-
-    else {
-        mapaContenedor.innerHTML = "Provincia no encontrada";
-    }
-
 }
+
 
 async function filtrar() {
 
@@ -414,31 +437,36 @@ async function filtrar() {
         try {
             const respuesta = await fetch(url);
             if (respuesta.ok) {
-                msjIncompleto.style.display = 'none';
-                const data = await respuesta.json();
-                cuadrosColores();
-                mostrarMapaYTitulo(textoDistrito);
-
+                data = await respuesta.json();
                 //respuesta en consola
                 console.log(data);
+                msjIncompleto.style.display = 'none';
+                cuadrosColores();
+                mostrarTituloYSub();
+                mostrarMapaYTitulo();
+                enviar.style.display = "block";
 
             } else {
-                //
-                msjIncompleto.style.display = 'none';
-                mostrarMensajeIncompleto("No se encontró información para la consulta realizada");  //amarillo
+
+
+                // Mostrar mensaje de error en rojo con los detalles del error
+                mostrarMensajeIncompleto("No se encontró información para la consulta realizada");
                 mostrarTituloYSub();
+
             }
         } catch (err) {
-
-            msjIncompleto.style.display = 'none';
-            mostrarMensajeError("Error al consultar los datos"); //rojo al consultar los datos
+            // Mostrar mensaje de error en rojo con los detalles del error
+            console.log(err);
+            mostrarMensajeError("Error al consultar los datos: "); //rojo al consultar los datos
             mostrarTituloYSub();
         }
+        
     }
 }
 
 
 
+//arreglar
 
 function agregarInforme() {
     var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${cargoElegido}|${distritoElegido}|${seccionElegida}` // Crea una cadena de datos separados por '|'

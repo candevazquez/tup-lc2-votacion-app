@@ -15,7 +15,7 @@
     <script src="js/pages/mapas.js" defer></script>
 </head>
 
-<body>
+<body id="body">
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
@@ -89,13 +89,14 @@
 
 
 
-        <section  id="sec-contenido">
+        <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
-            <div  id="misma-linea">
-                <div id="boton-enviar"><button hidden class="enviar-informe" id="botonInformes" onclick="agregarInforme();">+AGREGAR A INFORME</button></div>
+            <div id="misma-linea">
+                <div hidden id="boton-enviar"><button  class="enviar-informe" id="botonInformes"
+                        onclick="agregarInforme();">+AGREGAR A INFORME</button></div>
 
 
-                <div  id="cuadro-informativo" hidden>
+                <div id="cuadro-informativo" hidden>
                     <div class="mesas-escrutadas" hidden>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
@@ -116,7 +117,7 @@
                         </svg>
                         <div class="contenido">
                             <p class="titulo-mesas">Mesas escrutadas</p>
-                            <p class="porcentaje-mesas">44%</p>
+                            <p id="porcentaje-mesas">44%</p>
                         </div>
 
                     </div>
@@ -211,7 +212,7 @@
 
                         <div class="contenido">
                             <p class="titulo-elec">Electores</p>
-                            <p class="porcentaje-elec">44%</p>
+                            <p id="porcentaje-elec">44%</p>
                         </div>
 
                     </div>
@@ -279,7 +280,7 @@
 
                         <div class="contenido">
                             <p class="titulo-part">Participacion sobre escrutado</p>
-                            <p class="porcentaje-part">44%</p>
+                            <p id="porcentaje-part">44%</p>
                         </div>
                     </div>
 
@@ -287,8 +288,8 @@
 
             </div>
 
-        <!--si le pongo hidden a todo el div, no me lo oculta-->
-            <div  class="recuadros-centrales">
+            <!--si le pongo hidden a todo el div, no me lo oculta-->
+            <div class="recuadros-centrales">
 
                 <div hidden class="agrupaciones">
                     <p>Agrupaciones políticas</p>
@@ -304,10 +305,12 @@
                     </div>
                 </div>
 
-                <div  class="mapas" id="mapas">
-                    <p id="titulo-mapa"></p>
+                <div class="mapas" id="mapas" hidden>
                     
                 </div>
+
+
+
 
                 <div hidden class="chart-wrap horizontal">
                     <p>Resumen de votos</p>
