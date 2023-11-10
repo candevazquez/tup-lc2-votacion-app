@@ -445,6 +445,7 @@ async function filtrar() {
                 mostrarTituloYSub();
                 mostrarMapaYTitulo();
                 enviar.style.display = "block";
+                mostrarAgrupaciones();
 
             } else {
 
@@ -487,3 +488,15 @@ function agregarInforme() {
         mostrarMensajeExito('Registro exitoso');
     }
 }
+
+var mostrarAgrupaciones = function () {
+ 
+    var valoresPositivos = data.valoresTotalizadosPositivos;
+    console.log('valoressss',valoresPositivos);
+ 
+ 
+ 
+ 
+ 
+ }
+ 

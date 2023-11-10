@@ -18,18 +18,24 @@ var titYSub;
 var pagina = document.getElementById('body');
 var data;
 var textoDistrito;
-var enviar = document.getElementById('boton-enviar');
+var mismaLinea = document.getElementById('misma-linea');
 
 
+var colorAgrupaciones = {
+    1: { colorPleno: 'rgb(252, 210, 0)', colorLiviano: 'rgba(252, 210, 0, 0.3)' }, // Agrupación 1
+    2: { colorPleno: 'rgb(0, 169, 232)', colorLiviano: 'rgba(0, 169, 232, 0.3)' }, // Agrupación 2
+    3: { colorPleno: 'rgb(171, 40, 40)', colorLiviano: 'rgba(171, 40, 40, 0.3)' }, // Agrupación 3
+    4: { colorPleno: 'rgb(112, 76, 159)', colorLiviano: 'rgba(112, 76, 159, 0.5)' }, // Agrupación 4
+    5: { colorPleno: 'rgb(77, 46, 110)', colorLiviano: 'rgba(77, 46, 110, 0.5)' }, // Agrupación 5
+    6: { colorPleno: 'rgb(128, 128, 128)', colorLiviano: 'rgba(128, 128, 128, 0.5)' }, // Agrupación 6
+    7: { colorPleno: 'rgb(102, 171, 60)', colorLiviano: 'rgba(102, 171, 60, 0.5)' }, // Agrupación 7
+    8: { colorPleno: 'rgb(255, 0, 0)', colorLiviano: 'rgba(255, 0, 0, 0.5)' }, // Agrupación 8
+    9: { colorPleno: 'rgb(0, 255, 0)', colorLiviano: 'rgba(0, 255, 0, 0.5)' }, // Agrupación 9
+    10: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' }, // Agrupación 10
+    default: { colorPleno: 'rgb(169, 169, 169)', colorLiviano: 'rgba(169, 169, 169, 0.5)' }
+};
 
-/*valorAño
-valorCargo
-valorDistrito
-distrito
-msjIncompleto
-msjError
-eleccion
-titYSub*/
+
 
 
 
@@ -339,16 +345,16 @@ var cuadrosColores = function () {
     pElect.innerText = electores
     pPart.innerText = `${participacion} %`
 
-    mostrarLinea.style.display = "block";
+    mostrarLinea.style.display = "flex";
     pagina.style.paddingBottom = '15%' //para que se agrande la pantalla
 
 }
 function mostrarMapaYTitulo() {
     var mapaContenedor = document.getElementById('mapas');
-    
+
 
     var distritoSeleccionado = distritoElegido.options[distritoElegido.selectedIndex].text;
-    distritoSeleccionado = distritoSeleccionado.toUpperCase(); 
+    distritoSeleccionado = distritoSeleccionado.toUpperCase();
     console.log('entre a la funcion')
     console.log('distrito elegido', distritoSeleccionado)
     var svg = mapas[distritoSeleccionado];
@@ -444,20 +450,20 @@ async function filtrar() {
                 cuadrosColores();
                 mostrarTituloYSub();
                 mostrarMapaYTitulo();
-                enviar.style.display = "block";
+                mostrarAgrupaciones();
 
             } else {
 
 
-                
+
                 mostrarMensajeIncompleto("No se encontró información para la consulta realizada");
                 mostrarTituloYSub();
 
             }
         } catch (err) {
-            
+
             console.log(err);
-            mostrarMensajeError("Error al consultar los datos: "); 
+            mostrarMensajeError("Error al consultar los datos: ");
             mostrarTituloYSub();
         }
 
@@ -488,6 +494,55 @@ function agregarInforme() {
     }
 }
 
+var mostrarAgrupaciones = function () {
+ 
+   var valoresPositivos = data.valoresTotalizadosPositivos;
+   console.log('valoressss',valoresPositivos);
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const coloresAgrupaciones = {
     5: { colorPleno: '#FF0000', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
     // Agrega más agrupaciones según sea necesario
@@ -500,13 +555,13 @@ const coloresAgrupaciones = {
 // Recorrer las agrupaciones y asignar colores
 for (const agrupacionID in coloresAgrupaciones) {
     const agrupacion = coloresAgrupaciones[agrupacionID];
-    
+
     // Aquí puedes trabajar con los colores de la agrupación (agrupacion.colorPleno y agrupacion.colorLiviano)
 }
 
 
 
-
+*/
 
 
 

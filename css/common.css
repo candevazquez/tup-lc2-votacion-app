@@ -51,10 +51,12 @@ body {
  /*en el body cuando no hay contenido asi, cuando pongo contenido, padding-bottom 15 px */
 
 body {
-  position: relative;
   margin: 0;
+  
+
 
 }
+
 
 p {
   font-size: 12px;
@@ -86,6 +88,10 @@ h3 {
   background-color: var(--fondo-Cabecera);
   color: white;
   margin: 0px auto auto auto;
+  width: 100%;
+
+}
+.header-page-conten {
   width: 90%;
 
 }
