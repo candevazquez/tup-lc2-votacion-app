@@ -53,6 +53,7 @@ body {
 body {
   position: relative;
   margin: 0;
+
 }
 
 p {
@@ -103,19 +104,8 @@ footer {
   background-color: var(--fondo-Footer);
   min-height: 200px;
   width: 100%;
-
-
-
   position: absolute;
   bottom: 0;
-
-
-  /* Altura del footer */
-  /* Estilo del footer */
-
-  /*footer*/
-
-
 }
 
 
@@ -145,6 +135,36 @@ footer {
   color: var(--texto-footer);
 }
 
+@media screen and (max-width: 800px) and (max-height: 800px) {
+  body {
+    display: flex;
+    
+   
+  flex-direction: column;
+    min-height: 100vh;  
+    margin: 0; /
+  }
+  
+  main {
+    flex: 1; /*  ocupa espacio disponible */
+  }
+  
+  footer {
+    background-color: var(--fondo-Footer);
+    min-height: 200px;
+    width: 100%;
+    
+  }
+  
+  
+  #logos {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 35px;
+    margin-top: 25px;
+    justify-content: space-around;
+  }
+}
 
 .error {
   background-color: var(--mensaje-usuario-rojo);

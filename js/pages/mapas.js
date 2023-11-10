@@ -63,7 +63,8 @@ fill="#18a0fb" fill-opacity="1" fill-rule="evenodd" d="M94 37L63 37L64 41L59 43L
 117L208 118L211 111L210 105L212 104L209 91L210 88L216 80L216 78L222 72L232 68L232
 66L226 66L216 60L217 58L226 52L232 53L235 56L234 60L236 64L248 61L249 56L245 39L236
 43L239 48L237 50L227 50L225 49L228 44L217 41L215 37L105 37z"></path></svg>`,
-"ENTRE RIOS" : `<svg height="210" width="800"><path class="leaflet-interactive" stroke="#18a0fb"
+
+"ENTRE RÍOS" : `<svg height="210" width="800"><path class="leaflet-interactive" stroke="#18a0fb"
 stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 
 fill="#18a0fb" fill-opacity="1" fill-rule="evenodd" d="M168 48L160 50L157 49L153 53L147
@@ -198,7 +199,7 @@ fill="#18a0fb" fill-opacity="1" fill-rule="evenodd" d="M165 127L168 126L165 123L
 78L118 78L128 85L126 91L128 93L115 110L122 114L122 123L125 132L129 137L129 141L130
 142L131 138L133 138L135 144L140 149L142 149L144 145L150 141L158 146L160 142L163 144L164
 143L166 137L169 137L165 128z"></path></svg>`,
-"TIERRA DEL FUEGO, ANTÁRTIDA E ISLAS DEL ATLÁNTICO SUR" : `<svg height="210" width="800"><path class="leaflet-interactive" stroke="#18a0fb"
+"TIERRA DEL FUEGO" : `<svg height="210" width="800"><path class="leaflet-interactive" stroke="#18a0fb"
 stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 fill="#18a0fb" fill-opacity="1" fill-rule="evenodd" d="M166 125L160 121L154 114L139
 104L136 98L129 92L122 78L120 79L114 76L114 73L118 67L120 67L121 69L121 67L113 54L113

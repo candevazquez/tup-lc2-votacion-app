@@ -102,7 +102,9 @@
 
 #sec-titulo {
     margin-left: 100px;
+
 }
+
 
 
 .texto-path {
@@ -110,16 +112,14 @@
     font-size: 14px;
     font-family: 'Roboto';
     color: var(--celeste);
-}
 
+}
 
 #misma-linea{
     display: flex;
     justify-content: space-around;
     
 }
-
-/*boton enviar informes*/
 .enviar-informe {
     background-color: var(--gris-claro);
     color: white;
@@ -134,20 +134,11 @@
 
 }
 
+/*BOTON ENVIAR INFORME*/
 
 .enviar-informe:hover {
     color: var(--textos);
 }
-
-
-/*cuadros informativos*/
-#cuadro-informativo {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-right: 50px;
-}
-
 
 .mesas-escrutadas {
     background-color: var(--celeste);
@@ -159,6 +150,12 @@
     color: #FFF;
     font-size: 12px;
     display: flex;
+}
+
+.contenido > p {
+    color: #FFF;
+    font-size: 12px;
+
 }
 
 
@@ -175,6 +172,9 @@
 }
 
 
+
+
+
 .participacion {
     background-color: var(--morado);
     border-radius: 10px;
@@ -189,15 +189,18 @@
 }
 
 
-.mesas-escrutadas > p, .electores > p, .participacion >p {
-    color: #FFF;
-    font-size: 12px;
-
+#misma-linea{
+    display: none;
 }
 
 
-
-
+#cuadro-informativo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 50px;
+    
+}
 
 
 .recuadros-centrales {
@@ -206,8 +209,7 @@
     justify-content: center;
 }
 
-
-.recuadros-centrales > div {
+.recuadros-centrales>div {
     border-radius: 25px;
     border: 1px var(--borde-Grilla) solid;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -215,10 +217,12 @@
     width: 30%;
     margin: 2%;
     margin-bottom: 10%;
+
 }
 
-
-.chart-wrap > p, .mapas > p , .agrupaciones > p{
+.chart-wrap>p,
+.mapas>p,
+.agrupaciones>p {
     font-weight: bold;
     text-align: center;
     padding: 1.8em 0px 0px;
@@ -226,7 +230,8 @@
 
 }
 
-.barras{
+
+.barras {
     overflow-y: scroll;
     font-size: 11px;
     color: var(--textos);
@@ -236,12 +241,14 @@
     
 
 }
+/*¡¡¡¡PREGUNTAR SOBRE CORRECCION DE BARRAS!!!!!!!!!!!*/
 
 .titulo-agrupacion {
     font-size: 12px;
     font-weight: bold;
-    border-bottom: 1px solid var(--borde-Grilla);    
+    border-bottom: 1px solid var(--borde-Grilla);
 }
+
 
 
 /*barra de progreso*/

@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body id="body">
     <header>
         <!--Barra de logo portal-->
         <div class="header-page">
@@ -31,32 +31,31 @@
             <form action="">
 
 
-                <select name="año" id="año" class="combo"> <!--filtro año-->
-                    <option value="año">Año</option>
-                    <option value="2023">2023</option>
-                    <option value="2019">2019</option>
-                    <option value="2015">2015</option>
+                <select name="año" id="año" class="combo" onchange="elegirAño();"> <!--filtro año-->
+                    <option disabled selected value="">Año</option>
                 </select>
 
-                <select name="cargo" id="cargo" class="combo"> <!--filtro cargo-->
-                    <option value="cargo">Cargo</option>
-                    <option value="presidente">presidente</option>
-                    <option value="diputado">diputado</option>
-                    <option value="senador">senador</option>
+                <select name="cargo" id="cargo" class="combo" onchange="elegirCargo();"> <!--filtro cargo-->
+                    <option disabled selected value="">Cargo</option>
                 </select>
 
-                <select name="distrito" id="distrito" class="combo"> <!--filtro distrito-->
-                    <option value="distrito">Distrito</option>
-                    <option value="santa fe">santa fe</option>
-                    <option value="cordoba">cordoba</option>
-                    <option value="corrientes">corrientes</option>
+                <select name="distrito" id="distrito" class="combo" onchange="elegirDistrito();"> <!--filtro distrito-->
+                    <option disabled selected value="">Distrito</option>
+                </select>
+                <input type="hidden" id="hdSeccionProvincial" name="hdSeccionProvincial">
+
+                <select name="seccion" id="seccion" class="combo" onchange="elegirSeccion();">
+                    <option disabled selected value="">seccion</option>
                 </select>
 
-                <a href="#" class="filtrar"><i class="fa fa-search"></i> filtrar</a> <!--boton filtrar con lupa-->
+                <a href="#" class="filtrar" onclick="filtrar();"><i class="fa fa-search"></i> filtrar</a>
+                <!--boton filtrar con lupa-->
 
                 <a href="generales.html" class="boton-menu-generales">Generales</a>
 
                 <a href="informes.html" class="boton-informes">INFORMES</a> <!--boton informes-->
+
+
 
                 <a href="index.html" class="inicio">INICIO</a><!--boton inicio-->
 
@@ -69,29 +68,37 @@
     <main>
 
         <section id="sec-messages">
-            <p class="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar
+            <p hidden class="error" id="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al
+                intentar agregar
                 resultados al informe</p> <!--mensaje de error-->
-            <p class="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al informe</p>
+            <p hidden class="exito" id="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al
+                informe</p>
             <!--mensaje de exito-->
-            <p class="incompleta"><i class="fa fa-exclamation"></i> La operacion no se pudo completar</p>
+            <p class="incompleta" id="incompleta"><i class="fa fa-exclamation"></i>Debe seleccionar los valores a
+                filtrar y hacer clic en el botón FILTRAR</p>
         </section>
 
-        <section id="sec-titulo">
+
+
+
+        <section id="sec-titulo" hidden>
             <!--Seccion para agregar una palicula favorita por codigo-->
-            <h2>Elecciones 2021|Paso</h2>
-            <p class="texto-path">2020 > Paso > Provisorio > Senadores Nacionales > Buenos Aires</p>
+            <h2 id="titulo"></h2>
+            <p id="subtitulo" class="texto-path"></p>
         </section>
+
 
 
 
         <section id="sec-contenido">
             <!--Seccion para contenido de la página-->
             <div id="misma-linea">
-                <div id="boton-enviar"><button class="enviar-informe">+AGREGAR A INFORME</button></div>
+                <div hidden id="boton-enviar"><button class="enviar-informe" id="botonInformes"
+                        onclick="agregarInforme();">+AGREGAR A INFORME</button></div>
 
 
-                <div id="cuadro-informativo">
-                    <div class="mesas-escrutadas">
+                <div id="cuadro-informativo" hidden>
+                    <div class="mesas-escrutadas" hidden>
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
                             height="595.281px" viewBox="0 0 841.889 595.281" enable-background="new 0 0 841.889 595.281"
@@ -109,11 +116,14 @@
                                 </path>
                             </g>
                         </svg>
-                        <p>mesas escrutadas</p>
+                        <div class="contenido">
+                            <p class="titulo-mesas">Mesas escrutadas</p>
+                            <p id="porcentaje-mesas">44%</p>
+                        </div>
 
                     </div>
 
-                    <div class="electores">
+                    <div class="electores" hidden>
 
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
@@ -201,11 +211,14 @@
                             </path>
                         </svg>
 
-                        <p>Electores</p>
+                        <div class="contenido">
+                            <p class="titulo-elec">Electores</p>
+                            <p id="porcentaje-elec">44%</p>
+                        </div>
 
                     </div>
 
-                    <div class="participacion">
+                    <div class="participacion" hidden>
 
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="841.889px"
@@ -265,17 +278,21 @@
                             <rect x="195.975" y="387.534" fill="#FFFFFF" width="69.013" height="14.393"></rect>
                         </svg>
 
-                        <p>Participacion sobre escrutado</p>
 
+                        <div class="contenido">
+                            <p class="titulo-part">Participacion sobre escrutado</p>
+                            <p id="porcentaje-part">44%</p>
+                        </div>
                     </div>
-                </div>
 
+                </div>
 
             </div>
 
+            <!--si le pongo hidden a todo el div, no me lo oculta-->
             <div class="recuadros-centrales">
 
-                <div class="agrupaciones">
+                <div hidden class="agrupaciones">
                     <p>Agrupaciones políticas</p>
                     <div class="barras">
                         <p class="titulo-agrupacion">juntos por el cambio</p>
@@ -289,26 +306,14 @@
                     </div>
                 </div>
 
-                <div class="mapas">
-                    <p>cuadro de mapas</p>
-                    <!--//Ciudad Autónoma de Buenos Aires//-->
-                    <svg height="210" width="800">
-                        <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb" fill-opacity="1"
-                            fill-rule="evenodd" d="M182 61L179 56L176 58L178 56L176
-                                53L173 55L169 47L168 48L164 45L157 43L158 41L155 41L154 36L149 32L148 33L143 29L142
-                                30L145 32L140 29L138 32L137 30L140 29L139 26L137 28L136 23L133 22L130 27L103 41L81
-                                99L82 134L131 179L159 140L168 137L171 139L174 138L181 141L186 137L195 136L200 130L207
-                                125L205 120L210 118L210 112L205 107L210 110L213 114L215 113L215 110L217 110L218 112L219
-                                111L217 109L221 111L224 109L220 106L222 106L221 102L218 102L216 104L215 103L217 102L212
-                                102L220 101L219 95L216 92L214 86L208 81L200 83L199 80L201 79L202 81L200 77L206 75L203
-                                75L203 73L206 73L201 71L205 70L199 69L198 68L202 68L200 66L195 67L194 66L198 65L188
-                                62L192 62L190 60L183 59L189 64L187 65z">
-                        </path>
-                    </svg>
+                <div class="mapas" id="mapas" hidden>
+
                 </div>
 
-                <div class="chart-wrap horizontal">
+
+
+
+                <div hidden class="chart-wrap horizontal">
                     <p>Resumen de votos</p>
                     <div class="grid">
                         <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);"
@@ -331,27 +336,33 @@
                         <div class="bar" style="--bar-value:5%; --bar-color:var(--grafica-amarillo);"
                             data-name="Partido 7" title="Twitter 5%"></div>
                         <div class="bar" style="--bar-value:20%; --bar-color:var(--grafica-amarillo);" data-name="Otros"
-                            title="Other 20%"></div>
+                            title="Other 20%">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
     <!--Pie de página-->
     <footer>
+
         <div id="logos">
             <img src="img/icons/Ministerio-del-Interior_pluma.1ab9a7a7.png" alt="ministerio del interior"
                 class="pie-imagen">
             <img src="img/Logo_DINE_negativo.png" alt="logo dine" class="pie-imagen">
             <img src="img/icons/logos_001-10.4430c8d5.png" alt="observatorio politico Electoral" class="pie-imagen">
-            <p class="footer-p">Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105 Ley
+            <p class="footer-p">Resultados Provisorios en base a telegramas recibidos (Art. 43 Ley 26571 y Art. 105
+                Ley
                 19945). Los
-                porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al art.
+                porcentajes de las agrupaciones políticas son calculados sobre los votos válidos (PASO) conforme al
+                art.
                 45 Ley 26.571 y afirmativos (Generales). No se incluyen los votos correspondientes a los electores
                 residentes en el exterior ni privados de la libertad. Al usar este sitio usted acepta los
                 <a class="pagina-blanco" href="paginaenblanco.html">Términos y Condiciones.</a>
             </p>
         </div>
+
     </footer>
 </body>
 

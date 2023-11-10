@@ -259,7 +259,7 @@ async function elegirDistrito() {
 var elegirSeccion = function () {
     var seccionElegida = document.getElementById('seccion');
 
-
+    valorSeccion = seccionElegida.value
     seccionElegida.disabled = true;
     //funcion para desabilitar la opc seccion
 }
@@ -284,7 +284,7 @@ function mostrarMensajeError(mensaje) {
 }
 
 function mostrarMensajeExito(mensaje) {
-    msjExito = document.getElementById('Exito');
+    msjExito = document.getElementById('exito');
     msjExito.innerHTML = `<i class="fa fa-thumbs-up"></i>: ${mensaje}`;
     msjExito.style.display = 'block';
 
@@ -345,10 +345,10 @@ var cuadrosColores = function () {
 }
 function mostrarMapaYTitulo() {
     var mapaContenedor = document.getElementById('mapas');
-    //var mapaTitulo = document.getElementById('titulo-mapa');
+    
 
     var distritoSeleccionado = distritoElegido.options[distritoElegido.selectedIndex].text;
-
+    distritoSeleccionado = distritoSeleccionado.toUpperCase(); 
     console.log('entre a la funcion')
     console.log('distrito elegido', distritoSeleccionado)
     var svg = mapas[distritoSeleccionado];
@@ -449,45 +449,60 @@ async function filtrar() {
             } else {
 
 
-                // Mostrar mensaje de error en rojo con los detalles del error
+                
                 mostrarMensajeIncompleto("No se encontró información para la consulta realizada");
                 mostrarTituloYSub();
 
             }
         } catch (err) {
-            // Mostrar mensaje de error en rojo con los detalles del error
+            
             console.log(err);
-            mostrarMensajeError("Error al consultar los datos: "); //rojo al consultar los datos
+            mostrarMensajeError("Error al consultar los datos: "); 
             mostrarTituloYSub();
         }
-        
+
     }
 }
 
 
-
-//arreglar
-
 function agregarInforme() {
-    var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${cargoElegido}|${distritoElegido}|${seccionElegida}` // Crea una cadena de datos separados por '|'
+    var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${valorCargo}|${valorDistrito}|${valorSeccion}`;
 
-    var informesGuardados = localStorage.getItem('INFORMES'); // Obtén los datos existentes de localStorage
-    var informesArray;
-    if (informesGuardados) {
-        informesArray = [informesGuardados];
-    } else {
-        informesArray = [];
-    }
+
+    //obtiene cadena o un array vacio   json.parse convierte esa cadena JSON en un objeto JavaScript.
+    var informesArray = JSON.parse(localStorage.getItem('INFORMES')) || [];
+
 
     if (informesArray.includes(informe)) {
-        mostrarMensajeIncompleto('El registro ya existe');
+        mostrarMensajeIncompleto('El informe ya existe');
     } else {
-        informesArray[informesArray.length] = informe; // Agrega el nuevo informe al final del array
-        localStorage.setItem('INFORMES', informesArray.join(';')); // Guarda el array en localStorage
+
+
+        //push agrega al final de array
+        informesArray.push(informe);
+
+        // JSON.stringify convierte en string para que se pueda guardar en el local
+        localStorage.setItem('INFORMES', JSON.stringify(informesArray));
+
         mostrarMensajeExito('Registro exitoso');
     }
 }
 
+const coloresAgrupaciones = {
+    5: { colorPleno: '#FF0000', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
+    // Agrega más agrupaciones según sea necesario
+    // Ejemplo:
+    // 10: { colorPleno: '#00FF00', colorLiviano: 'rgba(0, 255, 0, 0.5)' },
+    // 15: { colorPleno: '#0000FF', colorLiviano: 'rgba(0, 0, 255, 0.5)' },
+    // ...
+};
+
+// Recorrer las agrupaciones y asignar colores
+for (const agrupacionID in coloresAgrupaciones) {
+    const agrupacion = coloresAgrupaciones[agrupacionID];
+    
+    // Aquí puedes trabajar con los colores de la agrupación (agrupacion.colorPleno y agrupacion.colorLiviano)
+}
 
 
 
