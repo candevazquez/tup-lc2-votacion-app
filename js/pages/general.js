@@ -571,6 +571,7 @@ var mostrarAgrupaciones = function () {
 
 
 
+
         var parrafoVotos = document.createElement('p');
         parrafoVotos.classList.add('votos');
         parrafoVotos.textContent = votosAgrupacion; // Agregar el nombre de la agrupación
@@ -601,13 +602,69 @@ var mostrarAgrupaciones = function () {
         agrupacionDiv.appendChild(progressDiv);
 
 
+
+        //BARRAAAAAAA
+        
+        // Crear el div principal
+        var chartWrapDiv = document.createElement('div');
+        chartWrapDiv.classList.add('chart-wrap', 'horizontal');
+
+        // Crear el div con la clase 'grid'
+        var gridDiv = document.createElement('div');
+        gridDiv.classList.add('grid');
+
+        // Crear el div de la barra con las clases y estilos necesarios
+        var barraDiv = document.createElement('div');
+        barraDiv.classList.add('bar');
+        barraDiv.style.setProperty('--bar-value', porcentajeVotos + '%');
+        barraDiv.style.setProperty('--bar-color', 'var(--' + color + ')');
+        barraDiv.dataset.name = nombreAgrupacion;
+        barraDiv.title = nombreAgrupacion + ' ' + porcentajeVotos + '%';
+
+        // Agregar la barra al div 'grid'
+        gridDiv.appendChild(barraDiv);
+
+        // Agregar el div 'grid' al div principal
+        chartWrapDiv.appendChild(gridDiv);
+
+
     }
 };
 
 
 
+/*<div hidden class="chart-wrap horizontal">
+                        <p>Resumen de votos</p>
+                        <div class="grid">
+                            <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);"
+                                data-name="Partido 1" title="Your Blog 85%">
+                            </div>
+                        </div>
+                    </div>
+                    
+                            var progressBarDiv = document.createElement('div');
+        progressBarDiv.classList.add('progress-bar');
+        progressBarDiv.style.width = porcentajeVotos + '%'; // Usar el porcentajeVotos aquí
+        progressBarDiv.style.background = color.colorPleno;*/
 
 
+var mostrarBarra = function () {
+
+    var valoresPositivos = data.valoresTotalizadosPositivos;
+    console.log('valoressss', valoresPositivos);
+
+    for (var i = 0; i < valoresPositivos.length; i++) {
+        var agrupacion = valoresPositivos[i];
+
+
+
+
+
+
+
+    }
+
+}
 
 
 

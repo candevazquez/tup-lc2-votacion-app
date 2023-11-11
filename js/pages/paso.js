@@ -518,6 +518,8 @@ var mostrarAgrupaciones = function () {
         var agrupacion = valoresPositivos[i];
         var votosTotal = valoresPositivos[i].votos; // Inicializar el total de votos
 
+        var nombreAgrupacion = agrupacion.nombreAgrupacion
+        var porcentajeVotos = agrupacion.votosPorcentaje
         // Calcular el total de votos para esta agrupación
 
 
@@ -531,10 +533,17 @@ var mostrarAgrupaciones = function () {
 
         var tituloAgrupacion = document.createElement('p');
         tituloAgrupacion.classList.add('titulo-agrupacion');
-        tituloAgrupacion.textContent = agrupacion.nombreAgrupacion; // Agregar el nombre de la agrupación
+        tituloAgrupacion.textContent = nombreAgrupacion; // Agregar el nombre de la agrupación
 
         agrupacionDiv.appendChild(tituloAgrupacion);
         contenedorAgrupaciones.appendChild(agrupacionDiv);
+
+
+
+
+
+
+
 
         for (var j = 0; j < agrupacion.listas.length; j++) {
             var lista = agrupacion.listas[j];
@@ -583,6 +592,34 @@ var mostrarAgrupaciones = function () {
                     color = colorAgrupaciones.default;
                     break;
             };
+
+
+
+            //BARRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+            // Crear el div principal
+            var chartWrapDiv = document.createElement('div');
+            chartWrapDiv.classList.add('chart-wrap', 'horizontal');
+
+            // Crear el div con la clase 'grid'
+            var gridDiv = document.createElement('div');
+            gridDiv.classList.add('grid');
+
+            // Crear el div de la barra con las clases y estilos necesarios
+            var barraDiv = document.createElement('div');
+            barraDiv.classList.add('bar');
+            barraDiv.style.setProperty('--bar-value', porcentajeVotos + '%');
+            barraDiv.style.setProperty('--bar-color', 'var(--' + color + ')');
+            barraDiv.dataset.name = nombreAgrupacion;
+            barraDiv.title = nombreAgrupacion + ' ' + porcentajeVotos + '%';
+
+            // Agregar la barra al div 'grid'
+            gridDiv.appendChild(barraDiv);
+
+            // Agregar el div 'grid' al div principal
+            chartWrapDiv.appendChild(gridDiv);
+
+
 
 
             // Obtener nombre, porcentaje y votos
