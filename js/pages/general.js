@@ -19,6 +19,7 @@ var pagina = document.getElementById('body');
 var data;
 var textoDistrito;
 var mismaLinea = document.getElementById('misma-linea');
+var idAgrupacion;
 
 
 var colorAgrupaciones = {
@@ -34,7 +35,6 @@ var colorAgrupaciones = {
     10: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' }, // Agrupación 10
     default: { colorPleno: 'rgb(169, 169, 169)', colorLiviano: 'rgba(169, 169, 169, 0.5)' }
 };
-
 
 
 
@@ -494,16 +494,117 @@ function agregarInforme() {
     }
 }
 
+
+
 var mostrarAgrupaciones = function () {
- 
-   var valoresPositivos = data.valoresTotalizadosPositivos;
-   console.log('valoressss',valoresPositivos);
+
+    var valoresPositivos = data.valoresTotalizadosPositivos;
+    console.log('valoressss', valoresPositivos);
+
+    var contenedorAgrupaciones = document.getElementById('contenedorAgrupaciones');
+
+    for (var i = 0; i < valoresPositivos.length; i++) {
+        var agrupacion = valoresPositivos[i];
+
+        var agrupacionDiv = document.createElement('div');
+        agrupacionDiv.classList.add('agrupaciones');
+
+        var tituloAgrupacion = document.createElement('p');
+        tituloAgrupacion.classList.add('titulo-agrupacion');
+        tituloAgrupacion.textContent = agrupacion.nombreAgrupacion; // Agregar el nombre de la agrupación
+
+        agrupacionDiv.appendChild(tituloAgrupacion);
+
+        contenedorAgrupaciones.appendChild(agrupacionDiv);
+
+        // Obtener el idAgrupacion de cada elemento
+        var idAgrupacion = agrupacion.idAgrupacion;
+
+        // Convertir idAgrupacion a número
+        var idAgrupacionNumero = parseInt(idAgrupacion);
+
+        console.log('id agrupacionnnnnn', idAgrupacionNumero);
+        var color;
+
+        switch (true) {
+            case idAgrupacionNumero < 100:
+                color = colorAgrupaciones[1];
+                break;
+            case idAgrupacionNumero < 200:
+                color = colorAgrupaciones[2];
+                break;
+            case idAgrupacionNumero < 300:
+                color = colorAgrupaciones[3];
+                break;
+            case idAgrupacionNumero < 400:
+                color = colorAgrupaciones[4];
+                break;
+            case idAgrupacionNumero < 500:
+                color = colorAgrupaciones[5];
+                break;
+            case idAgrupacionNumero < 600:
+                color = colorAgrupaciones[6];
+                break;
+
+            case idAgrupacionNumero < 700:
+                color = colorAgrupaciones[7];
+                break;
+            case idAgrupacionNumero < 800:
+                color = colorAgrupaciones[8];
+                break;
+            case idAgrupacionNumero < 900:
+                color = colorAgrupaciones[9];
+                break;
+            case idAgrupacionNumero < 1000:
+                color = colorAgrupaciones[10];
+                break;
+            default:
+                color = colorAgrupaciones.default;
+                break;
+        };
+
+        var votosAgrupacion = agrupacion.votos;
+        var porcentajeVotos = agrupacion.votosPorcentaje
+        console.log('VOTOSSS', votosAgrupacion)
+        console.log('VOTOS AGRUPACIONNN', porcentajeVotos)
+        // Verificar si valoresPositivos.votos es válido y mayor que cero
 
 
 
+        var parrafoVotos = document.createElement('p');
+        parrafoVotos.classList.add('votos');
+        parrafoVotos.textContent = votosAgrupacion; // Agregar el nombre de la agrupación
+        agrupacionDiv.appendChild(parrafoVotos);
+
+        var parrafoPorcentaje = document.createElement('p');
+        parrafoPorcentaje.classList.add('porcentajeVotos');
+        parrafoPorcentaje.textContent = porcentajeVotos; // Agregar el nombre de la agrupación
+
+        agrupacionDiv.appendChild(parrafoPorcentaje);
 
 
-}
+        var progressDiv = document.createElement('div');
+        progressDiv.classList.add('progress');
+        progressDiv.style.background = color.colorLiviano;
+
+        var progressBarDiv = document.createElement('div');
+        progressBarDiv.classList.add('progress-bar');
+        progressBarDiv.style.width = porcentajeVotos + '%'; // Usar el porcentajeVotos aquí
+        progressBarDiv.style.background = color.colorPleno;
+
+        var progressBarText = document.createElement('span');
+        progressBarText.classList.add('progress-bar-text');
+        progressBarText.textContent = porcentajeVotos + '%';
+
+        progressBarDiv.appendChild(progressBarText);
+        progressDiv.appendChild(progressBarDiv);
+        agrupacionDiv.appendChild(progressDiv);
+
+
+    }
+};
+
+
 
 
 
@@ -562,8 +663,5 @@ for (const agrupacionID in coloresAgrupaciones) {
 
 
 */
-
-
-
 
 

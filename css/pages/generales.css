@@ -230,6 +230,11 @@
 
 }
 
+#contenedorAgrupaciones {
+    /* Ajusta estilos según tus necesidades */
+    max-height: 400px; /* Establece la altura máxima del contenedor antes de agregar barras de desplazamiento */
+    overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
+}
 
 .barras {
     overflow-y: scroll;
@@ -241,7 +246,7 @@
     
 
 }
-/*¡¡¡¡PREGUNTAR SOBRE CORRECCION DE BARRAS!!!!!!!!!!!*/
+
 
 .titulo-agrupacion {
     font-size: 12px;
