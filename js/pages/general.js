@@ -23,16 +23,16 @@ var idAgrupacion;
 
 
 var colorAgrupaciones = {
-    1: { colorPleno: 'rgb(252, 210, 0)', colorLiviano: 'rgba(252, 210, 0, 0.3)' }, // Agrupación 1
-    2: { colorPleno: 'rgb(0, 169, 232)', colorLiviano: 'rgba(0, 169, 232, 0.3)' }, // Agrupación 2
-    3: { colorPleno: 'rgb(171, 40, 40)', colorLiviano: 'rgba(171, 40, 40, 0.3)' }, // Agrupación 3
-    4: { colorPleno: 'rgb(112, 76, 159)', colorLiviano: 'rgba(112, 76, 159, 0.5)' }, // Agrupación 4
-    5: { colorPleno: 'rgb(77, 46, 110)', colorLiviano: 'rgba(77, 46, 110, 0.5)' }, // Agrupación 5
-    6: { colorPleno: 'rgb(128, 128, 128)', colorLiviano: 'rgba(128, 128, 128, 0.5)' }, // Agrupación 6
-    7: { colorPleno: 'rgb(102, 171, 60)', colorLiviano: 'rgba(102, 171, 60, 0.5)' }, // Agrupación 7
-    8: { colorPleno: 'rgb(255, 0, 0)', colorLiviano: 'rgba(255, 0, 0, 0.5)' }, // Agrupación 8
-    9: { colorPleno: 'rgb(0, 255, 0)', colorLiviano: 'rgba(0, 255, 0, 0.5)' }, // Agrupación 9
-    10: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' }, // Agrupación 10
+    1: { colorPleno: 'rgb(252, 210, 0)', colorLiviano: 'rgba(252, 210, 0, 0.3)' },
+    2: { colorPleno: 'rgb(0, 169, 232)', colorLiviano: 'rgba(0, 169, 232, 0.3)' },
+    3: { colorPleno: 'rgb(171, 40, 40)', colorLiviano: 'rgba(171, 40, 40, 0.3)' },
+    4: { colorPleno: 'rgb(112, 76, 159)', colorLiviano: 'rgba(112, 76, 159, 0.5)' },
+    5: { colorPleno: 'rgb(77, 46, 110)', colorLiviano: 'rgba(77, 46, 110, 0.5)' },
+    6: { colorPleno: 'rgb(128, 128, 128)', colorLiviano: 'rgba(128, 128, 128, 0.5)' },
+    7: { colorPleno: 'rgb(102, 171, 60)', colorLiviano: 'rgba(102, 171, 60, 0.5)' },
+    8: { colorPleno: 'rgb(255, 0, 0)', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
+    9: { colorPleno: 'rgb(0, 255, 0)', colorLiviano: 'rgba(0, 255, 0, 0.5)' },
+    10: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' },
     default: { colorPleno: 'rgb(169, 169, 169)', colorLiviano: 'rgba(169, 169, 169, 0.5)' }
 };
 
@@ -40,7 +40,7 @@ var colorAgrupaciones = {
 
 
 
-// Realizar la solicitud a la API
+// realizar la solicitud a la API
 async function coneccion() {
     const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
 
@@ -98,7 +98,7 @@ async function elegirAño() {
             datosFiltrados = datosFiltros.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
             //Se itera sobre cada eleccion de datos filtrados y sobre cada cargo de la eleccion
-            // Completar el combo de Cargos
+            // completa el combo de Cargos
             datosFiltrados.forEach(eleccion => {
                 eleccion.Cargos.forEach(cargo => {
                     const option = document.createElement("option");
@@ -189,7 +189,7 @@ async function elegirDistrito() {
 
         console.log(valorDistrito)
 
-        // Filtrar datos por el tipo de elección y el año seleccionado
+        // filtrar datos por elección y año 
         const datosFiltradosCargo = datosFiltrados.filter(eleccion => eleccion.IdEleccion === tipoEleccion);
 
         // encontrar  cargo seleccionado
@@ -305,7 +305,7 @@ function mostrarMensajeExito(mensaje) {
 
 var mostrarTituloYSub = function () {
     añoElegido = document.getElementById('año').value;
-    eleccion = "Generales"; // Reemplaza con el valor adecuado
+    eleccion = "Generales";
     cargoElegido = document.getElementById('cargo');
     var textoCargo = cargoElegido.options[cargoElegido.selectedIndex].text;
     distritoElegido = document.getElementById('distrito');
@@ -339,7 +339,7 @@ var cuadrosColores = function () {
     var pElect = document.getElementById('porcentaje-elec');
     var pPart = document.getElementById('porcentaje-part');
     var mostrarLinea = document.getElementById('misma-linea');
-    // Mostrar los datos en tres cuadros de colores
+
 
     pMesas.innerText = mesasEscrutadas
     pElect.innerText = electores
@@ -460,7 +460,8 @@ async function filtrar() {
                 mostrarTituloYSub();
 
             }
-        } catch (err) {
+        }
+        catch (err) {
 
             console.log(err);
             mostrarMensajeError("Error al consultar los datos: ");
@@ -511,16 +512,16 @@ var mostrarAgrupaciones = function () {
 
         var tituloAgrupacion = document.createElement('p');
         tituloAgrupacion.classList.add('titulo-agrupacion');
-        tituloAgrupacion.textContent = agrupacion.nombreAgrupacion; // Agregar el nombre de la agrupación
+        tituloAgrupacion.textContent = agrupacion.nombreAgrupacion; //nombre agrupación
 
         agrupacionDiv.appendChild(tituloAgrupacion);
 
         contenedorAgrupaciones.appendChild(agrupacionDiv);
 
-        // Obtener el idAgrupacion de cada elemento
+
         var idAgrupacion = agrupacion.idAgrupacion;
 
-        // Convertir idAgrupacion a número
+        // convertir idAgrupacion a número
         var idAgrupacionNumero = parseInt(idAgrupacion);
 
         console.log('id agrupacionnnnnn', idAgrupacionNumero);
@@ -567,19 +568,19 @@ var mostrarAgrupaciones = function () {
         var porcentajeVotos = agrupacion.votosPorcentaje
         console.log('VOTOSSS', votosAgrupacion)
         console.log('VOTOS AGRUPACIONNN', porcentajeVotos)
-        // Verificar si valoresPositivos.votos es válido y mayor que cero
+
 
 
 
 
         var parrafoVotos = document.createElement('p');
         parrafoVotos.classList.add('votos');
-        parrafoVotos.textContent = votosAgrupacion; // Agregar el nombre de la agrupación
+        parrafoVotos.textContent = votosAgrupacion;
         agrupacionDiv.appendChild(parrafoVotos);
 
         var parrafoPorcentaje = document.createElement('p');
         parrafoPorcentaje.classList.add('porcentajeVotos');
-        parrafoPorcentaje.textContent = porcentajeVotos; // Agregar el nombre de la agrupación
+        parrafoPorcentaje.textContent = porcentajeVotos;
 
         agrupacionDiv.appendChild(parrafoPorcentaje);
 
@@ -590,7 +591,7 @@ var mostrarAgrupaciones = function () {
 
         var progressBarDiv = document.createElement('div');
         progressBarDiv.classList.add('progress-bar');
-        progressBarDiv.style.width = porcentajeVotos + '%'; // Usar el porcentajeVotos aquí
+        progressBarDiv.style.width = porcentajeVotos + '%';
         progressBarDiv.style.background = color.colorPleno;
 
         var progressBarText = document.createElement('span');
@@ -604,16 +605,15 @@ var mostrarAgrupaciones = function () {
 
 
         //BARRAAAAAAA
-        
-        // Crear el div principal
-        var chartWrapDiv = document.createElement('div');
-        chartWrapDiv.classList.add('chart-wrap', 'horizontal');
 
-        // Crear el div con la clase 'grid'
+        // div principal
+        var chartWrapDiv = document.getElementsByClassName('chart-wrap', 'horizontal');
+
+        // crea el div con la clase grid
         var gridDiv = document.createElement('div');
         gridDiv.classList.add('grid');
 
-        // Crear el div de la barra con las clases y estilos necesarios
+        // crea el div de la barra con las clases y estilos 
         var barraDiv = document.createElement('div');
         barraDiv.classList.add('bar');
         barraDiv.style.setProperty('--bar-value', porcentajeVotos + '%');
@@ -621,10 +621,10 @@ var mostrarAgrupaciones = function () {
         barraDiv.dataset.name = nombreAgrupacion;
         barraDiv.title = nombreAgrupacion + ' ' + porcentajeVotos + '%';
 
-        // Agregar la barra al div 'grid'
+        // agregar la barra al div grid
         gridDiv.appendChild(barraDiv);
 
-        // Agregar el div 'grid' al div principal
+        // agregar el div grid al div principal
         chartWrapDiv.appendChild(gridDiv);
 
 
@@ -633,38 +633,6 @@ var mostrarAgrupaciones = function () {
 
 
 
-/*<div hidden class="chart-wrap horizontal">
-                        <p>Resumen de votos</p>
-                        <div class="grid">
-                            <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);"
-                                data-name="Partido 1" title="Your Blog 85%">
-                            </div>
-                        </div>
-                    </div>
-                    
-                            var progressBarDiv = document.createElement('div');
-        progressBarDiv.classList.add('progress-bar');
-        progressBarDiv.style.width = porcentajeVotos + '%'; // Usar el porcentajeVotos aquí
-        progressBarDiv.style.background = color.colorPleno;*/
-
-
-var mostrarBarra = function () {
-
-    var valoresPositivos = data.valoresTotalizadosPositivos;
-    console.log('valoressss', valoresPositivos);
-
-    for (var i = 0; i < valoresPositivos.length; i++) {
-        var agrupacion = valoresPositivos[i];
-
-
-
-
-
-
-
-    }
-
-}
 
 
 
@@ -697,28 +665,5 @@ var mostrarBarra = function () {
 
 
 
-
-
-
-/*
-const coloresAgrupaciones = {
-    5: { colorPleno: '#FF0000', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
-    // Agrega más agrupaciones según sea necesario
-    // Ejemplo:
-    // 10: { colorPleno: '#00FF00', colorLiviano: 'rgba(0, 255, 0, 0.5)' },
-    // 15: { colorPleno: '#0000FF', colorLiviano: 'rgba(0, 0, 255, 0.5)' },
-    // ...
-};
-
-// Recorrer las agrupaciones y asignar colores
-for (const agrupacionID in coloresAgrupaciones) {
-    const agrupacion = coloresAgrupaciones[agrupacionID];
-
-    // Aquí puedes trabajar con los colores de la agrupación (agrupacion.colorPleno y agrupacion.colorLiviano)
-}
-
-
-
-*/
 
 

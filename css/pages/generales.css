@@ -231,9 +231,8 @@
 }
 
 #contenedorAgrupaciones {
-    /* Ajusta estilos según tus necesidades */
-    max-height: 400px; /* Establece la altura máxima del contenedor antes de agregar barras de desplazamiento */
-    overflow-y: auto; /* Agrega la barra de desplazamiento vertical cuando sea necesario */
+    max-height: 400px; /* altura máxima del contenedor antes de agregar barras de desplazamiento */
+    overflow-y: auto; /* agrega la barra cuando sea necesario */
 }
 
 .barras {
