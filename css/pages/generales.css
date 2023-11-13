@@ -364,3 +364,10 @@
     display: inline-block;
     white-space: nowrap;
 }
+
+footer {
+
+    position: absolute;  /*cuando tiene contenido sin  position: absolute;  */
+
+  }
+  

@@ -424,7 +424,7 @@ async function filtrar() {
 
 
         // consulta api
-        const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
+        const url = `https://elecciones-lc2.bruselario.com/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
 
         console.log('url= ', url)
 
@@ -437,8 +437,9 @@ async function filtrar() {
         console.log(seccionElegida)
 
 
-
-
+//https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2023&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=5&seccionProvincialId=&seccionId=9&circuitoId=&mesaId=
+//https://elecciones-lc2.bruselario.com/
+//https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=2020&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=1&seccionProvincialId=0&seccionId=3&circuitoId=000039&mesaId=1244
 
         try {
             const respuesta = await fetch(url);
