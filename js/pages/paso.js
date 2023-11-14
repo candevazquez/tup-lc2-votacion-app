@@ -494,16 +494,6 @@ function agregarInforme() {
     }
 }
 
-var mostrarAgrupaciones = function () {
-
-    var valoresPositivos = data.valoresTotalizadosPositivos;
-    console.log('valoressss', valoresPositivos);
-
-
-
-
-
-}
 
 
 
