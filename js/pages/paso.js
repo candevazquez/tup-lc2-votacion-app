@@ -587,7 +587,7 @@ var mostrarAgrupaciones = function () {
           
 
             // div principal
-            var chartWrapDiv = document.getElementsByClassName('chart-wrap', 'horizontal');
+            var chartWrapDiv = document.getElementsByClassName('chart-wrap')[0];
 
             // crear el div con la clase grid
             var gridDiv = document.createElement('div');
@@ -650,5 +650,6 @@ var mostrarAgrupaciones = function () {
             agrupacionDiv.appendChild(progressDiv);
         }
     }
+    contenedorAgrupaciones.style.display = "block";
 };
 

@@ -20,20 +20,21 @@ var data;
 var textoDistrito;
 var mismaLinea = document.getElementById('misma-linea');
 var idAgrupacion;
+var enviar = document.getElementById('boton-enviar');
 
 
 var colorAgrupaciones = {
-    1: { colorPleno: 'rgb(252, 210, 0)', colorLiviano: 'rgba(252, 210, 0, 0.3)' },
-    2: { colorPleno: 'rgb(0, 169, 232)', colorLiviano: 'rgba(0, 169, 232, 0.3)' },
-    3: { colorPleno: 'rgb(171, 40, 40)', colorLiviano: 'rgba(171, 40, 40, 0.3)' },
-    4: { colorPleno: 'rgb(112, 76, 159)', colorLiviano: 'rgba(112, 76, 159, 0.5)' },
-    5: { colorPleno: 'rgb(77, 46, 110)', colorLiviano: 'rgba(77, 46, 110, 0.5)' },
-    6: { colorPleno: 'rgb(128, 128, 128)', colorLiviano: 'rgba(128, 128, 128, 0.5)' },
-    7: { colorPleno: 'rgb(102, 171, 60)', colorLiviano: 'rgba(102, 171, 60, 0.5)' },
-    8: { colorPleno: 'rgb(255, 0, 0)', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
-    9: { colorPleno: 'rgb(0, 255, 0)', colorLiviano: 'rgba(0, 255, 0, 0.5)' },
-    10: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' },
-    default: { colorPleno: 'rgb(169, 169, 169)', colorLiviano: 'rgba(169, 169, 169, 0.5)' }
+    0: { colorPleno: 'rgb(252, 210, 0)', colorLiviano: 'rgba(252, 210, 0, 0.3)' },
+    1: { colorPleno: 'rgb(0, 169, 232)', colorLiviano: 'rgba(0, 169, 232, 0.3)' },
+    2: { colorPleno: 'rgb(171, 40, 40)', colorLiviano: 'rgba(171, 40, 40, 0.3)' },
+    3: { colorPleno: 'rgb(112, 76, 159)', colorLiviano: 'rgba(112, 76, 159, 0.5)' },
+    4: { colorPleno: 'rgb(77, 46, 110)', colorLiviano: 'rgba(77, 46, 110, 0.5)' },
+    5: { colorPleno: 'rgb(128, 128, 128)', colorLiviano: 'rgba(128, 128, 128, 0.5)' },
+    6: { colorPleno: 'rgb(102, 171, 60)', colorLiviano: 'rgba(102, 171, 60, 0.5)' },
+    7: { colorPleno: 'rgb(255, 0, 0)', colorLiviano: 'rgba(255, 0, 0, 0.5)' },
+    8: { colorPleno: 'rgb(0, 255, 0)', colorLiviano: 'rgba(0, 255, 0, 0.5)' },
+    9: { colorPleno: 'rgb(0, 0, 255)', colorLiviano: 'rgba(0, 0, 255, 0.5)' },
+    10: { colorPleno: 'rgb(169, 169, 169)', colorLiviano: 'rgba(169, 169, 169, 0.5)' }
 };
 
 
@@ -424,7 +425,9 @@ async function filtrar() {
 
 
         // consulta api
-        const url = `https://elecciones-lc2.bruselario.com/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
+
+        const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
+
 
         console.log('url= ', url)
 
@@ -437,9 +440,9 @@ async function filtrar() {
         console.log(seccionElegida)
 
 
-//https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2023&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=5&seccionProvincialId=&seccionId=9&circuitoId=&mesaId=
-//https://elecciones-lc2.bruselario.com/
-//https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=2020&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=1&seccionProvincialId=0&seccionId=3&circuitoId=000039&mesaId=1244
+        //https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=2023&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=5&seccionProvincialId=&seccionId=9&circuitoId=&mesaId=
+        //https://elecciones-lc2.bruselario.com/
+        //https://elecciones-lc2.bruselario.com/api/resultados/getResultados/?anioEleccion=2020&tipoRecuento=1&tipoEleccion=1&categoriaId=2&distritoId=1&seccionProvincialId=0&seccionId=3&circuitoId=000039&mesaId=1244
 
         try {
             const respuesta = await fetch(url);
@@ -451,6 +454,7 @@ async function filtrar() {
                 cuadrosColores();
                 mostrarTituloYSub();
                 mostrarMapaYTitulo();
+                enviar.style.display = "block";
                 mostrarAgrupaciones();
 
             } else {
@@ -528,42 +532,12 @@ var mostrarAgrupaciones = function () {
         console.log('id agrupacionnnnnn', idAgrupacionNumero);
         var color;
 
-        switch (true) {
-            case idAgrupacionNumero < 100:
-                color = colorAgrupaciones[1];
-                break;
-            case idAgrupacionNumero < 200:
-                color = colorAgrupaciones[2];
-                break;
-            case idAgrupacionNumero < 300:
-                color = colorAgrupaciones[3];
-                break;
-            case idAgrupacionNumero < 400:
-                color = colorAgrupaciones[4];
-                break;
-            case idAgrupacionNumero < 500:
-                color = colorAgrupaciones[5];
-                break;
-            case idAgrupacionNumero < 600:
-                color = colorAgrupaciones[6];
-                break;
-
-            case idAgrupacionNumero < 700:
-                color = colorAgrupaciones[7];
-                break;
-            case idAgrupacionNumero < 800:
-                color = colorAgrupaciones[8];
-                break;
-            case idAgrupacionNumero < 900:
-                color = colorAgrupaciones[9];
-                break;
-            case idAgrupacionNumero < 1000:
-                color = colorAgrupaciones[10];
-                break;
-            default:
-                color = colorAgrupaciones.default;
-                break;
-        };
+        if (i <= 9) {
+            color = colorAgrupaciones[i]
+        }
+        else {
+            color = colorAgrupaciones[10]; // Color por defecto
+        }
 
         var votosAgrupacion = agrupacion.votos;
         var porcentajeVotos = agrupacion.votosPorcentaje
@@ -605,32 +579,56 @@ var mostrarAgrupaciones = function () {
 
 
 
+
         //BARRAAAAAAA
 
+
+        /* <div class="grid">
+                            <div class="bar" style="--bar-value:85%;--bar-color:var(--grafica-amarillo);"
+                                data-name="Partido 1" title="Your Blog 85%">
+                            </div>
+                        </div> */
         // div principal
-        var chartWrapDiv = document.getElementsByClassName('chart-wrap', 'horizontal');
+        if (i <= 7) {
+            var chartWrapDiv = document.getElementsByClassName('chart-wrap')[0];
 
-        // crea el div con la clase grid
-        var gridDiv = document.createElement('div');
-        gridDiv.classList.add('grid');
+            var grid = document.getElementById('grid');
 
-        // crea el div de la barra con las clases y estilos 
-        var barraDiv = document.createElement('div');
-        barraDiv.classList.add('bar');
-        barraDiv.style.setProperty('--bar-value', porcentajeVotos + '%');
-        barraDiv.style.setProperty('--bar-color', 'var(--' + color + ')');
-        barraDiv.dataset.name = nombreAgrupacion;
-        barraDiv.title = nombreAgrupacion + ' ' + porcentajeVotos + '%';
+            // crea el div con la clase grid
+            var barra = document.createElement('div');
+            barra.classList.add('bar');
 
-        // agregar la barra al div grid
-        gridDiv.appendChild(barraDiv);
+            // crea el div de la barra con las clases y estilos 
 
-        // agregar el div grid al div principal
-        chartWrapDiv.appendChild(gridDiv);
+
+            barra.style.setProperty('--bar-value', porcentajeVotos + '%');
+            barra.style.setProperty('--bar-color', color.colorPleno);
+            barra.dataset.name = agrupacion.nombreAgrupacion;
+            barra.title = agrupacion.nombreAgrupacion + ' ' + porcentajeVotos + '%';
+
+            // agregar la barra al div grid
+
+
+            // agregar el div grid al div principal
+            grid.appendChild(barra);
+
+            console.log('Nuevo Porcentaje:', porcentajeVotos);
+            console.log('Nuevo Color:', color.colorPleno);
+            console.log('Nuevo Nombre:', agrupacion.nombreAgrupacion);
+
+        }
+
+
 
 
     }
+    chartWrapDiv.appendChild(grid);
+    chartWrapDiv.style.display = "block";
+    contenedorAgrupaciones.style.display = "block";
 };
+
+
+
 
 
 
