@@ -631,9 +631,28 @@ var mostrarAgrupaciones = function () {
 
 
 
+//Estilos Titulos de recuadros:
+//- Grosor: Bold
+//- Padding: 1.8em 0 0 0;
+//- Posición del texto: center;
+//- White-space: nowrap;
 
+/*Agrupaciones políticas:
+o Scroll vertical
+o Alto 325px
+o Textos:
+▪ Tamaño: 11px
+▪ Color: --textos
+▪ Padding: 5px
+▪ Formato texto: Uppercase
 
+12
 
+▪ Grosor Agrupación: Bold (Datos normal)
+o Textos Titulo Agrupación
+▪ Tamaño fuente: 12px
+▪ Grosor texto: Negrita
+▪ Línea borde inferior: 1px solida –borde-Grilla */
 
 
 
