@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/common.css" />
     <script src="js/pages/informes.js" defer></script>
     <script src="js/common.js" defer></script>
+    <script src="js/pages/mapas.js" defer></script>
 
 </head>
 
@@ -43,11 +44,14 @@
     <main>
 
         <section id="sec-messages">
-            <p class="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al intentar agregar
+            <p hidden class="error" id="error"><i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error al
+                intentar agregar
                 resultados al informe</p> <!--mensaje de error-->
-            <p class="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al informe</p>
+            <p hidden class="exito" id="exito"><i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al
+                informe</p>
             <!--mensaje de exito-->
-            <p class="incompleta"><i class="fa fa-exclamation"></i> La operacion no se pudo completar</p>
+            <p hidden class="incompleta" id="incompleta"><i class="fa fa-exclamation"></i>Debe seleccionar los valores a
+                filtrar y hacer clic en el botón FILTRAR</p>
         </section>
 
         <section id="sec-titulo">
@@ -56,7 +60,7 @@
         </section>
 
 
-        <section id="sec-contenido">
+        <section  id="sec-contenido">
             <!--Seccion para contenido de la página-->
             <div class="div-tabla">
                 <table class="tabla">
@@ -70,17 +74,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> <!--//Tierra del Fuego, Antártida e Islas del Atlántico Sur//-->
-                                <svg height="210" width="250">
-                                    <path class="leaflet-interactive" stroke="#18a0fb" stroke-opacity="1"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#18a0fb"
-                                        fill-opacity="1" fill-rule="evenodd" d="M166 125L160 121L154 114L139
-                            104L136 98L129 92L122 78L120 79L114 76L114 73L118 67L120 67L121 69L121 67L113 54L113
-                            140L114 138L118 138L120 136L132 139L141 138L161 146L163 143L172 143L173 140L177 140L180
-                            142L185 139L185 141L188 140L188 138L190 137L189 135L192 130L181 130L170 128L167
-                            126z">
-                                    </path>
-                                </svg>
+                            <td hidden class="mapas" id="mapas"> <!--//Tierra del Fuego, Antártida e Islas del Atlántico Sur//-->             
                             </td>
 
                             <td class="eleccion">
@@ -89,7 +83,7 @@
                                     Nacionales > Buenos Aires</p>
                             </td>
 
-                            <td>
+                            <td> <!--generales-->
                                 <div class="datos-generales">
                                     <div class="mesas">
 

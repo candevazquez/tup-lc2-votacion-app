@@ -44,6 +44,7 @@ var colorAgrupaciones = {
 // realizar la solicitud a la API
 async function coneccion() {
     const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
+    console.log(url)
 
     try { //para tratar conectarnos a la url await espera fetch para conectarse 
         const respuesta = await fetch(url);
@@ -422,7 +423,13 @@ async function filtrar() {
             seccionProvincialId.value = ""
 
         }
-
+        // Deshabilitar el botón después de hacer clic
+        document.getElementById("filtrarBtn").disabled = true;
+        
+        // cambiar la apariencia del enlace cuando esté deshabilitado
+        document.getElementById("filtrarBtn").style.pointerEvents = "none"; // No permite más clics
+       
+      
 
         // consulta api
 
@@ -456,6 +463,7 @@ async function filtrar() {
                 mostrarMapaYTitulo();
                 enviar.style.display = "block";
                 mostrarAgrupaciones();
+                añoElegido.disabled = true;
 
             } else {
 
