@@ -1,8 +1,9 @@
 let distritos = {};
 let textoCargos = {};
 let tipoEleccionElegido= [];
-
+let distritoEncontrado = [];
 let textoCargo = {};
+let seccionEncontrada= [];
 function mostrarMapaYTitulo() {
   var mapaContenedor = document.getElementById("mapas");
 
@@ -72,7 +73,7 @@ async function cargarInformes() {
 
     const [año, tipoRecuento, tipoEleccion, cargoElegido, distrito, seccion] =
       datos;
-    console.log("DATOSSS", datos);
+    //console.log("DATOSSS", datos);
 
     // Recorrer el array
     // informesArray.forEach((informe, index) => {
@@ -151,11 +152,77 @@ async function cargarInformes() {
   
 
 
+        for (let cargo of datos[0].Cargos) {
+          // Buscar el distrito específico dentro de cada cargo
+          const distritoEspecifico = cargo.Distritos.find(d => d.IdDistrito === parseInt(distrito));
+  
+          
+            // Guardar el distrito encontrado
+            distritoEncontrado.push(distritoEspecifico.Distrito)
+             
+            // Salir del bucle una vez encontrado
+            break;
+          
+        
+        };
 
-      } else {
+        console.log("Distrito encontrado:", distritoEncontrado);
+
+
+
+        for (let cargo of datos[0].Cargos) {
+          const distritoEspecifico = cargo.Distritos.find(d => d.IdDistrito === parseInt(distrito));
+  
+          if (distritoEspecifico) {
+            // Ahora buscamos la sección específica dentro del array de secciones
+            const seccionEspecifica = distritoEspecifico.Secciones.find(s => s.IdSeccion === parseInt(seccion)
+            );
+  
+            if (seccionEspecifica) {
+              seccionEncontrada.push(seccionEspecifica.Seccion)
+             
+              
+  
+              // Salimos del bucle una vez encontrada la sección
+              console.log("Sección encontrada:", seccionEncontrada);
+              break; // Detenemos la búsqueda
+            }
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+      }else {
         console.error("Error al cargar cargos");
       }
-    } catch (err) {
+
+    } 
+    catch (err) {
       console.error(err);
     }
 
