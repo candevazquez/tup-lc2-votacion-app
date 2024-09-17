@@ -2,8 +2,9 @@ let distritos = {};
 let textoCargos = {};
 let tipoEleccionElegido= [];
 let distritoEncontrado = [];
-let textoCargo = {};
+let textoCargo = [];
 let seccionEncontrada= [];
+
 function mostrarMapaYTitulo() {
   var mapaContenedor = document.getElementById("mapas");
 
@@ -36,6 +37,7 @@ function mostrarMensajeIncompleto(mensaje) {
 }
 
 async function cargarInformes() {
+  
   // Obtener los datos guardados en el localStorage
   const informesGuardados = localStorage.getItem("INFORMES");
   console.log(informesGuardados);
@@ -125,11 +127,11 @@ async function cargarInformes() {
 
         datos[0].Cargos.forEach((cargo) => {
           //console.log("cargoooo", cargo.Cargos);
-          textoCargos[cargo.IdCargo] = cargo.Cargo;
+        
           //console.log("cargo texto", textoCargos);
 
           if (cargo.IdCargo == cargoElegido) {
-            textoCargo[cargo.IdCargo] = cargo.Cargo;
+            textoCargo.push(cargo.Cargo);
             console.log("entre al if", textoCargo);
           }
          
@@ -171,24 +173,31 @@ async function cargarInformes() {
 
 
         for (let cargo of datos[0].Cargos) {
+          // Buscamos el distrito específico
           const distritoEspecifico = cargo.Distritos.find(d => d.IdDistrito === parseInt(distrito));
-  
-          if (distritoEspecifico) {
-            // Ahora buscamos la sección específica dentro del array de secciones
-            const seccionEspecifica = distritoEspecifico.Secciones.find(s => s.IdSeccion === parseInt(seccion)
-            );
-  
+        
+          if (distritoEspecifico && distritoEspecifico.SeccionesProvinciales) {
+            // Aseguramos que SeccionesProvinciales existe y tiene Secciones
+            const seccionesProvinciales = distritoEspecifico.SeccionesProvinciales;
+        
+            // Buscamos la sección específica dentro de SeccionesProvinciales.Secciones
+            const seccionEspecifica = seccionesProvinciales[0]?.Secciones?.find(s => s.IdSeccion === parseInt(seccion));
+        
             if (seccionEspecifica) {
-              seccionEncontrada.push(seccionEspecifica.Seccion)
-             
+              // Agregamos el nombre de la sección encontrada al array
+              seccionEncontrada.push(seccionEspecifica.Seccion);
+        
+              // Mostramos la sección encontrada
+              console.log("Sección encontrada:", seccionEspecifica.Seccion);
               
-  
-              // Salimos del bucle una vez encontrada la sección
-              console.log("Sección encontrada:", seccionEncontrada);
-              break; // Detenemos la búsqueda
+              // Detenemos la búsqueda después de encontrar la sección
+              break;
             }
           }
         }
+        
+        
+       console.log("seccion Encontrada", seccionEncontrada)
 
 
 
@@ -233,7 +242,7 @@ async function cargarInformes() {
       console.log("datos de la api", data);
       //muestro tabla
 
-      mostrarTabla(data, distrito, año, tipoEleccion, cargoElegido, seccion);
+      mostrarTabla(tipoEleccionElegido, distritoEncontrado, textoCargo, seccionEncontrada, data, año);
     } catch (error) {
       console.error("error al consultar la api", error);
     }
@@ -242,6 +251,179 @@ async function cargarInformes() {
   //cargarDistritos();
 }
 cargarInformes();
+
+
+var mostrarTabla = function(tipoEleccionElegido, distritoEncontrado, textoCargo, seccionEncontrada, data, año) {
+  // Obtener el tbody de la tabla
+  const tablaContenedor = document.querySelector(".div-tabla tbody");
+  tablaContenedor.innerHTML = ""; // Limpiar tabla existente
+  
+
+
+  const longitud = tipoEleccionElegido.length;
+  console.log("Longitud del array:", longitud);
+
+  // Recorrer los arrays simultáneamente
+  for (let i = 0; i < longitud; i++) {
+    // Armar el título y subtítulo
+    let titulo = `Elecciones ${año} | ${tipoEleccionElegido[i]}`;
+    let subtitulo = `${año} > ${tipoEleccionElegido[i]} > ${textoCargo[i]} > ${distritoEncontrado[i]} > ${seccionEncontrada[i]}`;
+
+    console.log(tipoEleccionElegido[0])
+    console.log(tipoEleccionElegido[1])
+    console.log("titulo", titulo)
+    console.log("subtitulo", subtitulo)
+
+    console.log("Index:", i);
+    console.log("tipoEleccionElegido[i]:", tipoEleccionElegido[i]);
+    console.log("textoCargo[i]:", textoCargo[i]);
+    console.log("distritoEncontrado[i]:", distritoEncontrado[i]);
+    console.log("seccionEncontrada[i]:", seccionEncontrada[i]);
+
+
+    console.log("añooooooooooo", año[0])
+
+    console.log("añooooooooooo", año[1])
+
+
+    // Datos generales
+
+    console.log("data", data.estadoRecuento)
+
+    const fila = document.createElement("tr");
+    const celdaEleccion = document.createElement("td");
+
+    celdaEleccion.innerHTML = `
+      <p class="texto-elecciones-chico">${titulo}</p>
+      <p class="texto-path-chico">${subtitulo}</p>
+    `;
+    
+    // Agregar la celda a la fila
+    fila.appendChild(celdaEleccion);
+    
+    // Agregar la fila al tbody de la tabla
+    tablaContenedor.appendChild(fila);
+
+    // var estadoRecuento = data.estadoRecuento;
+    // var mesasEscrutadas = estadoRecuento.mesasTotalizadas;
+    // var electores = estadoRecuento.cantidadElectores;
+    // var participacion = estadoRecuento.participacionPorcentaje;
+    // var pMesas = document.getElementById("porcentaje-mesas");
+    // var pElect = document.getElementById("porcentaje-elec");
+    // var pPart = document.getElementById("porcentaje-part");
+    // var mostrarLinea = document.getElementsByClassName("datos-generales");
+  
+    // pMesas.innerText = mesasEscrutadas;
+    // pElect.innerText = electores;
+    // pPart.innerText = `${participacion} %`;
+  
+    // mostrarLinea.style.display = "block";
+    // pagina.style.paddingBottom = "15%"; //para que se agrande la pantalla
+  
+    // Datos por agrupación
+    // let agrupacionHtml = "";
+    // agrupaciones[i].forEach(agrupacion => {
+    //   agrupacionHtml += `
+    //     <div class="cont-agrupacion">
+    //       <div class="partido">${agrupacion.nombre}</div>
+    //       <div class="porcentaje">${agrupacion.votosPorcentaje}%</div>
+    //       <div class="votos">${agrupacion.votos} Votos</div>
+    //     </div>`;
+    // });
+
+    // Crear la fila de la tabla
+    // const filaHtml = `
+    //   <tr>
+    //     <td class="provincia">${distritoEncontrado[i]}</td>
+    //     <td class="eleccion">
+    //       <p class="texto-elecciones-chico">${titulo}</p>
+    //       <p class="texto-path-chico">${subtitulo}</p>
+    //     </td>
+    //     <td>
+    //       <div class="datos-generales">
+    //         <div class="mesas">
+    //           <svg ...> ... </svg> ${mesasEscrutadas}
+    //         </div>
+    //         <div class="electores">
+    //           <svg ...> ... </svg> ${electores}
+    //         </div>
+    //         <div class="participacion">
+    //           <svg ...> ... </svg> ${participacion}
+    //         </div>
+    //       </div>
+    //     </td>
+    //     <td class="xagrupacion">
+    //       ${agrupacionHtml}
+    //     </td>
+    //   </tr>`;
+
+    // // Añadir la fila al tbody
+    // tablaContenedor.innerHTML += filaHtml;
+  }
+}
+
+// function mostrarTabla(data, distrito, año, tipoEleccion, cargo, seccion) {
+  
+//     const tablaContenedor = document.querySelector(".div-tabla tbody");
+//     tablaContenedor.innerHTML = ""; // Limpiar tabla existente
+
+//     const fila = document.createElement("tr");
+
+//     // Agregar el nombre del distrito
+//     const tdDistrito = document.createElement("td");
+//     tdDistrito.textContent = distritos[distrito] || "Desconocido";
+//     fila.appendChild(tdDistrito);
+
+//     // Agregar el tipo de elección
+//     const tdTipoEleccion = document.createElement("td");
+//     tdTipoEleccion.textContent = tipoEleccion; // Asume que tipoEleccion es un nombre descriptivo
+//     fila.appendChild(tdTipoEleccion);
+
+//     // Agregar datos generales (año, cargo, etc.)
+//     const tdDatosGenerales = document.createElement("td");
+//     tdDatosGenerales.innerHTML = `
+//       <div class="datos-generales">
+//         <div class="mesas">
+//           <!-- Aquí iría el SVG o los datos relevantes -->
+//           <p>Año: ${año}</p>
+//           <p>Cargo: ${cargo || "Desconocido"}</p>
+//           <p>Sección: ${seccion}</p>
+//         </div>
+//       </div>
+//     `;
+//     fila.appendChild(tdDatosGenerales);
+
+//     // Datos por agrupación (si tienes)
+//     const tdDatosAgrupacion = document.createElement("td");
+//     tdDatosAgrupacion.innerHTML = `
+//       <div class="cont-agrupacion">
+//         <div class="partido">Partido</div>
+//         <div class="porcentaje">%</div>
+//         <div class="votos">Votos</div>
+//       </div>
+//     `;
+//     fila.appendChild(tdDatosAgrupacion);
+
+//     tablaContenedor.appendChild(fila);
+//   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Función para obtener distritos
 // async function cargarDistritos() {
@@ -306,51 +488,8 @@ cargarInformes();
 //   });
 // });
 
-function mostrarTabla(data, distrito, año, tipoEleccion, cargo, seccion) {
-  function mostrarTabla(data, distrito, año, tipoEleccion, cargo, seccion) {
-    const tablaContenedor = document.querySelector(".div-tabla tbody");
-    tablaContenedor.innerHTML = ""; // Limpiar tabla existente
 
-    const fila = document.createElement("tr");
 
-    // Agregar el nombre del distrito
-    const tdDistrito = document.createElement("td");
-    tdDistrito.textContent = distritos[distrito] || "Desconocido";
-    fila.appendChild(tdDistrito);
-
-    // Agregar el tipo de elección
-    const tdTipoEleccion = document.createElement("td");
-    tdTipoEleccion.textContent = tipoEleccion; // Asume que tipoEleccion es un nombre descriptivo
-    fila.appendChild(tdTipoEleccion);
-
-    // Agregar datos generales (año, cargo, etc.)
-    const tdDatosGenerales = document.createElement("td");
-    tdDatosGenerales.innerHTML = `
-      <div class="datos-generales">
-        <div class="mesas">
-          <!-- Aquí iría el SVG o los datos relevantes -->
-          <p>Año: ${año}</p>
-          <p>Cargo: ${cargos[cargo] || "Desconocido"}</p>
-          <p>Sección: ${seccion}</p>
-        </div>
-      </div>
-    `;
-    fila.appendChild(tdDatosGenerales);
-
-    // Datos por agrupación (si tienes)
-    const tdDatosAgrupacion = document.createElement("td");
-    tdDatosAgrupacion.innerHTML = `
-      <div class="cont-agrupacion">
-        <div class="partido">Partido</div>
-        <div class="porcentaje">%</div>
-        <div class="votos">Votos</div>
-      </div>
-    `;
-    fila.appendChild(tdDatosAgrupacion);
-
-    tablaContenedor.appendChild(fila);
-  }
-}
 
 //    console.log("añooooooooo", año)
 // async function obtenerDatos() {
