@@ -13,30 +13,7 @@ let distrito = [];
 let seccion = [];
 let dataArray;
 
-function mostrarMapaYTitulo() {
-  var mapaContenedor = document.getElementById("mapas");
 
-  var distritoSeleccionado =
-    distritoElegido.options[distritoElegido.selectedIndex].text;
-  distritoSeleccionado = distritoSeleccionado.toUpperCase();
-  console.log("entre a la funcion");
-  console.log("distrito elegido", distritoSeleccionado);
-  var svg = mapas[distritoSeleccionado];
-  console.log("SVG", svg);
-
-  if (distritoSeleccionado in mapas) {
-    var mapaSVG = document.createElement("div");
-    mapaSVG.innerHTML = svg;
-
-    mapaContenedor.appendChild(mapaSVG);
-
-    mapaContenedor.style.display = "block";
-    console.log("entre al if");
-  } else {
-    mapaContenedor.style.display = "none";
-    console.log("no entre al if");
-  }
-}
 
 function mostrarMensajeIncompleto(mensaje) {
   msjIncompleto = document.getElementById("incompleta");
@@ -167,21 +144,7 @@ async function cargarInformes() {
   console.log(seccion);
   mostrarTabla();
 }
-//   try {
-//     //consulta api
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     console.log("datos de la api", data);
-//     //muestro tabla
 
-//     i=i+1;
-//   } catch (error) {
-//     console.error("error al consultar la api", error);
-//   }
-
-//   console.log("AÑOOOOOOOOOOO", año);
-//   //cargarDistritos();
-// }
 cargarInformes();
 
 async function mostrarTabla() {
@@ -246,7 +209,6 @@ async function mostrarTabla() {
     `;
 
     // Agregar la celda a la fila
-   
 
     const celdaDatosGenerales = document.createElement("td");
 
@@ -523,17 +485,105 @@ async function mostrarTabla() {
 
     // Asignar el SVG dentro de la celda del mapa
     celdaMapa.innerHTML = svg;
-    celdaMapa.querySelector('svg').style.width = '200px';
-    
+    celdaMapa.querySelector("svg").style.width = "200px";
+
+    var celdaAgrupacion = document.createElement("td");
+    celdaAgrupacion.classList.add("xagrupacion"); // Clase para la celda
+
+    var valoresPositivos = dataArray.valoresTotalizadosPositivos;
+    console.log("Valores agrupaciones:", valoresPositivos);
+
+    for (var j = 0; j < valoresPositivos.length; j++) {
+      var agrupacion = valoresPositivos[j];
+      var votosTotal = agrupacion.votos;
+      var nombreAgrupacion = agrupacion.nombreAgrupacion;
+      var porcentajeVotos = agrupacion.votosPorcentaje;
+
+      console.log("Votos Totales:", votosTotal);
+
+      var contenedorAgrupacion = document.createElement("div");
+      contenedorAgrupacion.classList.add("cont-agrupacion");
+
+
+
+      var izquierda = document.createElement("div");
+      izquierda.classList.add("izquierda");
+
+
+
+
+
+
+
+
+      // Crear el div para el nombre de la agrupación (partido)
+      var divPartido = document.createElement("div");
+      divPartido.classList.add("partido");
+      divPartido.textContent = nombreAgrupacion;
+
+
+
+
+
+
+      izquierda.appendChild(divPartido);
+
+
+
+
+      var derecha = document.createElement("div");
+      derecha.classList.add("derecha");
+
+
+
+
+
+
+
+      // Crear el div para el porcentaje de votos
+      var divPorcentaje = document.createElement("div");
+      divPorcentaje.classList.add("porcentaje");
+      divPorcentaje.textContent = porcentajeVotos + "%";
+
+      // Crear el div para el total de votos
+      var divVotos = document.createElement("div");
+      divVotos.classList.add("votos");
+      divVotos.textContent = votosTotal + " Votos";
+
+
+
+
+      derecha.appendChild(divPorcentaje);
+      derecha.appendChild(divVotos);
+
+
+
+
+
+      // Agregar los divs al contenedor de agrupación
+      contenedorAgrupacion.appendChild(izquierda);
+      contenedorAgrupacion.appendChild(derecha);
+
+      // Agregar el contenedor a la celda
+      celdaAgrupacion.appendChild(contenedorAgrupacion);
+    }
+
+
+
 
     // Agregar la celda del mapa a la fila
     fila.appendChild(celdaMapa);
-   fila.appendChild(celdaEleccion);
+    fila.appendChild(celdaEleccion);
     // Finalmente, agregar la fila al tbody de la tabla
-   
+
     // Agregar la celda a la fila
     fila.appendChild(celdaDatosGenerales);
+    fila.appendChild(celdaAgrupacion);
     // Agregar la fila al tbody de la tabla
     tablaContenedor.appendChild(fila);
+   
   }
+  let imprimirTabla = document.getElementById("sec-contenido");
+
+  imprimirTabla.style.display = "block";
 }
