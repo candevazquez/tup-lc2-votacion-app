@@ -304,7 +304,7 @@ var cuadrosColores = function () {
   pElect.innerText = electores;
   pPart.innerText = `${participacion} %`;
 
-  mostrarLinea.style.display = "block";
+  mostrarLinea.style.display = "flex";
   pagina.style.paddingBottom = "15%"; //para que se agrande la pantalla
 };
 function mostrarMapaYTitulo() {

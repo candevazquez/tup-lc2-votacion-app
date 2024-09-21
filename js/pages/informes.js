@@ -485,7 +485,7 @@ async function mostrarTabla() {
 
     // Asignar el SVG dentro de la celda del mapa
     celdaMapa.innerHTML = svg;
-    celdaMapa.querySelector("svg").style.width = "200px";
+    celdaMapa.querySelector("svg").style.width = "250px";
 
     var celdaAgrupacion = document.createElement("td");
     celdaAgrupacion.classList.add("xagrupacion"); // Clase para la celda

@@ -2,6 +2,7 @@
 
 * {
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 
 }
 
@@ -40,6 +41,7 @@
   --mensaje-usuario-rojo: #dc3545;
 }
 
+
 html,
 body {
   margin: 0;
@@ -50,12 +52,22 @@ body {
 
 }
 
+* {
+  box-sizing: border-box;
+}
 /*en el body cuando no hay contenido asi, cuando pongo contenido, padding-bottom 15 px */
 
 body {
   margin: 0;
   height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+ overflow-x: hidden;
+
 }
 
 
@@ -85,7 +97,9 @@ h3 {
 }
 
 .header-page {
-  padding: 0.5rem;
+
+ padding-top: 0.5rem;
+ padding-bottom: 0.5rem;
   background-color: var(--fondo-Cabecera);
   color: white;
   margin: 0px auto auto auto;
@@ -97,7 +111,9 @@ h3 {
   width: 90%;
 
 }
-
+.logo{
+  padding-left: 0.8rem;
+}
 .barra-menu {
   margin-left: 0;
   /*con los dos margenes 13px y el padding de 20px queda mal */
@@ -110,10 +126,10 @@ h3 {
 
 footer {
   background-color: var(--fondo-Footer);
-  min-height: 200px;
-  width: 100%;
+  
+  max-width: 100%;
   bottom: 0;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 
@@ -145,19 +161,25 @@ footer {
   color: var(--texto-footer);
 }
 
-@media screen and (max-width: 800px) and (max-height: 800px) {
+
+
+
+
+@media (max-width: 950px) {
   body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
   }
-
+ .pie-imagen {
+        max-width: 80px; /* Reduce el tamaño de las imágenes en pantallas pequeñas */
+    }
 
 
   footer {
     background-color: var(--fondo-Footer);
-    min-height: 200px;
+    /*min-height: 200px;*/
     width: 100%;
     bottom: 0;
     padding: 10px;
@@ -181,11 +203,19 @@ footer {
 
 
   }
+  nav, footer {
+    padding: 0.5rem; /* Reduce el padding para pantallas pequeñas */
+}
+.some-element {
+  width: 100%; /* Asegura que cubra todo el ancho de la pantalla */
+}
 }
 
 main {
   flex: 1;
-  /*  ocupa espacio disponible */
+  max-width: 100%;
+ 
+
 }
 
 .error {
