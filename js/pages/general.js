@@ -355,8 +355,10 @@ async function filtrar() {
     console.log("url= ", url);
 
     try {
+      document.getElementById('spinner').style.display = 'flex';
       const respuesta = await fetch(url);
       if (respuesta.ok) {
+        document.getElementById('spinner').style.display = 'none';
         data = await respuesta.json();
         console.log(data);
         msjIncompleto.style.display = "none";
@@ -375,6 +377,7 @@ async function filtrar() {
     } catch (err) {
       console.log(err);
       mostrarMensajeError("Error al consultar los datos: ");
+      document.getElementById('spinner').style.display = 'none';
       mostrarTituloYSub();
     }
   }

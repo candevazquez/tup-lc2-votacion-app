@@ -50,7 +50,6 @@ flex-direction: column;
     font-size: 10px;
     text-align: center;
     display: inline-block;
-    /*sin esto no me deja ponerle tamaño*/
     width: 70px;
     text-decoration: none;
     padding: 7px;
@@ -104,7 +103,6 @@ flex-direction: column;
 
 
 .texto-path {
-    /*TEXTO ABAJO TITULO*/
     font-size: 14px;
     font-family: 'Roboto';
     color: var(--celeste);
@@ -227,8 +225,8 @@ flex-direction: column;
 }
 
 #contenedorAgrupaciones {
-    max-height: 400px; /* altura máxima del contenedor antes de agregar barras de desplazamiento */
-    overflow-y: auto; /* agrega la barra cuando sea necesario */
+    max-height: 400px; 
+    overflow-y: auto; 
 }
 .barras {
     overflow-y: scroll;
@@ -361,7 +359,7 @@ flex-direction: column;
 }
 
 
-  @media (max-width: 850px) { /*para que cuando se achique la patalla no se rompa*/
+  @media (max-width: 850px) { 
     #cuadro-informativo{
     
         flex-direction: column;
@@ -410,14 +408,14 @@ flex-direction: column;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 60%; /* Ajusta según sea necesario */
+    width: 60%;
     color: var(--textos);
 }
   
 .contenidoAgrupaciones .derecha {
     display: flex;
     flex-direction: column;
-    width: 40%; /* Ajusta según sea necesario */
+    width: 40%; 
     font-size: 11px;
     color: var(--textos);
     padding: 5px;
@@ -429,10 +427,34 @@ flex-direction: column;
 }
   
 .contenidoAgrupaciones div {
-    margin-bottom: 8px; /* Ajusta este valor para más o menos espacio */
+    margin-bottom: 8px; 
 }
 
  .izquierda {
     font-size: 12px;
     font-weight: bold;
 }
+
+.spinner {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

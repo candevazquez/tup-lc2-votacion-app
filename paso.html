@@ -95,8 +95,11 @@
       </div>
     </header>
 
+
     <!-- Contenido principal de la página -->
-    <main>
+    <main id="content" >
+
+
       <section id="sec-messages">
         <p hidden class="error" id="error">
           <i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error
@@ -114,12 +117,19 @@
         </p>
       </section>
 
+
       <section id="sec-titulo" hidden>
         <h2 id="titulo"></h2>
         <p id="subtitulo" class="texto-path"></p>
       </section>
 
       <section id="sec-contenido">
+
+        <div id="spinner" class="spinner" style="display: none;">
+          <!-- Puedes usar una imagen GIF, un SVG, o CSS animado para el spinner -->
+          <div class="loader"></div>
+        </div>
+
         <div id="misma-linea">
           <div hidden id="boton-enviar">
             <button

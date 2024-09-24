@@ -46,16 +46,13 @@ var colorAgrupaciones = {
   },
 };
 
-// Realizar la solicitud a la API
+
+
 async function coneccion() {
   const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
-
   try {
-    //para tratar conectarnos a la url await espera fetch para conectarse
     const respuesta = await fetch(url);
-
     if (respuesta.ok) {
-      //fuciono
       const data = await respuesta.json();
       var combo = document.getElementById("año");
 
@@ -77,10 +74,9 @@ coneccion();
 async function elegirAño() {
   var añoElegido = document.getElementById("año");
   if (añoElegido == "") {
-    return false; //asegura q sea false
+    return false;
   } else {
     var valorAño = añoElegido.value;
-
     añoElegido.disabled = true;
 
     const respuestaCargos = await fetch(
@@ -93,17 +89,12 @@ async function elegirAño() {
       datosFiltrados = datosFiltros.filter(
         (eleccion) => eleccion.IdEleccion === tipoEleccion
       );
-
-      //se itera sobre cada eleccion de datos filtrados y sobre cada cargo de la eleccion
-      // completa el combo de Cargos
       datosFiltrados.forEach((eleccion) => {
         eleccion.Cargos.forEach((cargo) => {
           const option = document.createElement("option");
           option.value = cargo.IdCargo;
           option.text = cargo.Cargo;
           comboCargo.appendChild(option);
-          console.log(cargo.IdCargo);
-          console.log(cargo.Cargo);
         });
       });
     } else {
@@ -122,13 +113,10 @@ async function elegirCargo() {
 
     const comboDistrito = document.getElementById("distrito");
 
-    console.log("Valor de valorCargo:", valorCargo);
-
     // filtra datos porelección y año
     datosFiltradosAño = datosFiltrados.filter(
       (eleccion) => eleccion.IdEleccion === tipoEleccion
     );
-
     for (let i = 0; i < datosFiltradosAño.length; i++) {
       const eleccion = datosFiltradosAño[i];
       for (let j = 0; j < eleccion.Cargos.length; j++) {
@@ -142,12 +130,9 @@ async function elegirCargo() {
         break;
       }
     }
-
     if (!cargo) {
       console.log("Cargo no encontrado");
     }
-
-    // llena opciones
     cargo.Distritos.forEach((distrito) => {
       const option = document.createElement("option");
       option.value = distrito.IdDistrito;
@@ -167,9 +152,7 @@ async function elegirDistrito() {
 
     const comboSeccion = document.getElementById("seccion");
 
-    console.log(valorDistrito);
-
-    // filtrar datos por elección y año
+    // filtro datos por elección y año
     const datosFiltradosCargo = datosFiltrados.filter(
       (eleccion) => eleccion.IdEleccion === tipoEleccion
     );
@@ -187,15 +170,10 @@ async function elegirDistrito() {
         break;
       }
     }
-    console.log(cargo);
-
     if (!cargo) {
       console.log("Cargo no encontrado");
       return;
     }
-
-    // encontrar  distrito seleccionado
-
     for (let a = 0; a < cargo.Distritos.length; a++) {
       const distritoActual = cargo.Distritos[a];
 
@@ -205,23 +183,18 @@ async function elegirDistrito() {
         break;
       }
     }
-
     if (!distrito) {
       console.log("Distrito no encontrado");
 
       return;
     }
-
     // campo oculto
     const hdSeccionProvincial = document.getElementById(
       "hdSeccionProvincial"
     ).value;
 
-    // recorro  SeccionesProvinciales
     distrito.SeccionesProvinciales.forEach((seccionProvincial) => {
-      //valor id
       hdSeccionProvincial.value = seccionProvincial.IDSecccionProvincial;
-
       // recorro seccion y llena campo
       seccionProvincial.Secciones.forEach((seccion) => {
         const option = document.createElement("option");
@@ -238,7 +211,6 @@ var elegirSeccion = function () {
 
   valorSeccion = seccionElegida.value;
   seccionElegida.disabled = true;
-  //funcion para desabilitar la opc seccion
 };
 
 function mostrarMensajeIncompleto(mensaje) {
@@ -305,7 +277,7 @@ var cuadrosColores = function () {
   pPart.innerText = `${participacion} %`;
 
   mostrarLinea.style.display = "flex";
-  pagina.style.paddingBottom = "15%"; //para que se agrande la pantalla
+  pagina.style.paddingBottom = "15%";
 };
 function mostrarMapaYTitulo() {
   var mapaContenedor = document.getElementById("mapas");
@@ -313,10 +285,7 @@ function mostrarMapaYTitulo() {
   var distritoSeleccionado =
     distritoElegido.options[distritoElegido.selectedIndex].text;
   distritoSeleccionado = distritoSeleccionado.toUpperCase();
-  console.log("entre a la funcion");
-  console.log("distrito elegido", distritoSeleccionado);
   var svg = mapas[distritoSeleccionado];
-  console.log("SVG", svg);
 
   if (distritoSeleccionado in mapas) {
     var nuevoParrafo = document.createElement("p");
@@ -330,10 +299,8 @@ function mostrarMapaYTitulo() {
     mapaContenedor.appendChild(mapaSVG);
 
     mapaContenedor.style.display = "block";
-    console.log("entre al if");
   } else {
     mapaContenedor.style.display = "none";
-    console.log("no entre al if");
   }
 }
 
@@ -341,9 +308,7 @@ async function filtrar() {
   añoElegido = document.getElementById("año").value;
   cargoElegido = document.getElementById("cargo").value;
   distritoElegido = document.getElementById("distrito").value;
-  console.log("Distrito elegido= ", distritoElegido);
   seccionElegida = document.getElementById("seccion").value;
-  console.log("Seccion elegida= ", seccionElegida);
   msjIncompleto = document.getElementById("incompleta");
 
   if (
@@ -362,40 +327,25 @@ async function filtrar() {
       mostrarMensajeIncompleto("Sección no seleccionada");
     }
   } else {
-    //hacer validacion
-
     var seccionProvincialId = document.getElementById(
       "hdSeccionProvincial"
     ).value;
-    console.log("seccion provincial id =", seccionProvincialId);
     if (seccionProvincialId.value === undefined) {
       seccionProvincialId.value = "";
     }
-    // Deshabilitar el botón después de hacer clic
     document.getElementById("filtrarBtn").disabled = true;
-
-    // cambiar la apariencia del enlace cuando esté deshabilitado
-    document.getElementById("filtrarBtn").style.pointerEvents = "none"; // No permite más clics
+    document.getElementById("filtrarBtn").style.pointerEvents = "none";
 
     // consulta api
     const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${añoElegido}&tipoRecuento=${tipoRecuento}&tipoEleccion=${tipoEleccion}&categoriaId=${cargoElegido}&distritoId=${distritoElegido}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccionElegida}&circuitoId=&mesaId=`;
 
-    console.log("url= ", url);
-
-    console.log(añoElegido);
-    console.log(tipoRecuento);
-    console.log(tipoEleccion);
-    console.log(cargoElegido);
-    console.log(distritoElegido);
-    console.log(seccionProvincialId);
-    console.log(seccionElegida);
-
     try {
+      document.getElementById('spinner').style.display = 'flex';
       const respuesta = await fetch(url);
+      
       if (respuesta.ok) {
+        document.getElementById('spinner').style.display = 'none';
         data = await respuesta.json();
-        //respuesta en consola
-        console.log(data);
         msjIncompleto.style.display = "none";
         cuadrosColores();
         mostrarTituloYSub();
@@ -409,8 +359,8 @@ async function filtrar() {
         mostrarTituloYSub();
       }
     } catch (err) {
-      console.log(err);
       mostrarMensajeError("Error al consultar los datos: ");
+      document.getElementById('spinner').style.display = 'none';
       mostrarTituloYSub();
     }
   }
@@ -419,25 +369,19 @@ async function filtrar() {
 function agregarInforme() {
   var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${valorCargo}|${valorDistrito}|${valorSeccion}`;
 
-  //obtiene cadena o un array vacio   json.parse convierte esa cadena JSON en un objeto JavaScript.
   var informesArray = JSON.parse(localStorage.getItem("INFORMES")) || [];
 
   if (informesArray.includes(informe)) {
     mostrarMensajeIncompleto("El informe ya existe");
   } else {
-    //push agrega al final de array
     informesArray.push(informe);
-
-    // JSON.stringify convierte en string para que se pueda guardar en el local
     localStorage.setItem("INFORMES", JSON.stringify(informesArray));
-
     mostrarMensajeExito("Registro exitoso");
   }
 }
 
 var mostrarAgrupaciones = function () {
   var valoresPositivos = data.valoresTotalizadosPositivos;
-  console.log("valoressss", valoresPositivos);
 
   var contenedorAgrupaciones = document.getElementById(
     "contenedorAgrupaciones"
@@ -449,8 +393,6 @@ var mostrarAgrupaciones = function () {
 
     var nombreAgrupacion = agrupacion.nombreAgrupacion;
     var porcentajeVotos = agrupacion.votosPorcentaje;
-
-    console.log("VOTOS TOTALEEEEEES", votosTotal);
 
     var agrupacionDiv = document.createElement("div");
     agrupacionDiv.classList.add("agrupaciones");
@@ -475,95 +417,76 @@ var mostrarAgrupaciones = function () {
 
       var grid = document.getElementById("grid");
 
-      // crea el div con la clase grid
       var barra = document.createElement("div");
       barra.classList.add("bar");
-
-      // crea el div de la barra con las clases y estilos
-
       barra.style.setProperty("--bar-value", porcentajeVotos + "%");
       barra.style.setProperty("--bar-color", color.colorPleno);
       barra.dataset.name = agrupacion.nombreAgrupacion;
       barra.title = agrupacion.nombreAgrupacion + " " + porcentajeVotos + "%";
 
-      // agregar la barra al div grid
-
-      // agregar el div grid al div principal
       grid.appendChild(barra);
 
-      console.log("Nuevo Porcentaje:", porcentajeVotos);
-      console.log("Nuevo Color:", color.colorPleno);
-      console.log("Nuevo Nombre:", agrupacion.nombreAgrupacion);
+      for (var j = 0; j < agrupacion.listas.length; j++) {
+        var lista = agrupacion.listas[j];
+
+        var nombreLista = lista.nombre;
+        var votosLista = lista.votos;
+        var porcentajeLista;
+        if (votosTotal > 0) {
+          porcentajeLista = ((votosLista * 100) / votosTotal).toFixed(2);
+        } else {
+          porcentajeLista = 0; 
+        }
+
+        var contenidoAgrupaciones = document.createElement("div");
+        contenidoAgrupaciones.classList.add("contenidoAgrupaciones");
+        var izquierda = document.createElement("div");
+        izquierda.classList.add("izquierda");
+        var derecha = document.createElement("div");
+        derecha.classList.add("derecha");
+
+        //nombreLista
+        var nombreListaP = document.createElement("div");
+        nombreListaP.textContent = nombreLista;
+        izquierda.appendChild(nombreListaP);
+
+        //porcentaje lista
+        var porcentajeListaP = document.createElement("div");
+        porcentajeListaP.textContent = "Porcentaje: " + porcentajeLista + "%";
+        derecha.appendChild(porcentajeListaP);
+
+        //votos lista
+        var votosListaP = document.createElement("div");
+        votosListaP.textContent = "Votos: " + votosLista;
+        derecha.appendChild(votosListaP);
+
+        contenidoAgrupaciones.appendChild(izquierda);
+        contenidoAgrupaciones.appendChild(derecha);
+
+        agrupacionDiv.appendChild(contenidoAgrupaciones);
+
+        contenedorAgrupaciones.appendChild(agrupacionDiv);
+        var progressDiv = document.createElement("div");
+        progressDiv.classList.add("progress");
+        progressDiv.style.background = color.colorLiviano;
+
+        //barra
+        var progressBarDiv = document.createElement("div");
+        progressBarDiv.classList.add("progress-bar");
+        progressBarDiv.style.width = porcentajeLista + "%";
+        progressBarDiv.style.background = color.colorPleno;
+
+        var progressBarText = document.createElement("span");
+        progressBarText.classList.add("progress-bar-text");
+        progressBarText.textContent = porcentajeLista + "%";
+
+        progressBarDiv.appendChild(progressBarText);
+        progressDiv.appendChild(progressBarDiv);
+        agrupacionDiv.appendChild(progressDiv);
+      }
     }
-
-    for (var j = 0; j < agrupacion.listas.length; j++) {
-      var lista = agrupacion.listas[j];
-
-      var idAgrupacion = agrupacion.idAgrupacion;
-
-      // convertir idAgrupacion a número
-      var idAgrupacionNumero = parseInt(idAgrupacion);
-
-      console.log("id agrupacionnnnnn", idAgrupacionNumero);
-
-      var nombreLista = lista.nombre;
-      var votosLista = lista.votos;
-      var porcentajeLista = ((votosLista * 100) / votosTotal).toFixed(2); // calcula el porcentaje usando el total de votos
-      console.log("nombrelista", nombreLista);
-      console.log("porcentajelista", porcentajeLista);
-      console.log("votoslista", votosLista);
-
-      var contenidoAgrupaciones = document.createElement("div");
-      contenidoAgrupaciones.classList.add("contenidoAgrupaciones")
-      var izquierda = document.createElement("div");
-      izquierda.classList.add("izquierda");
-      var derecha = document.createElement("div");
-      derecha.classList.add("derecha")
-
-      //nombreLista
-      var nombreListaP = document.createElement("div");
-      nombreListaP.textContent = nombreLista;
-      izquierda.appendChild(nombreListaP);
-
-      //porcentaje lista
-      var porcentajeListaP = document.createElement("div");
-      porcentajeListaP.textContent =
-        "Porcentaje: " + porcentajeLista + "%";
-      derecha.appendChild(porcentajeListaP);
-
-      //votos lista
-      var votosListaP = document.createElement("div");
-      votosListaP.textContent = "Votos: " + votosLista;
-      derecha.appendChild(votosListaP);
-
-      contenidoAgrupaciones.appendChild(izquierda);
-      contenidoAgrupaciones.appendChild(derecha)
-
-
-      agrupacionDiv.appendChild(contenidoAgrupaciones)
-
-
-      contenedorAgrupaciones.appendChild(agrupacionDiv);
-      var progressDiv = document.createElement("div");
-      progressDiv.classList.add("progress");
-      progressDiv.style.background = color.colorLiviano;
-
-      //barra
-      var progressBarDiv = document.createElement("div");
-      progressBarDiv.classList.add("progress-bar");
-      progressBarDiv.style.width = porcentajeLista + "%";
-      progressBarDiv.style.background = color.colorPleno;
-
-      var progressBarText = document.createElement("span");
-      progressBarText.classList.add("progress-bar-text");
-      progressBarText.textContent = porcentajeLista + "%";
-
-      progressBarDiv.appendChild(progressBarText);
-      progressDiv.appendChild(progressBarDiv);
-      agrupacionDiv.appendChild(progressDiv);
-    }
+    chartWrapDiv.appendChild(grid);
+    chartWrapDiv.style.display = "block";
+    contenedorAgrupaciones.style.display = "block";
   }
-  chartWrapDiv.appendChild(grid);
-  chartWrapDiv.style.display = "block";
-  contenedorAgrupaciones.style.display = "block";
 };

@@ -55,7 +55,7 @@ body {
 * {
   box-sizing: border-box;
 }
-/*en el body cuando no hay contenido asi, cuando pongo contenido, padding-bottom 15 px */
+
 
 body {
   margin: 0;
@@ -116,7 +116,6 @@ h3 {
 }
 .barra-menu {
   margin-left: 0;
-  /*con los dos margenes 13px y el padding de 20px queda mal */
   margin-right: 0;
   background-color: var(--fondo-Menu);
   width: 100%;
@@ -173,13 +172,12 @@ footer {
     margin: 0;
   }
  .pie-imagen {
-        max-width: 80px; /* Reduce el tamaño de las imágenes en pantallas pequeñas */
+        max-width: 80px; 
     }
 
 
   footer {
     background-color: var(--fondo-Footer);
-    /*min-height: 200px;*/
     width: 100%;
     bottom: 0;
     padding: 10px;
@@ -204,10 +202,10 @@ footer {
 
   }
   nav, footer {
-    padding: 0.5rem; /* Reduce el padding para pantallas pequeñas */
+    padding: 0.5rem; 
 }
 .some-element {
-  width: 100%; /* Asegura que cubra todo el ancho de la pantalla */
+  width: 100%; 
 }
 }
 

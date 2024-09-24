@@ -22,19 +22,18 @@ function mostrarMensajeIncompleto(mensaje) {
 }
 
 async function cargarInformes() {
-  // Obtener los datos guardados en el localStorage
   const informesGuardados = localStorage.getItem("INFORMES");
   console.log(informesGuardados);
 
-  // Verificar si existen registros
-  if (!informesGuardados) {
-    // Si no existen, mostrar mensaje amarillo
-    mostrarMensajeIncompleto("No hay informes guardados para mostrar");
 
-    return; //sale si no hay informes
+  if (!informesGuardados) {
+    mostrarMensajeIncompleto("No hay informes guardados para mostrar");
+    return; 
   }
 
-  // Si existen, parsear el array
+ 
+  
+  // si existen, parsear el array
   let informesArray;
   try {
     informesArray = JSON.parse(informesGuardados);
@@ -50,7 +49,8 @@ async function cargarInformes() {
     return;
   }
 
-  for (const informe of informesArray) {
+  for (const informe of informesArray) { 
+   
     const datos = informe.split("|");
     if (datos.length < 6) {
       console.error("faltan parametros en el informe:", informe);
@@ -64,7 +64,7 @@ async function cargarInformes() {
     distrito.push(datos[4]);
     seccion.push(datos[5]);
 
-    const URL = `https://resultados.mininterior.gob.ar/api/menu?año=${datos[0]}`; // Cambia esta URL a la correcta
+    const URL = `https://resultados.mininterior.gob.ar/api/menu?año=${datos[0]}`;
     try {
       const respuesta = await fetch(URL);
       if (respuesta.ok) {
@@ -73,7 +73,7 @@ async function cargarInformes() {
 
         datosApi[0].Cargos.forEach((cargo) => {
           if (cargo.IdCargo == datos[3]) {
-            textoCargo.push(cargo.Cargo);
+            textoCargo.push(cargo.Cargo); //cargo
           }
         });
 
@@ -86,38 +86,28 @@ async function cargarInformes() {
         tipoEleccionElegido.push(tipoEleccionTexto);
 
         for (let cargo of datosApi[0].Cargos) {
-          // Buscar el distrito específico dentro de cada cargo
           const distritoEspecifico = cargo.Distritos.find(
             (d) => d.IdDistrito === parseInt(datos[4])
           );
           if (distritoEspecifico) {
-            // Guardar el distrito encontrado
-            distritoEncontrado.push(distritoEspecifico.Distrito);
-            // Salir del bucle una vez encontrado
+            distritoEncontrado.push(distritoEspecifico.Distrito); //distrito
             break;
           }
         }
 
         for (let cargo of datosApi[0].Cargos) {
-          // Buscamos el distrito específico
           const distritoEspecifico = cargo.Distritos.find(
             (d) => d.IdDistrito === parseInt(datos[4])
           );
           if (distritoEspecifico && distritoEspecifico.SeccionesProvinciales) {
-            // Aseguramos que SeccionesProvinciales existe y tiene Secciones
             const seccionesProvinciales =
               distritoEspecifico.SeccionesProvinciales;
-
-            // Buscamos la sección específica dentro de SeccionesProvinciales.Secciones
             const seccionEspecifica = seccionesProvinciales[0]?.Secciones?.find(
               (s) => s.IdSeccion === parseInt(datos[5])
             );
 
             if (seccionEspecifica) {
-              // Agregamos el nombre de la sección encontrada al array
-              seccionEncontrada.push(seccionEspecifica.Seccion);
-              // Mostramos la sección encontrada
-              // Detenemos la búsqueda después de encontrar la sección
+              seccionEncontrada.push(seccionEspecifica.Seccion); //seccion
               break;
             }
           }
@@ -130,75 +120,33 @@ async function cargarInformes() {
     }
   }
 
-  console.log("tipo Recuento", tipoEleccionElegido);
-  console.log("seccion Encontrada", seccionEncontrada);
-  console.log("texto cargo", textoCargo);
-  console.log("tipo Recuento", tipoRecuento);
-  console.log("tipo Recuento", tipoEleccionElegido);
-  console.log(año);
-  console.log(tipoRecuento);
-  console.log(tipoEleccion);
-  console.log(cargoElegido);
-  console.log(distrito);
-  console.log(seccionProvincialId);
-  console.log(seccion);
   mostrarTabla();
 }
 
 cargarInformes();
 
 async function mostrarTabla() {
-  // Obtener el tbody de la tabla
   const tablaContenedor = document.querySelector(".div-tabla tbody");
-  // Limpiar tabla existente
 
-  // Recorrer los arrays simultáneamente
   for (let i = 0; i < año.length; i++) {
     const url = `https://resultados.mininterior.gob.ar/api/resultados/getResultados?anioEleccion=${año[i]}&tipoRecuento=${tipoRecuento[i]}&tipoEleccion=${tipoEleccion[i]}&categoriaId=${cargoElegido[i]}&distritoId=${distrito[i]}&seccionProvincialId=${seccionProvincialId}&seccionId=${seccion[i]}&circuitoId=&mesaId=`;
-
     try {
+      
       //consulta api
       const response = await fetch(url);
       dataArray = await response.json();
       console.log("datos de la api", dataArray);
-      //muestro tabla
     } catch (error) {
       console.error("error al consultar la api", error);
     }
-
-    // var valoresPositivos = dataArray.valoresTotalizadosPositivos;
-    // console.log("valoressss", valoresPositivos);
-
     let estadoRecuento = dataArray.estadoRecuento;
     let mesasEscrutadas = estadoRecuento.mesasTotalizadas;
     let electores = estadoRecuento.cantidadElectores;
     let participacion = estadoRecuento.participacionPorcentaje;
 
-    console.log("estadoRecuento", estadoRecuento);
-    console.log("mesas escrutadas", mesasEscrutadas);
-    console.log("electores", electores);
-    console.log("pñarticipacion", participacion);
-
-    //para que se agrande la pantalla
-
-    // Armar el título y subtítulo
+    // armo el titulo y sub
     let titulo = `Elecciones ${año[i]} | ${tipoEleccionElegido[i]}`;
     let subtitulo = `${año[i]} > ${tipoEleccionElegido[i]} > ${textoCargo[i]} > ${distritoEncontrado[i]} > ${seccionEncontrada[i]}`;
-
-    console.log(tipoEleccionElegido[0]);
-    console.log(tipoEleccionElegido[1]);
-    console.log("titulo", titulo);
-    console.log("subtitulo", subtitulo);
-
-    console.log("Index:", i);
-    console.log("tipoEleccionElegido[i]:", tipoEleccionElegido);
-    console.log("textoCargo[i]:", textoCargo[i]);
-    console.log("distritoEncontrado[i]:", distritoEncontrado[i]);
-    console.log("seccionEncontrada[i]:", seccionEncontrada[i]);
-
-    console.log("añooooooooooo", año[i]);
-
-    // Datos generales
 
     const fila = document.createElement("tr");
     const celdaEleccion = document.createElement("td");
@@ -208,11 +156,8 @@ async function mostrarTabla() {
       <p class="texto-path-chico">${subtitulo}</p>
     `;
 
-    // Agregar la celda a la fila
-
     const celdaDatosGenerales = document.createElement("td");
 
-    // Crear el div contenedor con la clase datos-generales
     const contenedorDatosGenerales = document.createElement("div");
     contenedorDatosGenerales.classList.add("datos-generales");
 
@@ -244,7 +189,6 @@ async function mostrarTabla() {
     </div>
 
   `;
-
     const cuadroElectores = document.createElement("div");
     cuadroElectores.classList.add("electores");
 
@@ -361,7 +305,6 @@ async function mostrarTabla() {
                       </div>
 
   `;
-
     const cuadroParticipacion = document.createElement("div");
     cuadroParticipacion.classList.add("participacion");
 
@@ -472,23 +415,20 @@ async function mostrarTabla() {
     contenedorDatosGenerales.appendChild(cuadroElectores);
     contenedorDatosGenerales.appendChild(cuadroParticipacion);
 
-    // Añadir el contenedor datos-generales a la celda
     celdaDatosGenerales.appendChild(contenedorDatosGenerales);
 
     const celdaMapa = document.createElement("td");
     celdaMapa.classList.add("mapas");
     celdaMapa.id = "mapas";
 
-    // Obtener el mapa (svg) correspondiente al distrito seleccionado
     distritoEncontrado[i] = distritoEncontrado[i].toUpperCase();
     var svg = mapas[distritoEncontrado[i]];
 
-    // Asignar el SVG dentro de la celda del mapa
     celdaMapa.innerHTML = svg;
     celdaMapa.querySelector("svg").style.width = "250px";
 
     var celdaAgrupacion = document.createElement("td");
-    celdaAgrupacion.classList.add("xagrupacion"); // Clase para la celda
+    celdaAgrupacion.classList.add("xagrupacion"); 
 
     var valoresPositivos = dataArray.valoresTotalizadosPositivos;
     console.log("Valores agrupaciones:", valoresPositivos);
@@ -499,77 +439,47 @@ async function mostrarTabla() {
       var nombreAgrupacion = agrupacion.nombreAgrupacion;
       var porcentajeVotos = agrupacion.votosPorcentaje;
 
-      console.log("Votos Totales:", votosTotal);
 
       var contenedorAgrupacion = document.createElement("div");
       contenedorAgrupacion.classList.add("cont-agrupacion");
 
-
-
       var izquierda = document.createElement("div");
       izquierda.classList.add("izquierda");
 
-
-      // Crear el div para el nombre de la agrupación (partido)
       var divPartido = document.createElement("div");
       divPartido.classList.add("partido");
       divPartido.textContent = nombreAgrupacion;
 
-
       izquierda.appendChild(divPartido);
-
 
       var derecha = document.createElement("div");
       derecha.classList.add("derecha");
-
-
-
-
-
-
-
-      // Crear el div para el porcentaje de votos
+     
       var divPorcentaje = document.createElement("div");
       divPorcentaje.classList.add("porcentaje");
       divPorcentaje.textContent = porcentajeVotos + "%";
 
-      // Crear el div para el total de votos
       var divVotos = document.createElement("div");
       divVotos.classList.add("votos");
       divVotos.textContent = votosTotal + " Votos";
 
-
-
-
       derecha.appendChild(divPorcentaje);
       derecha.appendChild(divVotos);
 
-
-
-
-
-      // Agregar los divs al contenedor de agrupación
       contenedorAgrupacion.appendChild(izquierda);
       contenedorAgrupacion.appendChild(derecha);
 
-      // Agregar el contenedor a la celda
       celdaAgrupacion.appendChild(contenedorAgrupacion);
     }
 
-
-
-
-    // Agregar la celda del mapa a la fila
     fila.appendChild(celdaMapa);
     fila.appendChild(celdaEleccion);
-    // Finalmente, agregar la fila al tbody de la tabla
 
-    // Agregar la celda a la fila
     fila.appendChild(celdaDatosGenerales);
     fila.appendChild(celdaAgrupacion);
-    // Agregar la fila al tbody de la tabla
+
     tablaContenedor.appendChild(fila);
-   
+  
   }
   let imprimirTabla = document.getElementById("sec-contenido");
 
