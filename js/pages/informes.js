@@ -510,25 +510,13 @@ async function mostrarTabla() {
       izquierda.classList.add("izquierda");
 
 
-
-
-
-
-
-
       // Crear el div para el nombre de la agrupación (partido)
       var divPartido = document.createElement("div");
       divPartido.classList.add("partido");
       divPartido.textContent = nombreAgrupacion;
 
 
-
-
-
-
       izquierda.appendChild(divPartido);
-
-
 
 
       var derecha = document.createElement("div");

@@ -508,29 +508,47 @@ var mostrarAgrupaciones = function () {
 
       var nombreLista = lista.nombre;
       var votosLista = lista.votos;
-      var porcentajeLista = (votosLista * 100) / votosTotal; // calcula el porcentaje usando el total de votos
+      var porcentajeLista = ((votosLista * 100) / votosTotal).toFixed(2); // calcula el porcentaje usando el total de votos
       console.log("nombrelista", nombreLista);
       console.log("porcentajelista", porcentajeLista);
       console.log("votoslista", votosLista);
 
-      var nombreListaP = document.createElement("p");
+      var contenidoAgrupaciones = document.createElement("div");
+      contenidoAgrupaciones.classList.add("contenidoAgrupaciones")
+      var izquierda = document.createElement("div");
+      izquierda.classList.add("izquierda");
+      var derecha = document.createElement("div");
+      derecha.classList.add("derecha")
+
+      //nombreLista
+      var nombreListaP = document.createElement("div");
       nombreListaP.textContent = nombreLista;
-      agrupacionDiv.appendChild(nombreListaP);
+      izquierda.appendChild(nombreListaP);
 
-      var porcentajeListaP = document.createElement("p");
+      //porcentaje lista
+      var porcentajeListaP = document.createElement("div");
       porcentajeListaP.textContent =
-        "Porcentaje: " + porcentajeLista.toFixed(2) + "%";
-      agrupacionDiv.appendChild(porcentajeListaP);
+        "Porcentaje: " + porcentajeLista + "%";
+      derecha.appendChild(porcentajeListaP);
 
-      var votosListaP = document.createElement("p");
+      //votos lista
+      var votosListaP = document.createElement("div");
       votosListaP.textContent = "Votos: " + votosLista;
-      agrupacionDiv.appendChild(votosListaP);
+      derecha.appendChild(votosListaP);
+
+      contenidoAgrupaciones.appendChild(izquierda);
+      contenidoAgrupaciones.appendChild(derecha)
+
+
+      agrupacionDiv.appendChild(contenidoAgrupaciones)
+
 
       contenedorAgrupaciones.appendChild(agrupacionDiv);
       var progressDiv = document.createElement("div");
       progressDiv.classList.add("progress");
       progressDiv.style.background = color.colorLiviano;
 
+      //barra
       var progressBarDiv = document.createElement("div");
       progressBarDiv.classList.add("progress-bar");
       progressBarDiv.style.width = porcentajeLista + "%";

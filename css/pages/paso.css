@@ -8,7 +8,9 @@
     color: var(--textos);
     display: inline-block;
     width: 70px;
+    height: 27px;
     text-decoration: none;
+    margin: 3px;
 }
 
 
@@ -24,6 +26,7 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 3px;
+    margin-bottom: 3px;
     margin-right: 15px;
 
     
@@ -51,6 +54,8 @@ flex-direction: column;
     width: 70px;
     text-decoration: none;
     padding: 7px;
+    height: 27px;
+    margin: 3px;
 }
 
 
@@ -73,7 +78,7 @@ flex-direction: column;
 .boton-menu-generales {
     background-color: var(--celeste);
     border-radius: 5px;
-    padding: 8px;
+    padding-top: 7px;
     color: #fff;
     font-size: 10px;
     text-transform: uppercase;
@@ -81,6 +86,7 @@ flex-direction: column;
     display: inline-block;
     width: 70px;
     text-decoration: none;
+    margin: 3px;
 }
 
 
@@ -136,7 +142,7 @@ flex-direction: column;
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -155,7 +161,7 @@ flex-direction: column;
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -171,7 +177,7 @@ flex-direction: column;
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -234,9 +240,9 @@ flex-direction: column;
     
 
 }
-/*¡¡¡¡PREGUNTAR SOBRE CORRECCION DE BARRAS!!!!!!!!!!!*/
 
-.titulo-agrupacion {
+
+.titulo-agrupacion{
     font-size: 12px;
     font-weight: bold;
     border-bottom: 1px solid var(--borde-Grilla);
@@ -246,7 +252,7 @@ flex-direction: column;
 
 /*barra de progreso*/
 .progress {
-    height: 35px;
+    height: 20px;
     width: 100%;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -381,19 +387,52 @@ flex-direction: column;
     display: flex; 
     flex-wrap: nowrap;
     overflow-x: auto; 
-    padding: 6px; 
     box-sizing: border-box; 
 }
 
-.combo {
-    margin-right: 10px; 
-    min-width: 120px;
-    flex: 1; 
-}
+
 
 .filtrar, .boton-menu-generales, .boton-informes, .inicio {
     margin-left: 10px; 
     white-space: nowrap; 
+    flex-shrink: 0;
  
    
+}
+.filtrar{
+    margin-left: 50px;
+}
+.inicio{
+    margin-left: auto;
+}
+
+.contenidoAgrupaciones .izquierda {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 60%; /* Ajusta según sea necesario */
+    color: var(--textos);
+}
+  
+.contenidoAgrupaciones .derecha {
+    display: flex;
+    flex-direction: column;
+    width: 40%; /* Ajusta según sea necesario */
+    font-size: 11px;
+    color: var(--textos);
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.contenidoAgrupaciones {
+    display: flex;
+}
+  
+.contenidoAgrupaciones div {
+    margin-bottom: 8px; /* Ajusta este valor para más o menos espacio */
+}
+
+ .izquierda {
+    font-size: 12px;
+    font-weight: bold;
 }

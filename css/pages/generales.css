@@ -7,9 +7,10 @@
     text-align: center;
     color: var(--textos);
     display: inline-block;
-
+    height: 27px;
     width: 70px;
     text-decoration: none;
+    margin: 3px;
 
 }
 
@@ -25,6 +26,7 @@
     text-decoration: none;
     display: inline-block;
     margin-top: 3px;
+    margin-bottom: 3px;
     margin-right: 15px;
 
 }
@@ -46,6 +48,8 @@
     width: 70px;
     text-decoration: none;
     padding: 7px;
+    height: 27px;
+    margin: 3px;
 
 
 }
@@ -68,7 +72,7 @@
 .boton-menu-paso {
     background-color: var(--magenta);
     border-radius: 5px;
-    padding: 8px;
+    padding-top: 7px;
     color: #fff;
     font-size: 10px;
     text-transform: uppercase;
@@ -76,6 +80,7 @@
     display: inline-block;
     width: 70px;
     text-decoration: none;
+    margin: 3px;
 
 }
 
@@ -133,7 +138,7 @@
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -152,7 +157,7 @@
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -168,7 +173,7 @@
     margin: 15px;
     width: 184px;
     height: 70px;
-    padding: 0.5rem 1rem;
+
     color: #FFF;
     font-size: 12px;
     display: flex;
@@ -244,7 +249,7 @@
 
 /*barra de progreso*/
 .progress {
-    height: 35px;
+    height: 20px;
     width: 100%;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -373,6 +378,7 @@
         width: 300px;
     
     }
+
 }
 
 
@@ -384,20 +390,31 @@
     display: flex; 
     flex-wrap: nowrap;
     overflow-x: auto; 
-    padding: 6px; 
     box-sizing: border-box; 
 }
 
-.combo {
-    margin-right: 10px; 
-    min-width: 50px; 
-    flex: 1; 
-    max-width: 250px;
-}
+
 
 .filtrar, .boton-menu-paso, .boton-informes, .inicio {
     margin-left: 10px; 
     white-space: nowrap; 
  
     flex-shrink: 0;
+}
+.filtrar{
+    margin-left: 50px;
+}
+.inicio{
+    margin-left: auto;
+}
+
+.contenidoAgrupacion{
+    display: flex;
+    justify-content: space-between;
+}
+.votos, .porcentajeVotos{
+    font-size: 11px;
+    color: var(--textos);
+    padding: 5px;
+    text-transform: uppercase;
 }

@@ -24,7 +24,6 @@
 
   <body id="body">
     <header>
-      <!--Barra de logo portal-->
       <div class="header-page">
         <div class="header-page-conten">
           <a href="index.html"
@@ -83,15 +82,14 @@
             <a href="#" id="filtrarBtn" class="filtrar" onclick="filtrar();"
               ><i class="fa fa-search"></i> filtrar</a
             >
-            <!--boton filtrar con lupa-->
 
             <a href="generales.html" class="boton-menu-generales">Generales</a>
 
             <a href="informes.html" class="boton-informes">INFORMES</a>
-            <!--boton informes-->
+           
 
             <a href="index.html" class="inicio">INICIO</a
-            ><!--boton inicio-->
+            >
           </div>
         </form>
       </div>
@@ -117,20 +115,17 @@
       </section>
 
       <section id="sec-titulo" hidden>
-        <!--Seccion para agregar una palicula favorita por codigo-->
         <h2 id="titulo"></h2>
         <p id="subtitulo" class="texto-path"></p>
       </section>
 
       <section id="sec-contenido">
-        <!--Seccion para contenido de la página-->
         <div id="misma-linea">
           <div hidden id="boton-enviar">
             <button
               class="enviar-informe"
               id="botonInformes"
-              onclick="agregarInforme();"
-            >
+              onclick="agregarInforme();">
               +AGREGAR A INFORME
             </button>
           </div>
@@ -392,18 +387,15 @@
           </div>
         </div>
 
-        <!--si le pongo hidden a todo el div, no me lo oculta-->
         <div class="recuadros-centrales">
           <div hidden id="contenedorAgrupaciones">
-            <div class="agrupaciones" id="contenedorAgrupaciones">
+            <div class="agrupaciones">
               <p>Agrupaciones políticas</p>
-              <div class="barras"></div>
             </div>
           </div>
 
           <div hidden class="mapas" id="mapas"></div>
 
-          <!--RESUMENNNNNNNNNNNNNNNNN-->
           <div hidden class="chart-wrap horizontal">
             <p class="title">Resumen de votos</p>
             <div class="grid" id="grid"></div>
@@ -412,6 +404,7 @@
       </section>
     </main>
     <!--Pie de página-->
+    
     <footer>
       <div id="logos">
         <img

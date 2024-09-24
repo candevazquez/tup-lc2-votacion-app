@@ -24,7 +24,6 @@
 
   <body id="body">
     <header>
-      <!--Barra de logo portal-->
       <div class="header-page">
         <div class="header-page-conten">
           <a href="index.html"
@@ -41,7 +40,10 @@
       <div class="barra-menu">
         <form action="" class="form">
           <div class="form-container">
-            <select name="año" id="año" class="combo" onchange="elegirAño();">
+            <select
+              name="año" 
+              id="año" class="combo" 
+              onchange="elegirAño();">
               <!--filtro año-->
               <option disabled selected value="">Año</option>
             </select>
@@ -50,8 +52,7 @@
               name="cargo"
               id="cargo"
               class="combo"
-              onchange="elegirCargo();"
-            >
+              onchange="elegirCargo();">
               <!--filtro cargo-->
               <option disabled selected value="">Cargo</option>
             </select>
@@ -60,11 +61,11 @@
               name="distrito"
               id="distrito"
               class="combo"
-              onchange="elegirDistrito();"
-            >
+              onchange="elegirDistrito();">
               <!--filtro distrito-->
               <option disabled selected value="">Distrito</option>
             </select>
+
             <input
               type="hidden"
               id="hdSeccionProvincial"
@@ -75,23 +76,22 @@
               name="seccion"
               id="seccion"
               class="combo"
-              onchange="elegirSeccion();"
-            >
+              onchange="elegirSeccion();">
               <option disabled selected value="">seccion</option>
             </select>
 
+            <!--boton filtrar con lupa-->
             <a href="#" id="filtrarBtn" class="filtrar" onclick="filtrar();"
               ><i class="fa fa-search"></i> filtrar</a
             >
-            <!--boton filtrar con lupa-->
-
+            
             <a href="paso.html" class="boton-menu-paso">Paso</a>
 
             <a href="informes.html" class="boton-informes">INFORMES</a>
-            <!--boton informes-->
+     
 
             <a href="index.html" class="inicio">INICIO</a
-            ><!--boton inicio-->
+            >
           </div>
         </form>
       </div>
@@ -104,12 +104,12 @@
           <i class="fa fa-exclamation-triangle"></i> Error.Se produjo un error
           al intentar agregar resultados al informe
         </p>
-        <!--mensaje de error-->
+ 
         <p hidden class="exito" id="exito">
           <i class="fa fa-thumbs-up"></i> Se agrego con exito el resultado al
           informe
         </p>
-        <!--mensaje de exito-->
+     
         <p class="incompleta" id="incompleta">
           <i class="fa fa-exclamation"></i>Debe seleccionar los valores a
           filtrar y hacer clic en el botón FILTRAR
@@ -121,16 +121,16 @@
         <h2 id="titulo"></h2>
         <p id="subtitulo" class="texto-path"></p>
       </section>
-
+      
+      <!--Seccion para contenido de la página-->
       <section id="sec-contenido">
-        <!--Seccion para contenido de la página-->
+        
         <div hidden id="misma-linea">
           <div id="boton-enviar">
             <button
               class="enviar-informe"
               id="botonInformes"
-              onclick="agregarInforme();"
-            >
+              onclick="agregarInforme();">
               +AGREGAR A INFORME
             </button>
           </div>
@@ -168,7 +168,7 @@
                 </g>
               </svg>
               <div class="contenido">
-                <p class="titulo-mesas"></p>
+                <p class="titulo-mesas">Mesas Escrutadas</p>
                 <p id="porcentaje-mesas"></p>
               </div>
             </div>
@@ -392,18 +392,14 @@
           </div>
         </div>
 
-        <!--si le pongo hidden a todo el div, no me lo oculta-->
+  
         <div class="recuadros-centrales">
-          <!--AGUPACIONESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS-->
           <div hidden class="agrupaciones" id="contenedorAgrupaciones">
             <p>Agrupaciones políticas</p>
-            <div class="barras"></div>
           </div>
 
-          <!--MAPAAAAAAAAAAAAAAAAAAAAAAAAA-->
           <div hidden class="mapas" id="mapas"></div>
 
-          <!--RESUMENNNNNNNNNNNNNNNNN-->
           <div hidden class="chart-wrap horizontal">
             <p class="title">Resumen de votos</p>
             <div class="grid" id="grid"></div>
@@ -412,6 +408,7 @@
       </section>
     </main>
 
+    
     <!--Pie de página-->
     <footer>
       <div id="logos">

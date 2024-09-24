@@ -207,3 +207,30 @@
 footer {
   position: relative;
 }
+
+
+@media (max-width: 1050px) {
+  .div-tabla {
+    max-height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
+  
+  /* Opcional: hacer que la cabecera se quede fija mientras se desplazan las filas */
+
+
+
+/* Tabla que ocupará todo el ancho disponible */
+
+
+
+/* Ajustar el tamaño de las columnas en pantallas pequeñas */
+/* @media (max-width: 768px) {
+  th, td {
+    
+  }
+
+
+} */
