@@ -35,12 +35,14 @@ async function cargarInformes() {
   
   // si existen, parsear el array
   let informesArray;
+
   try {
     informesArray = JSON.parse(informesGuardados);
   } catch (error) {
-    console.error("error", error);
+    console.error("Error al parsear informes:", error);
     return;
   }
+
 
   console.log("array de informes", informesArray);
   if (!Array.isArray(informesArray)) {
@@ -63,6 +65,7 @@ async function cargarInformes() {
     cargoElegido.push(datos[3]);
     distrito.push(datos[4]);
     seccion.push(datos[5]);
+ 
 
     const URL = `https://resultados.mininterior.gob.ar/api/menu?año=${datos[0]}`;
     try {
@@ -119,6 +122,7 @@ async function cargarInformes() {
       console.error(err);
     }
   }
+  console.log(seccionEncontrada)
 
   mostrarTabla();
 }

@@ -51,22 +51,25 @@ var colorAgrupaciones = {
 async function coneccion() {
   const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
   try {
+    //para tratar conectarme a la url 
     const respuesta = await fetch(url);
-    if (respuesta.ok) {
-      const data = await respuesta.json();
-      var combo = document.getElementById("año");
 
-      for (i = 0; i < data.length; i++) {
-        const option = document.createElement("option");
-        option.value = data[i];
-        option.text = data[i];
-        combo.appendChild(option);
-      }
-    } else {
-      console.log("error 404");
+    if(!respuesta.ok){
+      throw new Error("Error en la petición: " + respuesta.status);
     }
+   
+    const data = await respuesta.json();
+    var combo = document.getElementById("año");
+
+    for (i = 0; i < data.length; i++) {
+      const option = document.createElement("option");
+      option.value = data[i];
+      option.text = data[i];
+      combo.appendChild(option);
+      
+    } 
   } catch (err) {
-    console.log(err);
+    console.log("Ocurrio un error",err.message);
   }
 }
 coneccion();
@@ -113,26 +116,16 @@ async function elegirCargo() {
 
     const comboDistrito = document.getElementById("distrito");
 
-    // filtra datos porelección y año
-    datosFiltradosAño = datosFiltrados.filter(
-      (eleccion) => eleccion.IdEleccion === tipoEleccion
-    );
-    for (let i = 0; i < datosFiltradosAño.length; i++) {
-      const eleccion = datosFiltradosAño[i];
-      for (let j = 0; j < eleccion.Cargos.length; j++) {
-        const cargoActual = eleccion.Cargos[j];
-        if (cargoActual.IdCargo == valorCargo) {
-          cargo = cargoActual;
-          break;
-        }
-      }
-      if (cargo) {
-        break;
-      }
+    for (const eleccion of datosFiltrados) {
+      cargo = eleccion.Cargos.find(c => c.IdCargo == valorCargo);
+      if (cargo) break;
     }
+
     if (!cargo) {
       console.log("Cargo no encontrado");
-    }
+      return;
+    } 
+
     cargo.Distritos.forEach((distrito) => {
       const option = document.createElement("option");
       option.value = distrito.IdDistrito;
@@ -152,40 +145,21 @@ async function elegirDistrito() {
 
     const comboSeccion = document.getElementById("seccion");
 
-    // filtro datos por elección y año
-    const datosFiltradosCargo = datosFiltrados.filter(
-      (eleccion) => eleccion.IdEleccion === tipoEleccion
-    );
-
-    for (let i = 0; i < datosFiltradosCargo.length; i++) {
-      const eleccion = datosFiltradosCargo[i];
-      for (let j = 0; j < eleccion.Cargos.length; j++) {
-        const cargoActual = eleccion.Cargos[j];
-        if (cargoActual.IdCargo == valorCargo) {
-          cargo = cargoActual;
-          break;
-        }
-      }
-      if (cargo) {
-        break;
-      }
+    for (const eleccion of datosFiltrados) {
+      cargo = eleccion.Cargos.find(c => c.IdCargo == valorCargo);
+      if (cargo) break;
     }
+
     if (!cargo) {
       console.log("Cargo no encontrado");
       return;
     }
-    for (let a = 0; a < cargo.Distritos.length; a++) {
-      const distritoActual = cargo.Distritos[a];
 
-      if (distritoActual.IdDistrito == valorDistrito) {
-        distrito = distritoActual;
 
-        break;
-      }
-    }
+    const distrito = cargo.Distritos.find(d => d.IdDistrito == valorDistrito);
+
     if (!distrito) {
       console.log("Distrito no encontrado");
-
       return;
     }
     // campo oculto
@@ -369,7 +343,7 @@ async function filtrar() {
 function agregarInforme() {
   var informe = `${añoElegido}|${tipoRecuento}|${tipoEleccion}|${valorCargo}|${valorDistrito}|${valorSeccion}`;
 
-  var informesArray = JSON.parse(localStorage.getItem("INFORMES")) || [];
+  var informesArray = JSON.parse(localStorage.getItem("INFORMES")) || [] ;
 
   if (informesArray.includes(informe)) {
     mostrarMensajeIncompleto("El informe ya existe");

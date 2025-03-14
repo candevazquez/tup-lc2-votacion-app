@@ -52,32 +52,32 @@ async function coneccion() {
   const url = "https://resultados.mininterior.gob.ar/api/menu/periodos";
 
   try {
-    //para tratar conectarnos a la url await espera fetch para conectarse
+    //para tratar conectarme a la url 
     const respuesta = await fetch(url);
 
-    if (respuesta.ok) {
-      //fuciono
-      const data = await respuesta.json();
-      var combo = document.getElementById("año");
-
-      for (i = 0; i < data.length; i++) {
-        const option = document.createElement("option");
-        option.value = data[i];
-        option.text = data[i];
-        combo.appendChild(option);
-      }
-    } else {
-      console.log("error 404");
+    if(!respuesta.ok){
+      throw new Error("Error en la petición: " + respuesta.status);
     }
+   
+    const data = await respuesta.json();
+    var combo = document.getElementById("año");
+
+    for (i = 0; i < data.length; i++) {
+      const option = document.createElement("option");
+      option.value = data[i];
+      option.text = data[i];
+      combo.appendChild(option);
+      
+    } 
   } catch (err) {
-    console.log(err);
+    console.log("Ocurrio un error",err.message);
   }
 }
 coneccion();
 
 async function elegirAño() {
   var añoElegido = document.getElementById("año");
-  if (añoElegido == "") {
+  if (añoElegido.value == "") {
     return false;
   } else {
     var valorAño = añoElegido.value;
@@ -110,7 +110,7 @@ async function elegirAño() {
 
 async function elegirCargo() {
   var cargoElegido = document.getElementById("cargo");
-  if (cargoElegido == "") {
+  if (cargoElegido.value == "") {
     return false;
   } else {
     valorCargo = cargoElegido.value;
@@ -118,26 +118,14 @@ async function elegirCargo() {
 
     const comboDistrito = document.getElementById("distrito");
 
-    datosFiltradosAño = datosFiltrados.filter(
-      (eleccion) => eleccion.IdEleccion === tipoEleccion
-    );
-
-    for (let i = 0; i < datosFiltradosAño.length; i++) {
-      const eleccion = datosFiltradosAño[i];
-      for (let j = 0; j < eleccion.Cargos.length; j++) {
-        const cargoActual = eleccion.Cargos[j];
-        if (cargoActual.IdCargo == valorCargo) {
-          cargo = cargoActual;
-          break;
-        }
-      }
-      if (cargo) {
-        break;
-      }
+    for (const eleccion of datosFiltrados) {
+      cargo = eleccion.Cargos.find(c => c.IdCargo == valorCargo);
+      if (cargo) break;
     }
 
     if (!cargo) {
       console.log("Cargo no encontrado");
+      return;
     }
 
     // llena opciones
@@ -160,43 +148,24 @@ async function elegirDistrito() {
 
     const comboSeccion = document.getElementById("seccion");
 
-    const datosFiltradosCargo = datosFiltrados.filter(
-      (eleccion) => eleccion.IdEleccion === tipoEleccion
-    );
-
-    for (let i = 0; i < datosFiltradosCargo.length; i++) {
-      const eleccion = datosFiltradosCargo[i];
-      for (let j = 0; j < eleccion.Cargos.length; j++) {
-        const cargoActual = eleccion.Cargos[j];
-        if (cargoActual.IdCargo == valorCargo) {
-          cargo = cargoActual;
-          break;
-        }
-      }
-      if (cargo) {
-        break;
-      }
+    for (const eleccion of datosFiltrados) {
+      cargo = eleccion.Cargos.find(c => c.IdCargo == valorCargo);
+      if (cargo) break;
     }
-    console.log(cargo);
 
     if (!cargo) {
       console.log("Cargo no encontrado");
       return;
     }
 
-    for (let a = 0; a < cargo.Distritos.length; a++) {
-      const distritoActual = cargo.Distritos[a];
 
-      if (distritoActual.IdDistrito == valorDistrito) {
-        distrito = distritoActual;
-        break;
-      }
-    }
+    const distrito = cargo.Distritos.find(d => d.IdDistrito == valorDistrito);
 
     if (!distrito) {
       console.log("Distrito no encontrado");
       return;
     }
+
     // campo oculto
     const hdSeccionProvincial = document.getElementById(
       "hdSeccionProvincial"
@@ -204,7 +173,7 @@ async function elegirDistrito() {
 
     distrito.SeccionesProvinciales.forEach((seccionProvincial) => {
       hdSeccionProvincial.value = seccionProvincial.IDSecccionProvincial;
-      // recorro seccion y llena campo
+
       seccionProvincial.Secciones.forEach((seccion) => {
         const option = document.createElement("option");
         option.value = seccion.IdSeccion;
@@ -424,7 +393,7 @@ var mostrarAgrupaciones = function () {
     if (i <= 9) {
       color = colorAgrupaciones[i];
     } else {
-      color = colorAgrupaciones[10]; // color por defecto
+      color = colorAgrupaciones[10]; // color por dfecto
     }
 
     var votosAgrupacion = agrupacion.votos;
